@@ -2,30 +2,40 @@
 using ApplicationDataAccess.ApplicationUOF;
 using ApplicationDomianEntity.Models;
 using ApplicationService;
+using ApplicationService.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using R2H.Models;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace R2H.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRepository<Class1> _repository;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly UserService _service;
+        private readonly IElectricCigaretService _electricCigaretService;
 
-        public HomeController(UserService service, IRepository<Class1> repository, IUnitOfWork unitOfWork)
+        public HomeController(IElectricCigaretService electricCigaretService, IUnitOfWork unitOfWork)
         {
-            _service = service;
-            _repository = repository;
+            _electricCigaretService = electricCigaretService;
             _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            _service.Hello();
             return View();
         }
-
+       
+        public async Task<IActionResult> AddItem()
+        {
+             var  modul= await _electricCigaretService.GetElectricCigaretLookUps();
+            return View(modul);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreatItem(AddElectricCigaretViewModel Obj)
+        {
+            var modul = await _electricCigaretService.GetElectricCigaretLookUps();
+            return View("AddItem",modul);
+        }
         public IActionResult Privacy()
         {
             return View();

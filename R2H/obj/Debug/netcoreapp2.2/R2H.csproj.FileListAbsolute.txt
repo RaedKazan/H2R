@@ -36,3 +36,4 @@ C:\Users\rkazan\Downloads\AutoFac_UnitOfWork-master\AutoFac_UnitOfWork-master\We
 C:\Users\rkazan\Downloads\AutoFac_UnitOfWork-master\AutoFac_UnitOfWork-master\WebApplication1\R2H\obj\Debug\netcoreapp2.2\R2H.csproj.CopyComplete
 C:\Users\rkazan\Downloads\AutoFac_UnitOfWork-master\AutoFac_UnitOfWork-master\WebApplication1\R2H\obj\Debug\netcoreapp2.2\R2H.dll
 C:\Users\rkazan\Downloads\AutoFac_UnitOfWork-master\AutoFac_UnitOfWork-master\WebApplication1\R2H\obj\Debug\netcoreapp2.2\R2H.pdb
+C:\Users\rkazan\Downloads\AutoFac_UnitOfWork-master\AutoFac_UnitOfWork-master\WebApplication1\R2H\obj\Debug\netcoreapp2.2\Razor\Views\Home\AddItem.g.cshtml.cs

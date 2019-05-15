@@ -45,7 +45,7 @@ namespace ApplicationDataAccess.ApplicationRepository
         Task<T> FindAsync(Expression<Func<T, bool>> match);
         T Get(int id);
         IQueryable<T> GetAll();
-        Task<ICollection<T>> GetAllAsync();
+        Task<IList<T>> GetAllAsync();
         IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties);
         Task<T> GetAsync(int id);
         void Save();

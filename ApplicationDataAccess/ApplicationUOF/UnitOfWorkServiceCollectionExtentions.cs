@@ -1,9 +1,6 @@
 ﻿using ApplicationDataAccess.ApplicationRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ApplicationDataAccess.ApplicationUOF
 {

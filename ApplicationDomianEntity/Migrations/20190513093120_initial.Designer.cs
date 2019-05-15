@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplicationDomianEntity.Migrations
 {
     [DbContext(typeof(R2HDbContext))]
-    [Migration("20190422111851_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20190513093120_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,53 +21,140 @@ namespace ApplicationDomianEntity.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ApplicationDomianEntity.Models.Class1", b =>
+            modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("FirstName");
+                    b.Property<int>("BrandId");
 
-                    b.Property<int>("LastName");
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("ElectricCigaretMangmentId");
+
+                    b.Property<byte[]>("Image");
+
+                    b.Property<DateTime>("LastModificationDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<double>("Price");
+
+                    b.Property<int>("TypeId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Class1");
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("ElectricCigaretMangmentId")
+                        .IsUnique();
+
+                    b.HasIndex("TypeId");
+
+                    b.ToTable("ShopItem");
                 });
 
-            modelBuilder.Entity("ApplicationDomianEntity.Models.Class2", b =>
+            modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItemLookUp", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ArabicName");
+                    b.Property<int>("Brand");
 
-                    b.Property<int>("EnglishName");
+                    b.Property<int>("Category");
 
-                    b.Property<int>("class1");
+                    b.Property<string>("Description");
+
+                    b.Property<int>("Type");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("class1");
+                    b.ToTable("ShopItemLookUp");
 
-                    b.ToTable("Class2");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Brand = 0,
+                            Category = 0,
+                            Description = "ECigaert -سيقارة الكترونية",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Brand = 0,
+                            Category = 0,
+                            Description = "EJuic -عصير الكتروني",
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Brand = 0,
+                            Category = 0,
+                            Description = "Vape -فيب الكترونية",
+                            Type = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Brand = 0,
+                            Category = 1,
+                            Description = "سيقارة الكترونية",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Brand = 0,
+                            Category = 2,
+                            Description = "بود سيقارة الكترونية",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Brand = 1,
+                            Category = 0,
+                            Description = "Smoke",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Brand = 2,
+                            Category = 0,
+                            Description = "Drag",
+                            Type = 1
+                        });
                 });
 
-            modelBuilder.Entity("ApplicationDomianEntity.Models.Class3", b =>
+            modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItemMangment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("FirstName");
+                    b.Property<int>("Brand");
 
-                    b.Property<int>("LastName");
+                    b.Property<bool>("IsAvilable");
+
+                    b.Property<int>("TotalyAvilable");
+
+                    b.Property<int>("TotalyInserted");
+
+                    b.Property<int>("TotalySold");
+
+                    b.Property<int>("Type");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Class3");
+                    b.ToTable("ShopItemMangment");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -235,11 +322,21 @@ namespace ApplicationDomianEntity.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ApplicationDomianEntity.Models.Class2", b =>
+            modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItem", b =>
                 {
-                    b.HasOne("ApplicationDomianEntity.Models.Class1", "MyProperty")
-                        .WithMany("MyProperty")
-                        .HasForeignKey("class1")
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Brand")
+                        .WithMany("ShopItemBrand")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItemMangment", "ElectricCigaretMangment")
+                        .WithOne("ElectricCigaret")
+                        .HasForeignKey("ApplicationDomianEntity.Models.ShopItem", "ElectricCigaretMangmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Type")
+                        .WithMany("ShopItemType")
+                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

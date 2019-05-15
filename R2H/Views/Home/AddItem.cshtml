@@ -1,0 +1,64 @@
+﻿@model ApplicationService.ViewModels.AddElectricCigaretViewModel
+@{
+    ViewData["Title"] = "AddItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("CreatItem", "Home"))
+{
+    <row>
+        <div class="col-md-12">
+            <div class="form-group row col-md-12">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.Type)
+                    @Html.DropDownListFor(model => model.Type, Model.TypeSelectList, new {  @class = "form-control", @placeholder = "-Select-" })
+                    @Html.ValidationMessageFor(c => c.TypeSelectList)
+
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.Brand)
+                    @Html.DropDownListFor(model => model.Brand, Model.BrandSelectList, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(c => c.BrandSelectList)
+
+                </div>
+            </div>
+
+            <div class="form-group row col-md-12">
+                <div class="col-md-4">
+                    @Html.DisplayNameFor(x => x.CountToInsert)
+                    @Html.TextBoxFor(x => x.CountToInsert, new { @class = "form-control" })
+
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayNameFor(x => x.Price)
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+
+                </div>
+            </div>
+            <div class="form-group row col-md-12">
+                <div class="col-md-4">
+                    @Html.DisplayNameFor(x => x.Image)
+                    <div>
+                        <input type="file" accept="image/*" onchange="loadFile(event)">
+                        <img id="output" style="width:300px" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </row>
+    <button type="submit" class="btn btn-primary" value="submit">حفظ</button>
+
+}
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+<script>
+    var loadFile = function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('output');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>

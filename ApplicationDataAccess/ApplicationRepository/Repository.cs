@@ -137,7 +137,7 @@ namespace ApplicationDataAccess.ApplicationRepository
         {
             return _dbContext.Set<T>();
         }
-        public virtual async Task<ICollection<T>> GetAllAsync()
+        public virtual async Task<IList<T>> GetAllAsync()
         {
 
             return await _dbContext.Set<T>().ToListAsync();

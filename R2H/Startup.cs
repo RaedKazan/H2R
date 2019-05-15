@@ -50,7 +50,7 @@ namespace R2H
             //Now register our services with Autofac container
             var builder = new ContainerBuilder();
             builder.RegisterType<R2HDbContext>().As<DbContext>().WithParameter("ConnectionStrings", "ConnectionStringValue").InstancePerLifetimeScope();
-            builder.RegisterType<ServiecUser>().As<UserService>();
+            builder.RegisterType<ElectricCigaretService>().As<IElectricCigaretService>();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
 
             services.AddDefaultIdentity<IdentityUser>()

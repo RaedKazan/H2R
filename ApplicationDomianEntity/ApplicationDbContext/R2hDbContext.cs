@@ -11,9 +11,9 @@ namespace ApplicationDomianEntity.ApplicationDbContext
 
     public partial class R2HDbContext : IdentityDbContext
     {
-        public virtual DbSet<Class1> Class1 { get; set; }
-        public virtual DbSet<Class2> Class2 { get; set; }
-        public virtual DbSet<Class3> Class3 { get; set; }
+        public virtual DbSet<ShopItem> ShopItem { get; set; }
+        public virtual DbSet<ShopItemLookUp> ShopItemLookUp { get; set; }
+        public virtual DbSet<ShopItemMangment> ShopItemMangment { get; set; }
 
         public R2HDbContext(DbContextOptions<R2HDbContext> options)
           : base(options)
@@ -71,14 +71,83 @@ namespace ApplicationDomianEntity.ApplicationDbContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Class1>().HasKey(entity => entity.Id);
-            modelBuilder.Entity<Class2>().HasKey(entity => entity.Id);
 
-            modelBuilder.Entity<Class2>()
-         .HasOne(e => e.MyProperty)
-         .WithMany(e => e.MyProperty)
-         .HasForeignKey(e => e.class1)
-         .OnDelete(DeleteBehavior.Restrict);
+            // seed data for lookups
+
+            modelBuilder.Entity<ShopItemLookUp>().HasData(
+                new ShopItemLookUp
+                {
+                    Id = 1,
+                    Type = 1,
+                    Description = "ECigaert -سيقارة الكترونية"
+                }
+            );
+            modelBuilder.Entity<ShopItemLookUp>().HasData(
+               new ShopItemLookUp
+               {
+                   Id = 2,
+                   Type = 2,
+                   Description = "EJuic -عصير الكتروني"
+               }
+           );
+            modelBuilder.Entity<ShopItemLookUp>().HasData(
+               new ShopItemLookUp
+               {
+                   Id = 3,
+                   Type = 3,
+                   Description = "Vape -فيب الكترونية"
+               }
+           );
+            modelBuilder.Entity<ShopItemLookUp>().HasData(
+            new ShopItemLookUp
+            {
+                Id = 4,
+                Type = 1,
+                Category = 1,
+                Description = "سيقارة الكترونية"
+            }
+        );
+
+            modelBuilder.Entity<ShopItemLookUp>().HasData(
+         new ShopItemLookUp
+         {
+             Id = 5,
+             Type = 1,
+             Category = 2,
+             Description = "بود سيقارة الكترونية"
+         }
+     );
+            modelBuilder.Entity<ShopItemLookUp>().HasData(
+            new ShopItemLookUp
+            {
+                Id = 6,
+                Type = 1,
+                Brand = 1,
+                Description = "Smoke"
+            }
+        );
+            modelBuilder.Entity<ShopItemLookUp>().HasData(
+            new ShopItemLookUp
+            {
+                Id = 7,
+                Type = 1,
+                Brand = 2,
+                Description = "Drag"
+            }
+        );
+
+
+            modelBuilder.Entity<ShopItemLookUp>()
+              .HasMany(e => e.ShopItemBrand)
+              .WithOne(e => e.Brand)
+              .HasForeignKey(e => e.BrandId)
+              .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ShopItemLookUp>()
+             .HasMany(e => e.ShopItemType)
+             .WithOne(e => e.Type)
+             .HasForeignKey(e => e.TypeId)
+             .OnDelete(DeleteBehavior.Restrict);
         }
     }
 

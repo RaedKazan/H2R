@@ -2,9 +2,8 @@
 
 namespace ApplicationService
 {
-    public interface UserService
+    public interface ILookUpService
     {
-        Task Hello();
-        void helloo();
+        Task AddLookUp();
     }
 }

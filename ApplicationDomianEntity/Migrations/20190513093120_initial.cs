@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApplicationDomianEntity.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,31 +48,37 @@ namespace ApplicationDomianEntity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Class1",
+                name: "ShopItemLookUp",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<int>(nullable: false),
-                    LastName = table.Column<int>(nullable: false)
+                    Type = table.Column<int>(nullable: false),
+                    Category = table.Column<int>(nullable: false),
+                    Brand = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Class1", x => x.Id);
+                    table.PrimaryKey("PK_ShopItemLookUp", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Class3",
+                name: "ShopItemMangment",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<int>(nullable: false),
-                    LastName = table.Column<int>(nullable: false)
+                    Type = table.Column<int>(nullable: false),
+                    Brand = table.Column<int>(nullable: false),
+                    TotalyInserted = table.Column<int>(nullable: false),
+                    TotalySold = table.Column<int>(nullable: false),
+                    TotalyAvilable = table.Column<int>(nullable: false),
+                    IsAvilable = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Class3", x => x.Id);
+                    table.PrimaryKey("PK_ShopItemMangment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -182,24 +188,56 @@ namespace ApplicationDomianEntity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Class2",
+                name: "ShopItem",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EnglishName = table.Column<int>(nullable: false),
-                    ArabicName = table.Column<int>(nullable: false),
-                    class1 = table.Column<int>(nullable: false)
+                    BrandId = table.Column<int>(nullable: false),
+                    TypeId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Price = table.Column<double>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    LastModificationDate = table.Column<DateTime>(nullable: false),
+                    Image = table.Column<byte[]>(nullable: true),
+                    ElectricCigaretMangmentId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Class2", x => x.Id);
+                    table.PrimaryKey("PK_ShopItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Class2_Class1_class1",
-                        column: x => x.class1,
-                        principalTable: "Class1",
+                        name: "FK_ShopItem_ShopItemLookUp_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "ShopItemLookUp",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ShopItem_ShopItemMangment_ElectricCigaretMangmentId",
+                        column: x => x.ElectricCigaretMangmentId,
+                        principalTable: "ShopItemMangment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ShopItem_ShopItemLookUp_TypeId",
+                        column: x => x.TypeId,
+                        principalTable: "ShopItemLookUp",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "ShopItemLookUp",
+                columns: new[] { "Id", "Brand", "Category", "Description", "Type" },
+                values: new object[,]
+                {
+                    { 1, 0, 0, "ECigaert -سيقارة الكترونية", 1 },
+                    { 2, 0, 0, "EJuic -عصير الكتروني", 2 },
+                    { 3, 0, 0, "Vape -فيب الكترونية", 3 },
+                    { 4, 0, 1, "سيقارة الكترونية", 1 },
+                    { 5, 0, 2, "بود سيقارة الكترونية", 1 },
+                    { 6, 1, 0, "Smoke", 1 },
+                    { 7, 2, 0, "Drag", 1 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -242,9 +280,20 @@ namespace ApplicationDomianEntity.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Class2_class1",
-                table: "Class2",
-                column: "class1");
+                name: "IX_ShopItem_BrandId",
+                table: "ShopItem",
+                column: "BrandId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShopItem_ElectricCigaretMangmentId",
+                table: "ShopItem",
+                column: "ElectricCigaretMangmentId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShopItem_TypeId",
+                table: "ShopItem",
+                column: "TypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -265,10 +314,7 @@ namespace ApplicationDomianEntity.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Class2");
-
-            migrationBuilder.DropTable(
-                name: "Class3");
+                name: "ShopItem");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -277,7 +323,10 @@ namespace ApplicationDomianEntity.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Class1");
+                name: "ShopItemLookUp");
+
+            migrationBuilder.DropTable(
+                name: "ShopItemMangment");
         }
     }
 }
