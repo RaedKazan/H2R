@@ -18,3 +18,11 @@ C:\Users\hussama\Desktop\WebApplication1\ApplicationService\obj\Debug\netcoreapp
 C:\Users\hussama\Desktop\WebApplication1\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.AssemblyInfo.cs
 C:\Users\hussama\Desktop\WebApplication1\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.dll
 C:\Users\hussama\Desktop\WebApplication1\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.pdb
+C:\Users\hussama\Desktop\WebApplication1\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationService.deps.json
+C:\Users\hussama\Desktop\WebApplication1\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationService.dll
+C:\Users\hussama\Desktop\WebApplication1\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationService.pdb
+C:\Users\hussama\Desktop\WebApplication1\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationDataAccess.dll
+C:\Users\hussama\Desktop\WebApplication1\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationDomianEntity.dll
+C:\Users\hussama\Desktop\WebApplication1\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationDataAccess.pdb
+C:\Users\hussama\Desktop\WebApplication1\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationDomianEntity.pdb
+C:\Users\hussama\Desktop\WebApplication1\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.csproj.CopyComplete

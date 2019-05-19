@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using ApplicationService.ViewModels;
+using System.Threading.Tasks;
 
 namespace ApplicationService
 {
     public interface ILookUpService
     {
-        Task AddLookUp();
+        Task<AddLookUpViewModel> AddLookUp();
+        Task CreateLookUp(AddLookUpViewModel AddLookUpViewModel);
     }
 }
