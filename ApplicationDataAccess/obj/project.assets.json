@@ -686,23 +686,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rkazan\\.nuget\\packages\\": {},
+    "C:\\Users\\hussama\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rkazan\\Downloads\\AutoFac_UnitOfWork-master\\AutoFac_UnitOfWork-master\\WebApplication1\\ApplicationDataAccess\\ApplicationDataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\hussama\\Desktop\\WebApplication1\\ApplicationDataAccess\\ApplicationDataAccess.csproj",
       "projectName": "ApplicationDataAccess",
-      "projectPath": "C:\\Users\\rkazan\\Downloads\\AutoFac_UnitOfWork-master\\AutoFac_UnitOfWork-master\\WebApplication1\\ApplicationDataAccess\\ApplicationDataAccess.csproj",
-      "packagesPath": "C:\\Users\\rkazan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rkazan\\Downloads\\AutoFac_UnitOfWork-master\\AutoFac_UnitOfWork-master\\WebApplication1\\ApplicationDataAccess\\obj\\",
+      "projectPath": "C:\\Users\\hussama\\Desktop\\WebApplication1\\ApplicationDataAccess\\ApplicationDataAccess.csproj",
+      "packagesPath": "C:\\Users\\hussama\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hussama\\Desktop\\WebApplication1\\ApplicationDataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\rkazan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hussama\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

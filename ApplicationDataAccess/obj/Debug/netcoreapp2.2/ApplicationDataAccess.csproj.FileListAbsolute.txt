@@ -12,3 +12,17 @@ C:\Users\rkazan\Downloads\AutoFac_UnitOfWork-master\AutoFac_UnitOfWork-master\We
 C:\Users\rkazan\Downloads\AutoFac_UnitOfWork-master\AutoFac_UnitOfWork-master\WebApplication1\ApplicationDataAccess\obj\Debug\netcoreapp2.2\ApplicationDataAccess.dll
 C:\Users\rkazan\Downloads\AutoFac_UnitOfWork-master\AutoFac_UnitOfWork-master\WebApplication1\ApplicationDataAccess\obj\Debug\netcoreapp2.2\ApplicationDataAccess.pdb
 C:\Users\rkazan\Downloads\AutoFac_UnitOfWork-master\AutoFac_UnitOfWork-master\WebApplication1\ApplicationDataAccess\obj\Debug\netcoreapp2.2\ApplicationDataAccess.csprojAssemblyReference.cache
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\bin\Debug\netcoreapp2.2\ApplicationDataAccess.deps.json
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\bin\Debug\netcoreapp2.2\ApplicationDataAccess.dll
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\bin\Debug\netcoreapp2.2\ApplicationDataAccess.pdb
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\bin\Debug\netcoreapp2.2\Microsoft.EntityFrameworkCore.dll
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\bin\Debug\netcoreapp2.2\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\bin\Debug\netcoreapp2.2\Microsoft.EntityFrameworkCore.xml
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\bin\Debug\netcoreapp2.2\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\obj\Debug\netcoreapp2.2\ApplicationDataAccess.csprojAssemblyReference.cache
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\obj\Debug\netcoreapp2.2\ApplicationDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\obj\Debug\netcoreapp2.2\ApplicationDataAccess.AssemblyInfoInputs.cache
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\obj\Debug\netcoreapp2.2\ApplicationDataAccess.AssemblyInfo.cs
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\obj\Debug\netcoreapp2.2\ApplicationDataAccess.csproj.CopyComplete
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\obj\Debug\netcoreapp2.2\ApplicationDataAccess.dll
+C:\Users\hussama\Desktop\WebApplication1\ApplicationDataAccess\obj\Debug\netcoreapp2.2\ApplicationDataAccess.pdb
