@@ -10,6 +10,6 @@ namespace ApplicationService
         Task<GetAllElectricCigaretViewModel> GetAllElectricCigaret();
         Task<GetElectricCigaretViewModel> GetElectricCigaretById(int Id);
         Task<AddElectricCigaretViewModel> GetElectricCigaretLookUps();
-        Task UpdateElectricCigaret(int Id, ShopItem ElectricCigaret);
+        Task UpdateElectricCigaret(int Id, AddElectricCigaretViewModel ElectricCigaret);
     }
 }

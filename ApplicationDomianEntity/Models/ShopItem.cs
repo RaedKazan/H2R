@@ -20,6 +20,8 @@ namespace ApplicationDomianEntity.Models
         public byte[] Image { get; set; }
         public ShopItemMangment ElectricCigaretMangment { get; set; }
         public int ElectricCigaretMangmentId { get; set; }
+        public bool IsActive { get; set; }
+
 
     }
 }

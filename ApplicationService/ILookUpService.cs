@@ -5,7 +5,7 @@ namespace ApplicationService
 {
     public interface ILookUpService
     {
+        Task<bool> CreateLookUp(AddLookUpViewModel AddLookUpViewModel);
         Task<AddLookUpViewModel> AddLookUp();
-        Task CreateLookUp(AddLookUpViewModel AddLookUpViewModel);
     }
 }
