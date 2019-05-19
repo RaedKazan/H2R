@@ -115,3 +115,4 @@ C:\Users\hamzaa\Desktop\H2R-master\R2H\obj\Debug\netcoreapp2.2\R2H.Views.pdb
 C:\Users\hamzaa\Desktop\H2R-master\R2H\obj\Debug\netcoreapp2.2\R2H.csproj.CopyComplete
 C:\Users\hamzaa\Desktop\H2R-master\R2H\obj\Debug\netcoreapp2.2\R2H.dll
 C:\Users\hamzaa\Desktop\H2R-master\R2H\obj\Debug\netcoreapp2.2\R2H.pdb
+C:\Users\hussama\Desktop\WebApplication1\R2H\obj\Debug\netcoreapp2.2\Razor\Views\Home\CreateItem.g.cshtml.cs

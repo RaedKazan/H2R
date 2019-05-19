@@ -79,7 +79,7 @@
     "Microsoft.NETCore.Platforms/2.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-T/J+XZo+YheFTJh8/4uoeJDdz5qOmOMkjg6/VL8mHJ9AnP8+fmV/kcbxeXsob0irRNiChf+V0ig1MCRLp/+Kog==",
+      "sha512": "sha512-39+GVHdbm+cmoOjdvm+fhiMbddnuVyUlBdYS8Yhn5xsNaBoTXpgBsxQQlI2Sv9EjIP0F+itG6yrDaOM2OEGupQ==",
       "path": "microsoft.netcore.platforms/2.2.0",
       "hashPath": "microsoft.netcore.platforms.2.2.0.nupkg.sha512"
     },

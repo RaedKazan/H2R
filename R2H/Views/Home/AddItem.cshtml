@@ -47,8 +47,8 @@
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
                         @Html.DisplayNameFor(x => x.Description)
-                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @Required = "Required" })
+                        @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger"})
 
                     </div>
                     <div class="col-md-4">

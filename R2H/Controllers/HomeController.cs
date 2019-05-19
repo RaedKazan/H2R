@@ -24,12 +24,18 @@ namespace R2H.Controllers
         {
             return View();
         }
-       
-        public async Task<IActionResult> AddItem()
+       public async Task<IActionResult> AddItem(int id)
         {
              var  modul= await _electricCigaretService.GetElectricCigaretLookUps();
+            ViewBag.ID = id;
              return View(modul);
         }
+        public async Task<IActionResult> CreateItem()
+        {
+            var modul = await _electricCigaretService.GetElectricCigaretLookUps();
+            return View(modul);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreatItem(AddElectricCigaretViewModel Model)
         {
@@ -46,7 +52,7 @@ namespace R2H.Controllers
             }
             else
             {
-                return View("AddItem", Model);
+                return View("AddItem", await _electricCigaretService.GetElectricCigaretLookUps());
 
             }
         }
