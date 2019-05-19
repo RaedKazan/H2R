@@ -28,12 +28,13 @@ namespace ApplicationService
             return addLookUpViewModel;
         }
 
-        public  async Task CreateLookUp(AddLookUpViewModel AddLookUpViewModel)
+        public  async Task<bool> CreateLookUp(AddLookUpViewModel AddLookUpViewModel)
         {
             if (AddLookUpViewModel.Brand != null)
              await   CreateLookUpBrand(AddLookUpViewModel);
             else
               await  CreateLookUpCategory(AddLookUpViewModel);
+            return true;
         }
 
         public async  Task CreateLookUpBrand(AddLookUpViewModel AddLookUpViewModel)

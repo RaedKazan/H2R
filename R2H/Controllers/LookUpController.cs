@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ApplicationService;
+﻿using ApplicationService;
+using ApplicationService.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace R2H.Controllers
 {
@@ -17,9 +15,18 @@ namespace R2H.Controllers
             _electricCigaretService = electricCigaretService;
         }
 
-        public IActionResult Index()
+
+        // to do add View 
+        public async Task<IActionResult> AddLookUp()
         {
-            return View();
+            var model= await _electricCigaretService.AddLookUp();
+            return View(model);
+        }
+
+        public async Task<IActionResult> CreateLookUp(AddLookUpViewModel AddLookUpViewModel)
+        {
+            var model = await _electricCigaretService.CreateLookUp(AddLookUpViewModel);
+            return View(model);
         }
     }
 }
