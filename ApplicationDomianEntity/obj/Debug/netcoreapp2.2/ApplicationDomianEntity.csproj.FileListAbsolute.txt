@@ -31,3 +31,14 @@ C:\Users\hamzaa\Desktop\H2R-master\ApplicationDomianEntity\obj\Debug\netcoreapp2
 C:\Users\hamzaa\Desktop\H2R-master\ApplicationDomianEntity\obj\Debug\netcoreapp2.2\ApplicationDomianEntity.AssemblyInfo.cs
 C:\Users\hamzaa\Desktop\H2R-master\ApplicationDomianEntity\obj\Debug\netcoreapp2.2\ApplicationDomianEntity.dll
 C:\Users\hamzaa\Desktop\H2R-master\ApplicationDomianEntity\obj\Debug\netcoreapp2.2\ApplicationDomianEntity.pdb
+C:\Users\rkazan\source\repos\H2R\ApplicationDomianEntity\bin\Debug\netcoreapp2.2\ApplicationDomianEntity.deps.json
+C:\Users\rkazan\source\repos\H2R\ApplicationDomianEntity\bin\Debug\netcoreapp2.2\ApplicationDomianEntity.runtimeconfig.json
+C:\Users\rkazan\source\repos\H2R\ApplicationDomianEntity\bin\Debug\netcoreapp2.2\ApplicationDomianEntity.runtimeconfig.dev.json
+C:\Users\rkazan\source\repos\H2R\ApplicationDomianEntity\bin\Debug\netcoreapp2.2\ApplicationDomianEntity.dll
+C:\Users\rkazan\source\repos\H2R\ApplicationDomianEntity\bin\Debug\netcoreapp2.2\ApplicationDomianEntity.pdb
+C:\Users\rkazan\source\repos\H2R\ApplicationDomianEntity\obj\Debug\netcoreapp2.2\ApplicationDomianEntity.csprojAssemblyReference.cache
+C:\Users\rkazan\source\repos\H2R\ApplicationDomianEntity\obj\Debug\netcoreapp2.2\ApplicationDomianEntity.csproj.CoreCompileInputs.cache
+C:\Users\rkazan\source\repos\H2R\ApplicationDomianEntity\obj\Debug\netcoreapp2.2\ApplicationDomianEntity.AssemblyInfoInputs.cache
+C:\Users\rkazan\source\repos\H2R\ApplicationDomianEntity\obj\Debug\netcoreapp2.2\ApplicationDomianEntity.AssemblyInfo.cs
+C:\Users\rkazan\source\repos\H2R\ApplicationDomianEntity\obj\Debug\netcoreapp2.2\ApplicationDomianEntity.dll
+C:\Users\rkazan\source\repos\H2R\ApplicationDomianEntity\obj\Debug\netcoreapp2.2\ApplicationDomianEntity.pdb

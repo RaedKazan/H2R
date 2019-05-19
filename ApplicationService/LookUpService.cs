@@ -34,9 +34,6 @@ namespace ApplicationService
              await   CreateLookUpBrand(AddLookUpViewModel);
             else
               await  CreateLookUpCategory(AddLookUpViewModel);
-
-
-            throw new System.NotImplementedException();
         }
 
         public async  Task CreateLookUpBrand(AddLookUpViewModel AddLookUpViewModel)
