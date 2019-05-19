@@ -519,7 +519,7 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.2.0": {
-      "sha512": "T/J+XZo+YheFTJh8/4uoeJDdz5qOmOMkjg6/VL8mHJ9AnP8+fmV/kcbxeXsob0irRNiChf+V0ig1MCRLp/+Kog==",
+      "sha512": "39+GVHdbm+cmoOjdvm+fhiMbddnuVyUlBdYS8Yhn5xsNaBoTXpgBsxQQlI2Sv9EjIP0F+itG6yrDaOM2OEGupQ==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.2.0",
       "files": [
@@ -686,23 +686,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hamzaa\\.nuget\\packages\\": {},
+    "C:\\Users\\rkazan\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hamzaa\\Desktop\\H2R-master\\ApplicationDataAccess\\ApplicationDataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\rkazan\\source\\repos\\H2R\\ApplicationDataAccess\\ApplicationDataAccess.csproj",
       "projectName": "ApplicationDataAccess",
-      "projectPath": "C:\\Users\\hamzaa\\Desktop\\H2R-master\\ApplicationDataAccess\\ApplicationDataAccess.csproj",
-      "packagesPath": "C:\\Users\\hamzaa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hamzaa\\Desktop\\H2R-master\\ApplicationDataAccess\\obj\\",
+      "projectPath": "C:\\Users\\rkazan\\source\\repos\\H2R\\ApplicationDataAccess\\ApplicationDataAccess.csproj",
+      "packagesPath": "C:\\Users\\rkazan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rkazan\\source\\repos\\H2R\\ApplicationDataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\hamzaa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rkazan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
