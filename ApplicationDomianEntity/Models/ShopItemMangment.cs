@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ApplicationDomianEntity.Models
 {
     public class ShopItemMangment
-    {
+    {   [Key]
         public int Id { get; set; }
         public int Type { get; set; }
         public int Brand { get; set; }
@@ -13,6 +12,8 @@ namespace ApplicationDomianEntity.Models
         public int TotalySold { get; set; }
         public int? TotalyAvilable { get; set; }
         public bool IsAvilable { get; set; }
-        public ShopItem ElectricCigaret { get; set; }
+        public List<ShopItem> ElectricCigaret { get; set; }
+        public int ElectricCigaretId { get; set; }
+
     }
 }

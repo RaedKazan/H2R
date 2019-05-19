@@ -12,7 +12,6 @@ namespace ApplicationDomianEntity.Models
         public int Brand { get; set; }
         public string Description { get; set; }
         public ICollection<ShopItem> ShopItemBrand { get; set; }
-
         public ICollection<ShopItem> ShopItemType { get; set; }
 
 

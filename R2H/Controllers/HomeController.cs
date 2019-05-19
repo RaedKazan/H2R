@@ -28,13 +28,27 @@ namespace R2H.Controllers
         public async Task<IActionResult> AddItem()
         {
              var  modul= await _electricCigaretService.GetElectricCigaretLookUps();
-            return View(modul);
+             return View(modul);
         }
         [HttpPost]
-        public async Task<IActionResult> CreatItem(AddElectricCigaretViewModel Obj)
+        public async Task<IActionResult> CreatItem(AddElectricCigaretViewModel Model)
         {
-            var modul = await _electricCigaretService.GetElectricCigaretLookUps();
-            return View("AddItem",modul);
+            if (ModelState.IsValid)
+            {
+                var modul = await _electricCigaretService.AddElectricCigaret(Model);
+                if(modul)
+                return RedirectToAction("Index");
+                else
+                {
+                    ViewBag.ErrorMassag = "هذا العنصر مدخل مسبقا يجب عليه تعديل نفس العنصر ";
+                    return View("AddItem", await _electricCigaretService.GetElectricCigaretLookUps());
+                }
+            }
+            else
+            {
+                return View("AddItem", Model);
+
+            }
         }
         public IActionResult Privacy()
         {

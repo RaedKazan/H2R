@@ -148,6 +148,12 @@ namespace ApplicationDomianEntity.ApplicationDbContext
              .WithOne(e => e.Type)
              .HasForeignKey(e => e.TypeId)
              .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ShopItemMangment>()
+            .HasMany(e => e.ElectricCigaret)
+            .WithOne(e => e.ElectricCigaretMangment)
+            .HasForeignKey(e => e.ElectricCigaretMangmentId)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using ApplicationDomianEntity.Models;
 using System;
+using System.Collections.Generic;
 
 namespace ApplicationService.ViewModels
 {
@@ -29,6 +30,10 @@ namespace ApplicationService.ViewModels
         public int? CurrentlyCountAvilabil { get; set; }
         public Double? Price { get; set; }
         public byte[] Image { get; set; }
+
         public bool? IsAvilable { get; set; }
+       
+
+
     }
 }
