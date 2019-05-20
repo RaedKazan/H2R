@@ -1,0 +1,34 @@
+﻿
+    .webgrid-table {
+     width: 100%;
+     display: table;
+     border-collapse: separate;
+     border: solid 1px;
+     background-color: white;
+ }
+
+.webgrid-table td, th {
+    border: 1px solid cadetblue;
+    padding: 3px 7px 2px;
+}
+
+.webgird-header {
+    background-color: darkslategray;
+    color: #FFFFFF;
+    padding-bottom: 4px;
+    padding-top: 5px;
+    text-align: left;
+}
+
+.webgrid-footer {
+    background-color: darkslategray;
+}
+
+.webgird-row-style {
+    padding: 3px 7px 2px;
+}
+
+webgrid-alernating-row {
+    background-color: #EAF2D3;
+    padding: 3px 7px 2px;
+}
