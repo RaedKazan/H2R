@@ -26,17 +26,3 @@ C:\Users\hussama\Desktop\WebApplication1\ApplicationService\bin\Debug\netcoreapp
 C:\Users\hussama\Desktop\WebApplication1\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationDataAccess.pdb
 C:\Users\hussama\Desktop\WebApplication1\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationDomianEntity.pdb
 C:\Users\hussama\Desktop\WebApplication1\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.csproj.CopyComplete
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationService.deps.json
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationService.dll
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationService.pdb
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationDataAccess.dll
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationDomianEntity.dll
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationDataAccess.pdb
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\bin\Debug\netcoreapp2.2\ApplicationDomianEntity.pdb
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.csprojAssemblyReference.cache
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.csproj.CoreCompileInputs.cache
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.AssemblyInfoInputs.cache
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.AssemblyInfo.cs
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.csproj.CopyComplete
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.dll
-C:\Users\hamzaa\Desktop\H2R-master\ApplicationService\obj\Debug\netcoreapp2.2\ApplicationService.pdb
