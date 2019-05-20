@@ -144,9 +144,9 @@ namespace ApplicationDomianEntity.ApplicationDbContext
               .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ShopItemLookUp>()
-             .HasMany(e => e.ShopItemType)
-             .WithOne(e => e.Type)
-             .HasForeignKey(e => e.TypeId)
+             .HasMany(e => e.ShopItemCategory)
+             .WithOne(e => e.Category)
+             .HasForeignKey(e => e.CategoryId)
              .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ShopItemMangment>()

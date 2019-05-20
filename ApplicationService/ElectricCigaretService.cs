@@ -33,14 +33,15 @@ namespace ApplicationService
                 Image = Encoding.ASCII.GetBytes(ElectricCigaretViewModel.Image.Substring(ElectricCigaretViewModel.Image.IndexOf("64") + 4)),
                 Name = ElectricCigaretViewModel.Name,
                 Price = ElectricCigaretViewModel.Price,
-                TypeId = ElectricCigaretViewModel.Type.Value,
+                TypeId = ElectricCigaretViewModel.TypeId,
                 CreatedDate = DateTime.Now,
                 LastModificationDate = DateTime.Now,
-                BrandId = ElectricCigaretViewModel.Brand.Value,
+                BrandId = ElectricCigaretViewModel.BrandId.Value,
+                CategoryId = ElectricCigaretViewModel.CategoryId.Value,
                 IsActive = true
             };
 
-            if (!ElectricCigaretMangment.GetAll().Where(c => c.Type == ElectricCigaretViewModel.Type && c.Brand == ElectricCigaretViewModel.Brand).Any())
+            if (!ElectricCigaretMangment.GetAll().Where(c => c.Type == ElectricCigaretViewModel.TypeId && c.Brand == ElectricCigaretViewModel.BrandId).Any())
             {
                 var model = await ElectricCigaretMangment.AddAsync(new ShopItemMangment
                 {
@@ -48,8 +49,9 @@ namespace ApplicationService
                     TotalyAvilable = ElectricCigaretViewModel.CountToInsert,
                     TotalyInserted = ElectricCigaretViewModel.CountToInsert,
                     TotalySold = 0,
-                    Type = ElectricCigaretViewModel.Type.Value,
-                    Brand = ElectricCigaretViewModel.Brand.Value
+                    Type = ElectricCigaretViewModel.TypeId,
+                    Brand = ElectricCigaretViewModel.BrandId.Value,
+                    Category = ElectricCigaretViewModel.TypeId
                 });
                 ElectricCigaret.ElectricCigaretMangmentId = model.Id;
                 await ElectricCigaretRepository.AddAsync(ElectricCigaret);
@@ -96,17 +98,19 @@ namespace ApplicationService
             return new GetElectricCigaretViewModel(electricCigaret);
         }
 
-        public async Task<AddElectricCigaretViewModel> GetElectricCigaretLookUps()
+        public async Task<AddElectricCigaretViewModel> GetElectricCigaretLookUps(int TypeId)
         {
             AddElectricCigaretViewModel ElectricCigaretViewModel = new AddElectricCigaretViewModel();
+            ElectricCigaretViewModel.TypeId = TypeId;
             var ElectricCigaretLookUp = await ElectricCigaretLookUpRepository.GetAllAsync();
 
-            ElectricCigaretViewModel.BrandSelectList = ElectricCigaretLookUp.Where(c=>c.Type==1 && c.Brand !=0).Select(x=>  new SelectListItem()
-            { Text=x.Description,
-             Value= x.Id.ToString(),
+            ElectricCigaretViewModel.BrandSelectList = ElectricCigaretLookUp.Where(c => c.Type == TypeId && c.Brand != 0).Select(x => new SelectListItem()
+            {
+                Text = x.Description,
+                Value = x.Id.ToString(),
             }).ToList();
 
-            ElectricCigaretViewModel.TypeSelectList = ElectricCigaretLookUp.Where(c => c.Type == 1 && c.Category!=0).Select(x => new SelectListItem()
+            ElectricCigaretViewModel.CategorySelectList = ElectricCigaretLookUp.Where(c => c.Type == TypeId && c.Category != 0).Select(x => new SelectListItem()
             {
                 Text = x.Description,
                 Value = x.Id.ToString(),
@@ -117,7 +121,7 @@ namespace ApplicationService
         public async Task UpdateElectricCigaret(int Id, AddElectricCigaretViewModel ElectricCigaret)
         {
             var ECigaret = await ElectricCigaretRepository.GetAsync(Id);
-            
+
 
             throw new System.NotImplementedException();
         }

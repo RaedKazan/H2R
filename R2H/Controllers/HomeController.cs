@@ -24,16 +24,15 @@ namespace R2H.Controllers
         {
             return View();
         }
-       public async Task<IActionResult> AddItem(int id)
+       public async Task<IActionResult> AddItem(int Id)
         {
-             var  modul= await _electricCigaretService.GetElectricCigaretLookUps();
-            ViewBag.ID = id;
+             var  modul= await _electricCigaretService.GetElectricCigaretLookUps(Id);
+            ViewBag.ID = Id;
              return View(modul);
         }
-        public async Task<IActionResult> CreateItem()
+        public  IActionResult CreateItem()
         {
-            var modul = await _electricCigaretService.GetElectricCigaretLookUps();
-            return View(modul);
+            return  View();
         }
 
         [HttpPost]
@@ -47,12 +46,12 @@ namespace R2H.Controllers
                 else
                 {
                     ViewBag.ErrorMassag = "هذا العنصر مدخل مسبقا يجب عليه تعديل نفس العنصر ";
-                    return View("AddItem", await _electricCigaretService.GetElectricCigaretLookUps());
+                    return View("AddItem", await _electricCigaretService.GetElectricCigaretLookUps(Model.TypeId));
                 }
             }
             else
             {
-                return View("AddItem", await _electricCigaretService.GetElectricCigaretLookUps());
+                return View("AddItem", await _electricCigaretService.GetElectricCigaretLookUps(Model.TypeId));
 
             }
         }

@@ -4,26 +4,31 @@
     ViewData["Title"] = "AddItem";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script href="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" ></script>
+
 @using (Html.BeginForm("CreatItem", "Home"))
 {
+    
+    @Html.HiddenFor(c => c.TypeId)
     @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
     <fieldset>
         <row>
+            <div class="col-md-6">
+                <div class="Error form-control text-danger" style="display:none;"> @ViewBag.ErrorMassag </div>
+            </div>
             <div class="col-md-12">
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
-                        @Html.LabelFor(x => x.Type)
-                        @Html.DropDownListFor(model => model.Type, Model.TypeSelectList, new { @class = "form-control", @placeholder = "-Select-" })
-                        @Html.ValidationMessageFor(c => c.TypeSelectList, "", new { @class = "text-danger" })
+                        @Html.LabelFor(x => x.CategoryId)
+                        @Html.DropDownListFor(model => model.CategoryId, Model.CategorySelectList, new { @class = "form-control", @placeholder = "-Select-" })
+                        @Html.ValidationMessageFor(c => c.CategoryId, "", new { @class = "text-danger" })
 
                     </div>
                     <div class="col-md-4">
-                        @Html.LabelFor(x => x.Brand)
-                        @Html.DropDownListFor(model => model.Brand, Model.BrandSelectList, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(c => c.BrandSelectList, "", new { @class = "text-danger" })
+                        @Html.LabelFor(x => x.BrandId)
+                        @Html.DropDownListFor(model => model.BrandId, Model.BrandSelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.BrandId, "", new { @class = "text-danger" })
 
                     </div>
                 </div>
@@ -48,7 +53,7 @@
                     <div class="col-md-4">
                         @Html.DisplayNameFor(x => x.Description)
                         @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @Required = "Required" })
-                        @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger"})
+                        @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger" })
 
                     </div>
                     <div class="col-md-4">
@@ -71,15 +76,38 @@
 }
 
 
+<script src="~/lib/jquery/dist/jquery.js" type='text/javascript'></script>
+<script src="~/lib/jquery/dist/jquery.min.js" type='text/javascript'></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js" type='text/javascript'></script>
+<script src="~/lib/jquery-validation/dist/additional-methods.js" type='text/javascript'></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" type='text/javascript'></script>
+
+
+<script src="~/js/site.js" type='text/javascript'></script>
+
+
+
 <script>
-    var loadFile = function (event) {
-        var reader = new FileReader();
-        reader.onload = function () {
-            $("#Image").val(reader.result);
-            var output = document.getElementById('output');
-            output.src = reader.result;
+
+          $(document).ready(function () {
+            var errorMassag =  '@ViewBag.ErrorMassag';
+            if (errorMassag != null || errorMassag != "")
+            {
+
+                $(".Error").show().delay(5000).fadeOut();
+            }    });
+
+        var loadFile = function (event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                $("#Image").val(reader.result);
+                var output = document.getElementById('output');
+                output.src = reader.result;
+            };
+            var x = reader.readAsDataURL(event.target.files[0]);
+            debugger;
         };
-        var x = reader.readAsDataURL(event.target.files[0]);
-        debugger;
-    };
 </script>
+
+
+
