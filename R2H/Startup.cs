@@ -51,6 +51,8 @@ namespace R2H
             var builder = new ContainerBuilder();
             builder.RegisterType<R2HDbContext>().As<DbContext>().WithParameter("ConnectionStrings", "ConnectionStringValue").InstancePerLifetimeScope();
             builder.RegisterType<ElectricCigaretService>().As<IElectricCigaretService>();
+            builder.RegisterType<LookUpService>().As<ILookUpService>();
+
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
 
             services.AddDefaultIdentity<IdentityUser>()

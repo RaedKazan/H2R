@@ -9,12 +9,12 @@ namespace ApplicationService.ViewModels
         [Display(Name = "الصنف")]
         public int TypeId { get; set; }
         [Display(Name = "النوع")]
-        public int? Category { get; set; }
+        public bool? Category { get; set; }
         [Display(Name = "النوعية")]
-        public int? Brand { get; set; }
+        public bool? Brand { get; set; }
         [Display(Name = "الوصف")]
+        [Required(ErrorMessage = "الرجاء ادخال الوصف")]
         public string Description { get; set; }
-        public List<SelectListItem> TypeSelectList { get; set; }
 
     }
 }

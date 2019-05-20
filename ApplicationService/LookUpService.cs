@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationService
 {
-    class LookUpService : ILookUpService
+    public class LookUpService : ILookUpService
     {
         private readonly IRepository<ShopItemLookUp> _electricCigaretLookUpRepository;
 
@@ -19,40 +19,36 @@ namespace ApplicationService
         public async Task<AddLookUpViewModel> AddLookUp(int Type)
         {
             AddLookUpViewModel addLookUpViewModel = new AddLookUpViewModel();
-            var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Brand == 0 && c.Category == 0&& c.Type==Type);
-            addLookUpViewModel.TypeSelectList = result.Select(x => new SelectListItem()
-            {
-                Text = x.Description,
-                Value = x.Id.ToString(),
-            }).ToList();
+            var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Brand == 0 && c.Category == 0 && c.Type == Type);
+            addLookUpViewModel.TypeId = Type;
             return addLookUpViewModel;
         }
 
-        public  async Task<bool> CreateLookUp(AddLookUpViewModel AddLookUpViewModel)
+        public async Task<bool> CreateLookUp(AddLookUpViewModel AddLookUpViewModel)
         {
-            if (AddLookUpViewModel.Brand != null)
-             await   CreateLookUpBrand(AddLookUpViewModel);
+            if (AddLookUpViewModel.Brand != false)
+                await CreateLookUpBrand(AddLookUpViewModel);
             else
-              await  CreateLookUpCategory(AddLookUpViewModel);
+                await CreateLookUpCategory(AddLookUpViewModel);
             return true;
         }
 
-        public async  Task CreateLookUpBrand(AddLookUpViewModel AddLookUpViewModel)
+        public async Task CreateLookUpBrand(AddLookUpViewModel AddLookUpViewModel)
         {
 
             // should be mapped to model first then insert to database
             var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Type == AddLookUpViewModel.TypeId && c.Brand != 0);
             var Id = result.Max(c => c.Brand);
-           await  _electricCigaretLookUpRepository.AddAsync(new ShopItemLookUp
-           {
-               Brand =Id+1,
-               Category=0,
-               Type= AddLookUpViewModel.TypeId,
-               Description= AddLookUpViewModel.Description
-           });
+            await _electricCigaretLookUpRepository.AddAsync(new ShopItemLookUp
+            {
+                Brand = Id + 1,
+                Category = 0,
+                Type = AddLookUpViewModel.TypeId,
+                Description = AddLookUpViewModel.Description
+            });
 
         }
-        public async  Task CreateLookUpCategory(AddLookUpViewModel AddLookUpViewModel)
+        public async Task CreateLookUpCategory(AddLookUpViewModel AddLookUpViewModel)
         {
             // should be mapped to model first then insert to database
             var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Type == AddLookUpViewModel.TypeId && c.Category != 0);
@@ -60,7 +56,7 @@ namespace ApplicationService
             await _electricCigaretLookUpRepository.AddAsync(new ShopItemLookUp
             {
                 Category = Id + 1,
-                 Brand= 0,
+                Brand = 0,
                 Type = AddLookUpViewModel.TypeId,
                 Description = AddLookUpViewModel.Description
             });
