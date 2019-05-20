@@ -8,6 +8,7 @@ namespace ApplicationDomianEntity.Models
         public int Id { get; set; }
         public int Type { get; set; }
         public int Brand { get; set; }
+        public int Category { get; set; }
         public int? TotalyInserted { get; set; }
         public int TotalySold { get; set; }
         public int? TotalyAvilable { get; set; }

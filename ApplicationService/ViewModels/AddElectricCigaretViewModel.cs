@@ -10,17 +10,19 @@ namespace ApplicationService.ViewModels
     {
 
       
-        public List<SelectListItem> TypeSelectList { get; set; }
+        public List<SelectListItem> CategorySelectList { get; set; }
      
         public List<SelectListItem> BrandSelectList { get; set; }
         [Display(Name = "النوع")]
         [Required(ErrorMessage = "الرجاء ادخال النوع")]
         [Range(1, 30, ErrorMessage = "الرجاء ادخال النوع")]
-        public int? Type { get; set; }
+        public int? CategoryId { get; set; }
         [Display(Name = "النوعية")]
         [Required(ErrorMessage = "الرجاء ادخال النوعية")]
         [Range(1, 30, ErrorMessage = "الرجاء ادخال النوعية")]
-        public int? Brand { get; set; }
+        public int? BrandId { get; set; }
+        public int TypeId { get; set; }
+
         public string Name { get; set; }
         [Display(Name = "الوصف")]
         [Required(ErrorMessage = "الرجاء ادخال الوصف")]

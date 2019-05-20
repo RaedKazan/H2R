@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplicationDomianEntity.Migrations
 {
     [DbContext(typeof(R2HDbContext))]
-    [Migration("20190513093120_initial")]
+    [Migration("20190520190253_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,6 +29,8 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.Property<int>("BrandId");
 
+                    b.Property<int>("CategoryId");
+
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Description");
@@ -37,11 +39,13 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.Property<byte[]>("Image");
 
+                    b.Property<bool>("IsActive");
+
                     b.Property<DateTime>("LastModificationDate");
 
                     b.Property<string>("Name");
 
-                    b.Property<double>("Price");
+                    b.Property<double?>("Price");
 
                     b.Property<int>("TypeId");
 
@@ -49,10 +53,9 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("ElectricCigaretMangmentId")
-                        .IsUnique();
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("ElectricCigaretMangmentId");
 
                     b.ToTable("ShopItem");
                 });
@@ -142,11 +145,15 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.Property<int>("Brand");
 
+                    b.Property<int>("Category");
+
+                    b.Property<int>("ElectricCigaretId");
+
                     b.Property<bool>("IsAvilable");
 
-                    b.Property<int>("TotalyAvilable");
+                    b.Property<int?>("TotalyAvilable");
 
-                    b.Property<int>("TotalyInserted");
+                    b.Property<int?>("TotalyInserted");
 
                     b.Property<int>("TotalySold");
 
@@ -329,14 +336,14 @@ namespace ApplicationDomianEntity.Migrations
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("ApplicationDomianEntity.Models.ShopItemMangment", "ElectricCigaretMangment")
-                        .WithOne("ElectricCigaret")
-                        .HasForeignKey("ApplicationDomianEntity.Models.ShopItem", "ElectricCigaretMangmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Category")
+                        .WithMany("ShopItemCategory")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Type")
-                        .WithMany("ShopItemType")
-                        .HasForeignKey("TypeId")
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItemMangment", "ElectricCigaretMangment")
+                        .WithMany("ElectricCigaret")
+                        .HasForeignKey("ElectricCigaretMangmentId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

@@ -27,6 +27,8 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.Property<int>("BrandId");
 
+                    b.Property<int>("CategoryId");
+
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Description");
@@ -34,6 +36,8 @@ namespace ApplicationDomianEntity.Migrations
                     b.Property<int>("ElectricCigaretMangmentId");
 
                     b.Property<byte[]>("Image");
+
+                    b.Property<bool>("IsActive");
 
                     b.Property<DateTime>("LastModificationDate");
 
@@ -47,9 +51,9 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("ElectricCigaretMangmentId");
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("ElectricCigaretMangmentId");
 
                     b.ToTable("ShopItem");
                 });
@@ -138,6 +142,8 @@ namespace ApplicationDomianEntity.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Brand");
+
+                    b.Property<int>("Category");
 
                     b.Property<int>("ElectricCigaretId");
 
@@ -328,14 +334,14 @@ namespace ApplicationDomianEntity.Migrations
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Category")
+                        .WithMany("ShopItemCategory")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("ApplicationDomianEntity.Models.ShopItemMangment", "ElectricCigaretMangment")
                         .WithMany("ElectricCigaret")
                         .HasForeignKey("ElectricCigaretMangmentId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Type")
-                        .WithMany("ShopItemType")
-                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

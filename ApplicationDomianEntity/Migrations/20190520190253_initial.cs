@@ -71,10 +71,12 @@ namespace ApplicationDomianEntity.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Type = table.Column<int>(nullable: false),
                     Brand = table.Column<int>(nullable: false),
-                    TotalyInserted = table.Column<int>(nullable: false),
+                    Category = table.Column<int>(nullable: false),
+                    TotalyInserted = table.Column<int>(nullable: true),
                     TotalySold = table.Column<int>(nullable: false),
-                    TotalyAvilable = table.Column<int>(nullable: false),
-                    IsAvilable = table.Column<bool>(nullable: false)
+                    TotalyAvilable = table.Column<int>(nullable: true),
+                    IsAvilable = table.Column<bool>(nullable: false),
+                    ElectricCigaretId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -194,14 +196,16 @@ namespace ApplicationDomianEntity.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     BrandId = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false),
                     TypeId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(nullable: false),
+                    Price = table.Column<double>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     LastModificationDate = table.Column<DateTime>(nullable: false),
                     Image = table.Column<byte[]>(nullable: true),
-                    ElectricCigaretMangmentId = table.Column<int>(nullable: false)
+                    ElectricCigaretMangmentId = table.Column<int>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -213,15 +217,15 @@ namespace ApplicationDomianEntity.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
+                        name: "FK_ShopItem_ShopItemLookUp_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "ShopItemLookUp",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_ShopItem_ShopItemMangment_ElectricCigaretMangmentId",
                         column: x => x.ElectricCigaretMangmentId,
                         principalTable: "ShopItemMangment",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ShopItem_ShopItemLookUp_TypeId",
-                        column: x => x.TypeId,
-                        principalTable: "ShopItemLookUp",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -285,15 +289,14 @@ namespace ApplicationDomianEntity.Migrations
                 column: "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShopItem_ElectricCigaretMangmentId",
+                name: "IX_ShopItem_CategoryId",
                 table: "ShopItem",
-                column: "ElectricCigaretMangmentId",
-                unique: true);
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShopItem_TypeId",
+                name: "IX_ShopItem_ElectricCigaretMangmentId",
                 table: "ShopItem",
-                column: "TypeId");
+                column: "ElectricCigaretMangmentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
