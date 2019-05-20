@@ -3,6 +3,7 @@ using ApplicationDomianEntity.Models;
 using ApplicationService.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,14 +88,25 @@ namespace ApplicationService
             ElectricCigaret.IsActive = false;
             ElectricCigaretRepository.UpdateAsync(ElectricCigaret);
         }
-        public async Task<GetAllElectricCigaretViewModel> GetAllElectricCigaret()
+        public async Task<GetAllElectricCigaretViewModel> GetAllItem(int Type=0,int Brand=0 , int Category=0)
         {
-            var electricCigarets = await ElectricCigaretRepository.GetAllAsync();
+            var electricCigarets = await ElectricCigaretRepository.FindAllAsync(c=>c.TypeId==Type);
+            electricCigarets.ToList();
+            if (Brand != 0)
+                electricCigarets.Where(c => c.BrandId == Brand).ToList();
+            if (Category != 0)
+                electricCigarets.Where(c => c.CategoryId == Category).ToList();
+
+            foreach (var item in electricCigarets)
+            {
+                item.ElectricCigaretMangment = ElectricCigaretMangment.Find(c => c.Id == item.ElectricCigaretMangmentId);
+            }
             return new GetAllElectricCigaretViewModel(electricCigarets);
         }
-        public async Task<GetElectricCigaretViewModel> GetElectricCigaretById(int Id)
+        public async Task<GetElectricCigaretViewModel> GetItemById(int Id)
         {
             var electricCigaret = await ElectricCigaretRepository.GetAsync(Id);
+            electricCigaret.ElectricCigaretMangment= ElectricCigaretMangment.Find(c => c.Id == electricCigaret.ElectricCigaretMangmentId);
             return new GetElectricCigaretViewModel(electricCigaret);
         }
 
@@ -118,12 +130,21 @@ namespace ApplicationService
 
             return ElectricCigaretViewModel;
         }
-        public async Task UpdateElectricCigaret(int Id, AddElectricCigaretViewModel ElectricCigaret)
+        public async Task UpdateItemById(int Id, AddElectricCigaretViewModel ElectricCigaret)
         {
-            var ECigaret = await ElectricCigaretRepository.GetAsync(Id);
+            var Item = await ElectricCigaretRepository.GetAsync(Id);
+            Item.Price = ElectricCigaret.Price;
+            Item.Image = Encoding.ASCII.GetBytes(ElectricCigaret.Image.Substring(ElectricCigaret.Image.IndexOf("64") + 4));
+            Item.Name = ElectricCigaret.Name;
+            Item.LastModificationDate = DateTime.Now;
+            Item.Description = ElectricCigaret.Description;
+            ElectricCigaretRepository.UpdateAsync(Item);
+            var electricCigaretMangment= ElectricCigaretMangment.Find(c => c.Id == Item.ElectricCigaretMangmentId);
+            electricCigaretMangment.TotalyAvilable = electricCigaretMangment.TotalyAvilable + ElectricCigaret.CountToInsert;
+            electricCigaretMangment.TotalyInserted = electricCigaretMangment.TotalyInserted + ElectricCigaret.CountToInsert;
+            ElectricCigaretMangment.UpdateAsync(electricCigaretMangment);
 
 
-            throw new System.NotImplementedException();
         }
     }
 }

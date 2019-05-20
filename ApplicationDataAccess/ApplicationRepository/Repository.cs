@@ -169,7 +169,7 @@ namespace ApplicationDataAccess.ApplicationRepository
         {
             return _dbContext.Set<T>().Where(match).ToList();
         }
-        public async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match)
+        public async Task<IList<T>> FindAllAsync(Expression<Func<T, bool>> match)
         {
             return await _dbContext.Set<T>().Where(match).ToListAsync();
         }
