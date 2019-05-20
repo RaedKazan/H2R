@@ -9,9 +9,11 @@ namespace ApplicationDomianEntity.Models
         [Key]
         public int Id { get; set; }
         public int BrandId { get; set; }
+        public int CategoryId { get; set; }
         public int TypeId { get; set; }
+
         public ShopItemLookUp Brand { get; set; }
-        public ShopItemLookUp Type { get; set; }
+        public ShopItemLookUp Category { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Double? Price { get; set; }
@@ -20,6 +22,8 @@ namespace ApplicationDomianEntity.Models
         public byte[] Image { get; set; }
         public ShopItemMangment ElectricCigaretMangment { get; set; }
         public int ElectricCigaretMangmentId { get; set; }
+        public bool IsActive { get; set; }
+
 
     }
 }

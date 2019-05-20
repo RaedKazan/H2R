@@ -16,10 +16,10 @@ namespace ApplicationService
             _electricCigaretLookUpRepository = ElectricCigaretLookUpRepository;
 
         }
-        public async Task<AddLookUpViewModel> AddLookUp()
+        public async Task<AddLookUpViewModel> AddLookUp(int Type)
         {
             AddLookUpViewModel addLookUpViewModel = new AddLookUpViewModel();
-            var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Brand == 0 && c.Category == 0);
+            var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Brand == 0 && c.Category == 0&& c.Type==Type);
             addLookUpViewModel.TypeSelectList = result.Select(x => new SelectListItem()
             {
                 Text = x.Description,
@@ -28,15 +28,13 @@ namespace ApplicationService
             return addLookUpViewModel;
         }
 
-        public  async Task CreateLookUp(AddLookUpViewModel AddLookUpViewModel)
+        public  async Task<bool> CreateLookUp(AddLookUpViewModel AddLookUpViewModel)
         {
             if (AddLookUpViewModel.Brand != null)
              await   CreateLookUpBrand(AddLookUpViewModel);
             else
               await  CreateLookUpCategory(AddLookUpViewModel);
-
-
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public async  Task CreateLookUpBrand(AddLookUpViewModel AddLookUpViewModel)

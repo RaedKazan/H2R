@@ -4,9 +4,7 @@ using ApplicationDomianEntity.Models;
 using ApplicationService;
 using ApplicationService.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using R2H.Models;
-using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -14,63 +12,47 @@ namespace R2H.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IElectricCigaretService _electricCigaretService;
-        private readonly ILogger logger;
 
-        public HomeController(IElectricCigaretService electricCigaretService, ILoggerFactory LoggerFactory)
+        public HomeController(IElectricCigaretService electricCigaretService, IUnitOfWork unitOfWork)
         {
             _electricCigaretService = electricCigaretService;
-            logger= LoggerFactory.CreateLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
             return View();
         }
-       
-        public async Task<IActionResult> AddItem()
+       public async Task<IActionResult> AddItem(int Id)
         {
-            try
-            {
-                logger.LogDebug("Start Add Item-[Get]");
-                var modul = await _electricCigaretService.GetElectricCigaretLookUps();
-                return View(modul);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex.Message);
-                return RedirectToAction("Error");
-
-            }
+             var  modul= await _electricCigaretService.GetElectricCigaretLookUps(Id);
+            ViewBag.ID = Id;
+             return View(modul);
         }
+        public  IActionResult CreateItem()
+        {
+            return  View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreatItem(AddElectricCigaretViewModel Model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                logger.LogDebug("Start CreateItem-[Post]");
-                int y=2;
-                int x = 1 / y;
-                if (ModelState.IsValid)
-                {
-                    var modul = await _electricCigaretService.AddElectricCigaret(Model);
-                    if (modul)
-                        return RedirectToAction("Index");
-                    else
-                    {
-                        ViewBag.ErrorMassag = "هذا العنصر مدخل مسبقا يجب عليه تعديل نفس العنصر ";
-                        return View("AddItem", await _electricCigaretService.GetElectricCigaretLookUps());
-                    }
-                }
+                var modul = await _electricCigaretService.AddElectricCigaret(Model);
+                if(modul)
+                return RedirectToAction("Index");
                 else
                 {
-                    return View("AddItem", Model);
-
+                    ViewBag.ErrorMassag = "هذا العنصر مدخل مسبقا يجب عليه تعديل نفس العنصر ";
+                    return View("AddItem", await _electricCigaretService.GetElectricCigaretLookUps(Model.TypeId));
                 }
             }
-            catch(Exception ex)
+            else
             {
-                logger.LogError(ex.Message);
-                return RedirectToAction("Error");
+                return View("AddItem", await _electricCigaretService.GetElectricCigaretLookUps(Model.TypeId));
+
             }
         }
         public IActionResult Privacy()
