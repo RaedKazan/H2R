@@ -22,7 +22,8 @@ namespace ApplicationService.ViewModels
         [Range(1, 30, ErrorMessage = "الرجاء ادخال النوعية")]
         public int? BrandId { get; set; }
         public int TypeId { get; set; }
-
+        [Display(Name = "الأسم")]
+        [Required(ErrorMessage = "الرجاء ادخال الأسم")]
         public string Name { get; set; }
         [Display(Name = "الوصف")]
         [Required(ErrorMessage = "الرجاء ادخال الوصف")]
