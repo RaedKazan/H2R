@@ -41,7 +41,7 @@ namespace ApplicationDataAccess.ApplicationRepository
         void Dispose();
         T Find(Expression<Func<T, bool>> match);
         ICollection<T> FindAll(Expression<Func<T, bool>> match);
-        Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match);
+        Task<IList<T>> FindAllAsync(Expression<Func<T, bool>> match);
         Task<T> FindAsync(Expression<Func<T, bool>> match);
         T Get(int id);
         IQueryable<T> GetAll();

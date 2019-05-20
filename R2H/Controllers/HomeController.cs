@@ -12,13 +12,10 @@ namespace R2H.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IElectricCigaretService _electricCigaretService;
-
-        public HomeController(IElectricCigaretService electricCigaretService, IUnitOfWork unitOfWork)
+        public HomeController(IElectricCigaretService electricCigaretService)
         {
             _electricCigaretService = electricCigaretService;
-            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
@@ -30,9 +27,9 @@ namespace R2H.Controllers
             ViewBag.ID = Id;
              return View(modul);
         }
-        public  IActionResult CreateItem()
+        public IActionResult CreateItem()
         {
-            return  View();
+            return View();
         }
 
         [HttpPost]
@@ -54,6 +51,21 @@ namespace R2H.Controllers
                 return View("AddItem", await _electricCigaretService.GetElectricCigaretLookUps(Model.TypeId));
 
             }
+        }
+
+        // to do add view
+        public async Task<IActionResult> ViewAllItems(int Id)
+        {
+            var modul = await _electricCigaretService.GetAllItem(Id);
+            ViewBag.ID = Id;
+            return View(modul);
+        }
+
+        public async Task<IActionResult> GetItemById(int Id)
+        {
+            var modul = await _electricCigaretService.GetItemById(Id);
+            ViewBag.ID = Id;
+            return View(modul);
         }
         public IActionResult Privacy()
         {
