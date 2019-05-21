@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationService
 {
-    class LookUpService : ILookUpService
+    public class LookUpService : ILookUpService
     {
         private readonly IRepository<ShopItemLookUp> _electricCigaretLookUpRepository;
 
@@ -20,17 +20,13 @@ namespace ApplicationService
         {
             AddLookUpViewModel addLookUpViewModel = new AddLookUpViewModel();
             var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Brand == 0 && c.Category == 0 && c.Type == Type);
-            addLookUpViewModel.TypeSelectList = result.Select(x => new SelectListItem()
-            {
-                Text = x.Description,
-                Value = x.Id.ToString(),
-            }).ToList();
+            addLookUpViewModel.TypeId = Type;
             return addLookUpViewModel;
         }
 
         public async Task<bool> CreateLookUp(AddLookUpViewModel AddLookUpViewModel)
         {
-            if (AddLookUpViewModel.Brand != null)
+            if (AddLookUpViewModel.Brand != false)
                 await CreateLookUpBrand(AddLookUpViewModel);
             else
                 await CreateLookUpCategory(AddLookUpViewModel);

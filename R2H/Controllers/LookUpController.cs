@@ -22,11 +22,12 @@ namespace R2H.Controllers
             var model= await _electricCigaretService.AddLookUp(Id);
             return View(model);
         }
-
+        [HttpPost]
         public async Task<IActionResult> CreateLookUp(AddLookUpViewModel AddLookUpViewModel)
         {
             var model = await _electricCigaretService.CreateLookUp(AddLookUpViewModel);
-            return View(model);
+            ViewBag.SuccessMessage = "تم الأضافة بنجاح";
+            return View("AddLookUp", await _electricCigaretService.AddLookUp(AddLookUpViewModel.TypeId));
         }
     }
 }
