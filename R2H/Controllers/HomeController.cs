@@ -40,6 +40,7 @@ namespace R2H.Controllers
         {
             try
             {
+                
                 logger.LogDebug("Starting AddItem","Id="+Id);
                 var modul = await _electricCigaretService.GetElectricCigaretLookUps(Id);
                 ViewBag.ID = Id;
@@ -95,6 +96,19 @@ namespace R2H.Controllers
             }
         }
 
+        public IActionResult ViewItems()
+        {
+            try
+            {
+                logger.LogDebug("Start View [GET]");
+                return View();
+            }
+            catch(Exception ex)
+            {
+                logger.LogError(ex.Message);
+                return RedirectToAction("Error");
+            }
+        }
         // to do add view
         public async Task<IActionResult> ViewAllItems(int Id )
         {

@@ -1,0 +1,131 @@
+﻿@using ApplicationService.ViewModels
+@model ApplicationService.ViewModels.GetAllElectricCigaretViewModel
+@{
+    ViewData["Title"] = "ViewAllItems";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+@using (Html.BeginForm("CreatItem", "Home"))
+{
+    @for (int i = 0; i < Model.ElectricCigarets.Count; i++)
+    {
+
+
+    @Html.HiddenFor(c => c.ElectricCigarets[i].Id)
+
+
+    <fieldset>
+        <row>
+            <div class="col-md-6">
+                <div class="Error form-control text-danger" style="display:none;"> @ViewBag.ErrorMassag </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group row col-md-12">
+                    <div class="col-md-4">
+                        @*@Html.LabelFor(x => x.ElectricCigarets[i].Image)
+                        @Html.DropDownListFor(model => model.CategoryId, Model.CategorySelectList, new { @class = "form-control", @placeholder = "-Select-" })
+                        @Html.ValidationMessageFor(c => c.CategoryId, "", new { @class = "text-danger" })*@
+                        
+                            
+                            
+
+                            
+                            
+                            <img id="output" style="width:300px" src="data:image;base64,@System.Convert.ToBase64String(Model.ElectricCigarets[i].Image)"  />
+                            
+
+                        
+                    </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(x => x.ElectricCigarets[i].Description)
+                        @Html.TextAreaFor(model => model.ElectricCigarets[i].Description, new { @class = "form-control" })
+                        
+
+                    </div>
+                </div>
+
+
+                <div class="form-group row col-md-12">
+                    <div class="col-md-4">
+                        @*@Html.DisplayNameFor(x => x.Name)
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })*@
+
+
+
+                    </div>
+                    <div class="col-md-4">
+                        @*@Html.DisplayNameFor(x => x.CountToInsert)
+                        @Html.TextBoxFor(x => x.CountToInsert, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.CountToInsert, "", new { @class = "text-danger" })*@
+
+
+
+                    </div>
+                </div>
+
+                <div class="form-group row col-md-12">
+                    <div class="col-md-4">
+                        @Html.DisplayNameFor(x => x.ElectricCigarets[i].Price)
+                        @Html.TextBoxFor(x => x.ElectricCigarets[i].Price, new { @class = "form-control" })
+                        
+
+                    </div>
+                    @*<div class="col-md-4">
+                        @Html.DisplayNameFor(x => x.Description)
+                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @Required = "Required" })
+                        @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger" })
+
+                    </div>*@
+
+
+
+                </div>
+                
+            </div>
+
+        </row>
+
+    </fieldset>
+    <button type="submit" class="btn btn-primary" value="submit">حفظ</button>
+        }
+    }
+
+
+<script src="~/lib/jquery/dist/jquery.js" type='text/javascript'></script>
+<script src="~/lib/jquery/dist/jquery.min.js" type='text/javascript'></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js" type='text/javascript'></script>
+<script src="~/lib/jquery-validation/dist/additional-methods.js" type='text/javascript'></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" type='text/javascript'></script>
+
+
+<script src="~/js/site.js" type='text/javascript'></script>
+
+
+
+@*<script>
+
+          $(document).ready(function () {
+              var errorMassag = '@ViewBag.ErrorMassag';
+
+            if ( errorMassag != "")
+            {
+
+                $(".Error").show().delay(5000).fadeOut();
+            }    });
+
+        var loadFile = function (event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                $("#Image").val(reader.result);
+                var output = document.getElementById('output');
+                output.src = reader.result;
+            };
+            var x = reader.readAsDataURL(event.target.files[0]);
+
+        };
+</script>*@
+
+
+

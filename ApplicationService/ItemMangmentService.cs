@@ -32,6 +32,8 @@ namespace ApplicationService
                 var result = await electricCigaretMangment.FindAllAsync(c => c.Category == Category);
                 model = result.ToList();
             }
+            var a = await electricCigaretMangment.GetAllAsync();
+
         }
 
 
