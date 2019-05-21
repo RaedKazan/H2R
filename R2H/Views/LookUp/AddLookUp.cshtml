@@ -32,9 +32,7 @@
     </div>
     <fieldset>
         <row>
-            <div class="col-md-6">
-                <div class="Error form-control text-danger" style="display:none;"> @ViewBag.ErrorMassag </div>
-            </div>
+     
             <div class="col-md-12">
 
 
@@ -48,7 +46,7 @@
 
                         @Html.DisplayNameFor(x => x.Brand)
                         <div class="check1">
-                            @Html.CheckBoxFor(x => x.Brand.Value, new { @class = "form-control" })
+                            @Html.CheckBoxFor(x => x.Brand, new { @class = "form-control", @id="check1" })
                             @Html.ValidationMessageFor(c => c.Brand, "", new { @class = "text-danger" })
                         </div>
 
@@ -56,7 +54,7 @@
                     <div class="col-md-1">
                         @Html.DisplayNameFor(x => x.Category)
                         <div class="check2">
-                            @Html.CheckBoxFor(x => x.Category.Value, new { @class = "form-control" })
+                            @Html.CheckBoxFor(x => x.Category, new { @class = "form-control", @id = "check2"  })
                             @Html.ValidationMessageFor(c => c.Category, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -76,7 +74,7 @@
         </row>
 
     </fieldset>
-    <button type="submit" class="btn btn-primary" value="submit">حفظ</button>
+    <button style="    margin-left: 36px;" type="submit" class="btn btn-primary" value="submit">حفظ</button>
 
 }
 
@@ -104,4 +102,26 @@
             }
         });
 </script>
+<script>
+  
+        $(document).ready(function() {
+            $("#check1").click(function () {
+                $("#check2").attr('disabled', !$("#check2").attr('disabled'));
+                $('#check2').prop('checked', false);
+                $("#check2").val("false")
+            });
+    });
 
+    $(document).ready(function () {
+        $("#check2").click(function () {
+            $("#check1").attr('disabled', !$("#check1").attr('disabled'));
+            $('#check1').prop('checked', false);
+        });
+    });
+
+</script>
+@*<script>
+    function myFunction1() {
+        document.getElementById("check1").disabled = true;
+    }
+</script>*@
