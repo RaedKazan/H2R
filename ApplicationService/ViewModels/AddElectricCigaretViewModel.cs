@@ -8,10 +8,7 @@ namespace ApplicationService.ViewModels
 {
     public class AddElectricCigaretViewModel
     {
-
-      
         public List<SelectListItem> CategorySelectList { get; set; }
-     
         public List<SelectListItem> BrandSelectList { get; set; }
         [Display(Name = "النوع")]
         [Required(ErrorMessage = "الرجاء ادخال النوع")]

@@ -110,7 +110,7 @@ namespace R2H.Controllers
             }
         }
         // to do add view
-        public async Task<IActionResult> ViewAllItems(int Id)
+        public async Task<IActionResult> ViewAllItems(int Id )
         {
             try
             {
@@ -145,7 +145,6 @@ namespace R2H.Controllers
         {
             return View();
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
