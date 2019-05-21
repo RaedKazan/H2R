@@ -154,6 +154,7 @@ namespace ApplicationDomianEntity.ApplicationDbContext
             .WithOne(e => e.ElectricCigaretMangment)
             .HasForeignKey(e => e.ElectricCigaretMangmentId)
             .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 

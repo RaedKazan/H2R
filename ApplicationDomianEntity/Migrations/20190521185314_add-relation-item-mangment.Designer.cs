@@ -4,14 +4,16 @@ using ApplicationDomianEntity.ApplicationDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApplicationDomianEntity.Migrations
 {
     [DbContext(typeof(R2HDbContext))]
-    partial class R2HDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190521185314_add-relation-item-mangment")]
+    partial class addrelationitemmangment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,9 +151,7 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.Property<bool>("IsAvilable");
 
-                    b.Property<int?>("ShopItemLookUpId");
-
-                    b.Property<int?>("ShopItemLookUpId1");
+                    b.Property<int>("LookUpId");
 
                     b.Property<int?>("TotalyAvilable");
 
@@ -163,9 +163,8 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ShopItemLookUpId");
-
-                    b.HasIndex("ShopItemLookUpId1");
+                    b.HasIndex("LookUpId")
+                        .IsUnique();
 
                     b.ToTable("ShopItemMangment");
                 });
@@ -355,13 +354,10 @@ namespace ApplicationDomianEntity.Migrations
 
             modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItemMangment", b =>
                 {
-                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp")
-                        .WithMany("ShopItemMangmentBrand")
-                        .HasForeignKey("ShopItemLookUpId");
-
-                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp")
-                        .WithMany("ShopItemMangmentCategory")
-                        .HasForeignKey("ShopItemLookUpId1");
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "ShopItemLookUp")
+                        .WithOne("ShopItemMangment")
+                        .HasForeignKey("ApplicationDomianEntity.Models.ShopItemMangment", "LookUpId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
