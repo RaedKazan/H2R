@@ -1,14 +1,28 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @@media only screen and (min-width: 600px) {
+            input {
+                width: 50% !important;
+                margin-left: 280px;
+            }
 
+            .center {
+                margin: auto;
+                width: 50%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
 <div class="text-center">
     <h1 class="display-4">Welcome Rashed</h1>
 </div>
 
-<div>
-    @Html.ActionLink("Back to List", "AddItem")
-</div>
-
+<br />
+<br />
 <input type="button" class="btn btn-primary btn-lg btn-block" value="اضافة" onclick="location.href='@Url.Action("CreateItem")'"/>
 <input type="button" class="btn btn-primary btn-lg btn-block" value="جرد" onclick="location.href='@Url.Action("AddItem")'"/>

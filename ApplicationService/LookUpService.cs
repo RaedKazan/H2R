@@ -38,7 +38,7 @@ namespace ApplicationService
 
             // should be mapped to model first then insert to database
             var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Type == AddLookUpViewModel.TypeId && c.Brand != 0);
-            var Id = result.Max(c => c.Brand);
+            var Id = (result.Any()) ? result.Max(c => c.Brand) : 0;
             await _electricCigaretLookUpRepository.AddAsync(new ShopItemLookUp
             {
                 Brand = Id + 1,
@@ -52,7 +52,7 @@ namespace ApplicationService
         {
             // should be mapped to model first then insert to database
             var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Type == AddLookUpViewModel.TypeId && c.Category != 0);
-            var Id = result.Max(c => c.Category);
+            var Id = (result.Any())? result.Max(c => c.Category):0;
             await _electricCigaretLookUpRepository.AddAsync(new ShopItemLookUp
             {
                 Category = Id + 1,
