@@ -4,13 +4,9 @@
     ViewData["Title"] = "AddItem";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @using (Html.BeginForm("CreatItem", "Home"))
 {
-    
     @Html.HiddenFor(c => c.TypeId)
-
-
     <fieldset>
         <row>
             <div class="col-md-6">
@@ -19,99 +15,66 @@
             <div class="col-md-12">
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
-                        @Html.LabelFor(x => x.CategoryId)
+                        @Html.LabelFor(x => x.CategoryId, new { @class = "font-italic" })
                         @Html.DropDownListFor(model => model.CategoryId, Model.CategorySelectList, new { @class = "form-control", @placeholder = "-Select-" })
                         @Html.ValidationMessageFor(c => c.CategoryId, "", new { @class = "text-danger" })
-
                     </div>
                     <div class="col-md-4">
-                        @Html.LabelFor(x => x.BrandId)
+                        @Html.LabelFor(x => x.BrandId, new { @class = "font-italic" })
                         @Html.DropDownListFor(model => model.BrandId, Model.BrandSelectList, new { @class = "form-control" })
                         @Html.ValidationMessageFor(c => c.BrandId, "", new { @class = "text-danger" })
-
                     </div>
                 </div>
-
-
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
-                        @Html.DisplayNameFor(x => x.Name)
+                        @Html.LabelFor(x => x.Name, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
                         @Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })
-
-
-
                     </div>
                     <div class="col-md-4">
-                        @Html.DisplayNameFor(x => x.CountToInsert)
+                        @Html.LabelFor(x => x.CountToInsert, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.CountToInsert, new { @class = "form-control" })
                         @Html.ValidationMessageFor(c => c.CountToInsert, "", new { @class = "text-danger" })
-
-
-
                     </div>
                 </div>
-
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
-                        @Html.DisplayNameFor(x => x.Price)
+                        @Html.LabelFor(x => x.Price, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
                         @Html.ValidationMessageFor(c => c.Price, "", new { @class = "text-danger" })
-
                     </div>
                     <div class="col-md-4">
-                        @Html.DisplayNameFor(x => x.Description)
+                        @Html.LabelFor(x => x.Description, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @Required = "Required" })
                         @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger" })
-
                     </div>
-
-
-
                 </div>
-                <div class="col-md-4">
-                    @Html.DisplayNameFor(x => x.Image)
-                    @Html.HiddenFor(x => x.Image)
-
-                    <div></div>
-                    <input type="file" accept="image/*" onchange="loadFile(event)">
-                    <img id="output" style="width:300px" />
-                   @Html.ValidationMessageFor(c => c.Image, "", new { @class = "text-danger" })
-
+                <div class="form-group row col-md-12">
+                    <div class="col-md-4">
+                        @Html.LabelFor(x => x.Image, new { @class = "font-italic" })
+                        @Html.HiddenFor(x => x.Image)
+                        <input class="btn btn-default" type="file" accept="image/*" onchange="loadFile(event)">
+                        <img id="output" style="width:300px" />
+                        @Html.ValidationMessageFor(c => c.Image, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary font-italic" value="submit" style="display: block; margin: 6% auto;">حفظ</button>
+                    </div>
                 </div>
             </div>
-               
         </row>
-
     </fieldset>
-    <button type="submit" class="btn btn-primary" value="submit">حفظ</button>
-
 }
-
-
-<script src="~/lib/jquery/dist/jquery.js" type='text/javascript'></script>
-<script src="~/lib/jquery/dist/jquery.min.js" type='text/javascript'></script>
-<script src="~/lib/jquery-validation/dist/jquery.validate.js" type='text/javascript'></script>
-<script src="~/lib/jquery-validation/dist/additional-methods.js" type='text/javascript'></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" type='text/javascript'></script>
-
-
-<script src="~/js/site.js" type='text/javascript'></script>
-
-
-
 <script>
-
           $(document).ready(function () {
-              var errorMassag = '@ViewBag.ErrorMassag';
-            
+            var errorMassag = '@ViewBag.ErrorMassag';
             if ( errorMassag != "")
             {
-
                 $(".Error").show().delay(5000).fadeOut();
-            }    });
+              }
+          });
 
-        var loadFile = function (event) {
+           var loadFile = function (event) {
             var reader = new FileReader();
             reader.onload = function () {
                 $("#Image").val(reader.result);
@@ -119,7 +82,6 @@
                 output.src = reader.result;
             };
             var x = reader.readAsDataURL(event.target.files[0]);
-            
         };
 </script>
 
