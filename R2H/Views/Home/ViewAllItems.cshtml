@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
+<style>
+    img {
+        width:100%;
+        border-radius:20px;
+    }
+</style>
 
 @using (Html.BeginForm("CreatItem", "Home"))
 {
@@ -18,10 +24,12 @@
                     var imgSrc = String.Format("data:image/jpeg;base64,/{0}", image64);
                     @Html.HiddenFor(c => c.ElectricCigarets[i].Id)
                     <div class="col-md-4" >
-                        <img style="width:200px" src="@imgSrc" />
+                        <a href="@Url.Action("GetItemById","Home",new {id=@Model.ElectricCigarets[i].Id})">
+                            <img style="width:200px" src="@imgSrc" />
+                        </a>
                         <br />
-                        @Html.LabelFor(x => x.ElectricCigarets[i].Description)
-                        @Html.DisplayFor(x => x.ElectricCigarets[i].Description)
+                        @Html.LabelFor(x => x.ElectricCigarets[i].Name)
+                        @Html.DisplayFor(x => x.ElectricCigarets[i].Name)
                         <br />
                         @Html.DisplayNameFor(x => x.ElectricCigarets[i].Price)
                         @Html.DisplayFor(x => x.ElectricCigarets[i].Price, new { @class = "form-control" })
