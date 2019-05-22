@@ -95,7 +95,6 @@ namespace ApplicationService
         public async Task<GetAllElectricCigaretViewModel> GetAllItem(int Type=0,int Brand=0 , int Category=0)
         {
             var electricCigarets = await ElectricCigaretRepository.FindAllAsync(c=>c.TypeId==Type);
-            electricCigarets.ToList();
             if (Brand != 0)
                 electricCigarets.Where(c => c.BrandId == Brand).ToList();
             if (Category != 0)
@@ -111,6 +110,8 @@ namespace ApplicationService
         {
             var electricCigaret = await ElectricCigaretRepository.GetAsync(Id);
             electricCigaret.ElectricCigaretMangment= ElectricCigaretMangment.Find(c => c.Id == electricCigaret.ElectricCigaretMangmentId);
+            electricCigaret.Category = await ElectricCigaretLookUpRepository.FindAsync(c => c.Id == electricCigaret.CategoryId);
+            electricCigaret.Brand = await ElectricCigaretLookUpRepository.FindAsync(c => c.Id == electricCigaret.BrandId);
             return new GetElectricCigaretViewModel(electricCigaret);
         }
         public async Task<AddElectricCigaretViewModel> GetElectricCigaretLookUps(int TypeId)

@@ -10,8 +10,10 @@ namespace ApplicationService.ViewModels
         public GetElectricCigaretViewModel(ShopItem Model)
         {
             this.Id = Model.Id;
-            this.Type = Model.TypeId;
-            this.Type = Model.BrandId;
+            this.Category = Model.CategoryId;
+            this.BrandText = Model.Brand.Description;
+            this.CategoryText = Model.Category.Description;
+            this.Brand = Model.BrandId;
             this.Name = Model.Name;
             this.Description = Model.Description;
             this.Price = Model.Price;
@@ -23,8 +25,10 @@ namespace ApplicationService.ViewModels
         {
         }
         public int Id { get; set; }
-        public int Type { get; set; }
+        public int Category { get; set; }
         public int Brand { get; set; }
+        public string CategoryText { get; set; }
+        public string BrandText { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int? CurrentlyCountAvilabil { get; set; }
