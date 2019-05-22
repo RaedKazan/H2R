@@ -40,10 +40,8 @@ namespace R2H.Controllers
         {
             try
             {
-                
                 logger.LogDebug("Starting AddItem","Id="+Id);
                 var modul = await _electricCigaretService.GetElectricCigaretLookUps(Id);
-                ViewBag.ID = Id;
                 return View(modul);
             }
             catch (Exception ex)
@@ -95,7 +93,6 @@ namespace R2H.Controllers
                 return RedirectToAction("Error");
             }
         }
-
         public IActionResult ViewItems()
         {
             try
@@ -116,7 +113,6 @@ namespace R2H.Controllers
             {
                 logger.LogDebug("Start ViewAllItems ", "Id= " + Id);
                 var modul = await _electricCigaretService.GetAllItem(Id);
-                ViewBag.ID = Id;
                 return View(modul);
             }
             catch (Exception ex)
@@ -126,6 +122,20 @@ namespace R2H.Controllers
             }
         }
 
+        public async Task<IActionResult> ViewItem(int Id)
+        {
+            try
+            {
+                logger.LogDebug("Start ViewItem ", "Id= " + Id);
+                var modul = await _electricCigaretService.GetItemById(Id);
+                return View(modul);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+                return RedirectToAction("Error");
+            }
+        }
         public async Task<IActionResult> GetItemById(int Id)
         {
             try
