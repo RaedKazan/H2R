@@ -16,7 +16,7 @@ namespace ApplicationService.ViewModels
                    new GetElectricCigaretViewModel
                    {
                        Id = item.Id,
-                       Type = item.TypeId,
+                       Category = item.CategoryId,
                        Name = item.Name,
                        Description = item.Description,
                        Price = item.Price,

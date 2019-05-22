@@ -137,16 +137,16 @@ namespace ApplicationDomianEntity.ApplicationDbContext
         );
 
 
-            modelBuilder.Entity<ShopItemLookUp>()
-              .HasMany(e => e.ShopItemBrand)
-              .WithOne(e => e.Brand)
-              .HasForeignKey(e => e.BrandId)
+            modelBuilder.Entity<ShopItem>()
+              .HasOne(e => e.Category)
+              .WithMany(e => e.ShopItemCategory)
+              .HasForeignKey(e => e.CategoryId)
               .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<ShopItemLookUp>()
-             .HasMany(e => e.ShopItemCategory)
-             .WithOne(e => e.Category)
-             .HasForeignKey(e => e.CategoryId)
+            modelBuilder.Entity<ShopItem>()
+             .HasOne(e => e.Brand)
+             .WithMany(e => e.ShopItemBrand)
+             .HasForeignKey(e => e.BrandId)
              .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ShopItemMangment>()
