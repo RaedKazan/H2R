@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
+<style>
+    img {
+        width:100%;
+        border-radius:20px;
+    }
+</style>
 
 @using (Html.BeginForm("CreatItem", "Home"))
 {
@@ -21,10 +27,10 @@
 
                     <div class="col-md-4" >
 
-                        <img style="width:200px" src="@imgSrc" />
+                        <img  src="@imgSrc"  />
                         <br />
-                        @Html.LabelFor(x => x.ElectricCigarets[i].Description)
-                        @Html.DisplayFor(x => x.ElectricCigarets[i].Description)
+                        @Html.LabelFor(x => x.ElectricCigarets[i].Name)
+                        @Html.DisplayFor(x => x.ElectricCigarets[i].Name)
                         <br />
                         @Html.DisplayNameFor(x => x.ElectricCigarets[i].Price)
                         @Html.DisplayFor(x => x.ElectricCigarets[i].Price, new { @class = "form-control" })
