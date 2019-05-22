@@ -1,7 +1,4 @@
-﻿using ApplicationDataAccess.ApplicationRepository;
-using ApplicationDataAccess.ApplicationUOF;
-using ApplicationDomianEntity.Models;
-using ApplicationService;
+﻿using ApplicationService;
 using ApplicationService.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -29,18 +26,18 @@ namespace R2H.Controllers
                 logger.LogDebug("Start Index [GET]");
                 return View();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError(ex.Message);
                 return RedirectToAction("Error");
             }
 
         }
-       public async Task<IActionResult> AddItem(int Id)
+        public async Task<IActionResult> AddItem(int Id)
         {
             try
             {
-                logger.LogDebug("Starting AddItem","Id="+Id);
+                logger.LogDebug("Starting AddItem", "Id=" + Id);
                 var modul = await _electricCigaretService.GetElectricCigaretLookUps(Id);
                 return View(modul);
             }
@@ -63,7 +60,6 @@ namespace R2H.Controllers
                 return RedirectToAction("Error");
             }
         }
-
         [HttpPost]
         public async Task<IActionResult> CreatItem(AddElectricCigaretViewModel Model)
         {
@@ -100,14 +96,13 @@ namespace R2H.Controllers
                 logger.LogDebug("Start View [GET]");
                 return View();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError(ex.Message);
                 return RedirectToAction("Error");
             }
         }
-        // to do add view
-        public async Task<IActionResult> ViewAllItems(int Id )
+        public async Task<IActionResult> ViewAllItems(int Id)
         {
             try
             {
@@ -121,7 +116,6 @@ namespace R2H.Controllers
                 return RedirectToAction("Error");
             }
         }
-
         public async Task<IActionResult> ViewItem(int Id)
         {
             try
