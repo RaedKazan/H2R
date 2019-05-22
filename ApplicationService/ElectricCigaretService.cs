@@ -106,13 +106,10 @@ namespace ApplicationService
             }
             return new GetAllElectricCigaretViewModel(electricCigarets);
         }
-        public async Task<GetElectricCigaretViewModel> GetItemById(int Id)
+        public  GetElectricCigaretViewModel GetItemById(int Id)
         {
-            var electricCigaret = await ElectricCigaretRepository.GetAsync(Id);
-            electricCigaret.ElectricCigaretMangment= ElectricCigaretMangment.Find(c => c.Id == electricCigaret.ElectricCigaretMangmentId);
-            electricCigaret.Category = await ElectricCigaretLookUpRepository.FindAsync(c => c.Id == electricCigaret.CategoryId);
-            electricCigaret.Brand = await ElectricCigaretLookUpRepository.FindAsync(c => c.Id == electricCigaret.BrandId);
-            return new GetElectricCigaretViewModel(electricCigaret);
+            var electricCigaret = ElectricCigaretRepository.GetAllIncluding(c => c.Category ,x=>x.Brand,a=>a.ElectricCigaretMangment).Where(z=>z.Id==Id).ToList();
+            return new GetElectricCigaretViewModel((ShopItem)electricCigaret.FirstOrDefault());
         }
         public async Task<AddElectricCigaretViewModel> GetElectricCigaretLookUps(int TypeId)
         {

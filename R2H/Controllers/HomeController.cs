@@ -116,12 +116,12 @@ namespace R2H.Controllers
                 return RedirectToAction("Error");
             }
         }
-        public async Task<IActionResult> ViewItem(int Id)
+        public  IActionResult ViewItem(int Id)
         {
             try
             {
                 logger.LogDebug("Start ViewItem ", "Id= " + Id);
-                var modul = await _electricCigaretService.GetItemById(Id);
+                var modul =  _electricCigaretService.GetItemById(Id);
                 return View(modul);
             }
             catch (Exception ex)
@@ -130,13 +130,12 @@ namespace R2H.Controllers
                 return RedirectToAction("Error");
             }
         }
-        public async Task<IActionResult> GetItemById(int Id)
+        public  IActionResult GetItemById(int Id)
         {
             try
             {
                 logger.LogDebug("Start GetItemById ", "Id= " + Id);
-                var modul = await _electricCigaretService.GetItemById(Id);
-                ViewBag.ID = Id;
+                var modul =  _electricCigaretService.GetItemById(Id);
                 return View(modul);
             }
             catch (Exception ex)
