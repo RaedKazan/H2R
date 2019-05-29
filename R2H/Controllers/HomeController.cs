@@ -1,10 +1,12 @@
 ﻿using ApplicationService;
 using ApplicationService.ViewModels;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Logging;
 using R2H.Models;
 using System;
+using System.Data;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -166,6 +168,7 @@ namespace R2H.Controllers
                 return RedirectToAction("Error");
             }
         }
+        [Authorize(Roles  = "Admin")]
         public IActionResult Privacy()
         {
             return View();

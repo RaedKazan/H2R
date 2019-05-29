@@ -1,6 +1,7 @@
 ﻿using ApplicationDomianEntity.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using R2H.Models;
 using System;
 using System.Text;
 using System.Threading;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace ApplicationDomianEntity.ApplicationDbContext
 {
 
-    public partial class R2HDbContext : IdentityDbContext
+    public partial class R2HDbContext : IdentityDbContext<ApplicationUser,ApplicationRole,string>
     {
         public virtual DbSet<ShopItem> ShopItem { get; set; }
         public virtual DbSet<ShopItemLookUp> ShopItemLookUp { get; set; }
