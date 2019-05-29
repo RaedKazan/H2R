@@ -1,6 +1,7 @@
 ﻿using ApplicationDataAccess.ApplicationRepository;
 using ApplicationDataAccess.ApplicationUOF;
 using ApplicationDomianEntity.ApplicationDbContext;
+using ApplicationDomianEntity.IdentityModels;
 using ApplicationService;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -8,18 +9,20 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Protocols;
+using R2H.Models;
 using System;
 
 namespace R2H
 {
     public class Startup
     {
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -28,9 +31,11 @@ namespace R2H
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             this.Configuration = builder.Build();
-        }
 
+        }
         public IConfiguration Configuration { get; }
+
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -59,9 +64,10 @@ namespace R2H
 
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
 
-            services.AddDefaultIdentity<IdentityUser>()
-           .AddDefaultUI(UIFramework.Bootstrap4)
-           .AddEntityFrameworkStores<R2HDbContext>();
+
+            //added by hussam for user idientity
+            services.AddIdentity<ApplicationUser, ApplicationRole>(option => option.Stores.MaxLengthForKeys = 128).
+                 AddEntityFrameworkStores<R2HDbContext>().AddDefaultUI().AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -94,7 +100,7 @@ namespace R2H
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
-
+            services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             builder.Populate(services);
             var container = builder.Build();
@@ -118,13 +124,19 @@ namespace R2H
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,R2HDbContext 
+            context,RoleManager<ApplicationRole>roleManager,UserManager<ApplicationUser>userManager )
         { // Use Threenine.Map to wire up the Automapper mappings
 
             //Added by Hamza
             loggerFactory.AddLog4Net(); // << Add this line
-            //app.UseMvc();
+                                        //app.UseMvc();
+            //Added by hussam
+        
+            var UserName = Configuration.GetSection("InitilaizeAdmin")["UserName"];
+            var Password = Configuration.GetSection("InitilaizeAdmin")["Password"];
 
+            app.UseSession();
 
             // Ensure the Database is created
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -152,6 +164,12 @@ namespace R2H
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+         
+
+            InitializeUser.Initialize(context, userManager, roleManager,UserName,Password).Wait();
         }
+
+
+      
     }
 }
