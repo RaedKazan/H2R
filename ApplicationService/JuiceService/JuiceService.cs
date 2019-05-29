@@ -30,10 +30,11 @@ namespace ApplicationService
         public async Task<bool> CreateNewJuice(AddJuiceViewModel JuiceViewModel)
         {
 
-            var Category = ShopItemLookUp.Find(c => c.Type == JuiceViewModel.TypeId && c.Id == JuiceViewModel.CategoryId).Category;
+            var Category = ShopItemLookUp.Find(c => c.Type == JuiceViewModel.TypeId && c.Id == JuiceViewModel.CategoryId).Id;
 
+            var CategoryID = ShopItemLookUp.Find(c => c.Type == JuiceViewModel.TypeId && c.Id == JuiceViewModel.CategoryId).Category;
 
-            var isExist = await ShopItemLookUp.FindAllAsync(c => c.Type == JuiceViewModel.TypeId && c.Category == Category);
+            var isExist = await ItemMangment.FindAllAsync(c => c.Type == JuiceViewModel.TypeId && c.Category == Category);
             if (isExist.Any())
             {
                 return false;
@@ -68,7 +69,7 @@ namespace ApplicationService
                             TotalySold = 0,
                             Type = JuiceViewModel.TypeId,
                             Brand = JuiceViewModel.BrandId.Value,
-                            Category = ShopItemLookUp.Find(c => c.Type == 2 && c.Category == Category && c.NicotinePercentage == item.Id).Id,
+                            Category = ShopItemLookUp.Find(c => c.Type == 2 && c.Category == CategoryID && c.NicotinePercentage == item.Id).Id,
                             JuiceId = Juice.Id
 
                         });

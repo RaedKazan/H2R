@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApplicationDomianEntity.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,9 @@ namespace ApplicationDomianEntity.Migrations
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true)
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    CreationDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,12 +37,17 @@ namespace ApplicationDomianEntity.Migrations
                     PasswordHash = table.Column<string>(nullable: true),
                     SecurityStamp = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Street = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -255,8 +262,8 @@ namespace ApplicationDomianEntity.Migrations
                     TotalySold = table.Column<int>(nullable: false),
                     TotalyAvilable = table.Column<int>(nullable: true),
                     IsAvilable = table.Column<bool>(nullable: false),
-                    ElectricCigaretId = table.Column<int>(nullable: false),
-                    JuiceId = table.Column<int>(nullable: false)
+                    ElectricCigaretId = table.Column<int>(nullable: true),
+                    JuiceId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

@@ -368,6 +368,19 @@ namespace ApplicationDomianEntity.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("ApplicationDomianEntity.Models.JuiceItem", b =>
+                {
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Brand")
+                        .WithMany("JuiceBrand")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Category")
+                        .WithMany("JuiceCategory")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItem", b =>
                 {
                     b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Brand")

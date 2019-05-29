@@ -55,7 +55,7 @@ namespace R2H.Controllers
                 {
                     var result = await _juiceService.CreateNewJuice(JuiceViewModel);
                     if (result)
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index","Home");
                     else
                     {
                         ViewBag.ErrorMassag = "هذا العنصر مدخل مسبقا يجب عليه تعديل نفس العنصر ";
