@@ -1,19 +1,20 @@
 ﻿using ApplicationDomianEntity.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ApplicationService.ViewModels
 {
-    public class GetAllElectricCigaretViewModel
+    public class GetAllJuicesViewModel
     {
-        public GetAllElectricCigaretViewModel(IList<ShopItem> ElectricCigarets)
+        public GetAllJuicesViewModel(IList<JuiceItem> ElectricCigarets)
         {
-            this.ElectricCigarets = new List<GetElectricCigaretViewModel>();
+            this.ElectricCigarets = new List<GetJuiceViewModel>();
 
             foreach (var item in ElectricCigarets)
             {
                 this.ElectricCigarets.Add(
-                   new GetElectricCigaretViewModel
+                   new GetJuiceViewModel
                    {
                        Id = item.Id,
                        Category = item.CategoryId,
@@ -28,6 +29,6 @@ namespace ApplicationService.ViewModels
                    });
             }
         }
-        public List<GetElectricCigaretViewModel> ElectricCigarets { get; set; }
+        public List<GetJuiceViewModel> ElectricCigarets { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-@model ApplicationService.ViewModels.GetAllElectricCigaretViewModel
+@model ApplicationService.ViewModels.GetAllJuicesViewModel
 @{
     ViewData["Title"] = "ViewAllItems";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,8 +7,8 @@
 }
 <style>
     img {
-        width:100%;
-        border-radius:20px;
+        width: 100%;
+        border-radius: 20px;
     }
 </style>
 
@@ -23,7 +23,7 @@
                     var image64 = System.Text.Encoding.UTF8.GetString(Model.ElectricCigarets[i].Image);
                     var imgSrc = String.Format("data:image/jpeg;base64,/{0}", image64);
                     @Html.HiddenFor(c => c.ElectricCigarets[i].Id)
-                    <div class="col-md-4" >
+                    <div class="col-md-4">
                         <a href="@Url.Action("GetItemById","Home",new {id=@Model.ElectricCigarets[i].Id})">
                             <img style="width:200px" src="@imgSrc" />
                         </a>
@@ -35,7 +35,7 @@
                         @Html.DisplayFor(x => x.ElectricCigarets[i].SellingPrice, new { @class = "form-control" })
                     </div>
 
-                } @*End for*@
+                } 
             </div>
         </row>
     </div>

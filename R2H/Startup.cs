@@ -35,8 +35,7 @@ namespace R2H
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-
-            services.Configure<CookiePolicyOptions>(options =>
+              services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
 
@@ -54,8 +53,9 @@ namespace R2H
             builder.RegisterType<ElectricCigaretService>().As<IElectricCigaretService>();
             builder.RegisterType<LookUpService>().As<ILookUpService>();
             builder.RegisterType<ItemMangmentService>().As<IItemMangmentService>();
+            builder.RegisterType<JuiceService>().As<IJuiceService>();
 
-            
+
 
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
 

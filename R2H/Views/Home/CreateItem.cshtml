@@ -11,6 +11,7 @@
                 width: 50% !important;
                 margin-left: 280px;
             }
+
             .center {
                 margin: auto;
                 width: 50%;
@@ -27,7 +28,7 @@
     </div>
 </div>
 <input type="button" class="btn btn-primary btn-lg btn-block" value="Pod-System" onclick="location.href='@Url.Action("AddItem",new { @id = 1})'">
-<input type="button" class="btn btn-primary btn-lg btn-block" value="Juice" onclick="location.href='@Url.Action("AddItem",new { @id = 2 })'">
+<input type="button" class="btn btn-primary btn-lg btn-block" value="Juice" onclick="location.href='@Url.Action("AddJuice","Juice",new { @id = 2 })'">
 <input type="button" class="btn btn-primary btn-lg btn-block" value="Vape" onclick="location.href='@Url.Action("AddItem",new { @id = 3 })'">
 <br />
 <div class="center">
@@ -36,6 +37,6 @@
     </div>
 </div>
 <input type="button" class="btn btn-primary btn-lg btn-block" value="Pod-System Category" onclick="location.href='@Url.Action("AddLookUp","LookUp",new { @id = 1})'">
-<input type="button" class="btn btn-primary btn-lg btn-block" value="Juice Category" onclick="location.href='@Url.Action("AddLookUp","LookUp",new { @id = 2 })'">
+<input type="button" class="btn btn-primary btn-lg btn-block" value="Juice Category" onclick="location.href='@Url.Action("AddLookUp","Juice")'">
 <input type="button" class="btn btn-primary btn-lg btn-block" value="Vape Category" onclick="location.href='@Url.Action("AddLookUp","LookUp",new { @id = 3 })'">
 

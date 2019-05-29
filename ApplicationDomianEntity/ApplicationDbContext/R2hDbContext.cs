@@ -14,6 +14,7 @@ namespace ApplicationDomianEntity.ApplicationDbContext
         public virtual DbSet<ShopItem> ShopItem { get; set; }
         public virtual DbSet<ShopItemLookUp> ShopItemLookUp { get; set; }
         public virtual DbSet<ShopItemMangment> ShopItemMangment { get; set; }
+        public virtual DbSet<JuiceItem> JuiceItem { get; set; }
 
         public R2HDbContext(DbContextOptions<R2HDbContext> options)
           : base(options)
@@ -102,39 +103,12 @@ namespace ApplicationDomianEntity.ApplicationDbContext
             new ShopItemLookUp
             {
                 Id = 4,
-                Type = 1,
-                Category = 1,
-                Description = "سيقارة الكترونية"
+                Type = 2,
+                Brand = 1,
+                Description = "عصير الكترونية"
             }
         );
 
-            modelBuilder.Entity<ShopItemLookUp>().HasData(
-         new ShopItemLookUp
-         {
-             Id = 5,
-             Type = 1,
-             Category = 2,
-             Description = "بود سيقارة الكترونية"
-         }
-     );
-            modelBuilder.Entity<ShopItemLookUp>().HasData(
-            new ShopItemLookUp
-            {
-                Id = 6,
-                Type = 1,
-                Brand = 1,
-                Description = "Smoke"
-            }
-        );
-            modelBuilder.Entity<ShopItemLookUp>().HasData(
-            new ShopItemLookUp
-            {
-                Id = 7,
-                Type = 1,
-                Brand = 2,
-                Description = "Drag"
-            }
-        );
 
 
             modelBuilder.Entity<ShopItem>()
@@ -149,11 +123,31 @@ namespace ApplicationDomianEntity.ApplicationDbContext
              .HasForeignKey(e => e.BrandId)
              .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<ShopItemMangment>()
-            .HasMany(e => e.ElectricCigaret)
-            .WithOne(e => e.ElectricCigaretMangment)
-            .HasForeignKey(e => e.ElectricCigaretMangmentId)
+            modelBuilder.Entity<ShopItem>()
+            .HasMany(e => e.ElectricCigaretMangment)
+            .WithOne(e => e.ElectricCigaret)
+            .HasForeignKey(e => e.ElectricCigaretId)
             .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<JuiceItem>()
+            .HasMany(e => e.ElectricCigaretMangment)
+            .WithOne(e => e.JuiceItem)
+            .HasForeignKey(e => e.JuiceId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<JuiceItem>()
+             .HasOne(e => e.Category)
+             .WithMany(e => e.JuiceCategory)
+             .HasForeignKey(e => e.CategoryId)
+             .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<JuiceItem>()
+             .HasOne(e => e.Brand)
+             .WithMany(e => e.JuiceBrand)
+             .HasForeignKey(e => e.BrandId)
+             .OnDelete(DeleteBehavior.Restrict);
+
 
         }
     }

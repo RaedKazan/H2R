@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApplicationDomianEntity.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,31 +56,12 @@ namespace ApplicationDomianEntity.Migrations
                     Type = table.Column<int>(nullable: false),
                     Category = table.Column<int>(nullable: false),
                     Brand = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(nullable: true)
+                    Description = table.Column<string>(nullable: true),
+                    NicotinePercentage = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ShopItemLookUp", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ShopItemMangment",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Type = table.Column<int>(nullable: false),
-                    Brand = table.Column<int>(nullable: false),
-                    Category = table.Column<int>(nullable: false),
-                    TotalyInserted = table.Column<int>(nullable: true),
-                    TotalySold = table.Column<int>(nullable: false),
-                    TotalyAvilable = table.Column<int>(nullable: true),
-                    IsAvilable = table.Column<bool>(nullable: false),
-                    ElectricCigaretId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ShopItemMangment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,6 +171,42 @@ namespace ApplicationDomianEntity.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "JuiceItem",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    BrandId = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false),
+                    TypeId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    BuyingPrice = table.Column<double>(nullable: true),
+                    SellingPrice = table.Column<double>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    LastModificationDate = table.Column<DateTime>(nullable: false),
+                    Image = table.Column<byte[]>(nullable: true),
+                    ElectricCigaretMangmentId = table.Column<int>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JuiceItem", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_JuiceItem_ShopItemLookUp_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "ShopItemLookUp",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_JuiceItem_ShopItemLookUp_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "ShopItemLookUp",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ShopItem",
                 columns: table => new
                 {
@@ -200,7 +217,8 @@ namespace ApplicationDomianEntity.Migrations
                     TypeId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(nullable: true),
+                    BuyingPrice = table.Column<double>(nullable: true),
+                    SellingPrice = table.Column<double>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     LastModificationDate = table.Column<DateTime>(nullable: false),
                     Image = table.Column<byte[]>(nullable: true),
@@ -222,26 +240,50 @@ namespace ApplicationDomianEntity.Migrations
                         principalTable: "ShopItemLookUp",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShopItemMangment",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Type = table.Column<int>(nullable: false),
+                    Brand = table.Column<int>(nullable: false),
+                    Category = table.Column<int>(nullable: false),
+                    TotalyInserted = table.Column<int>(nullable: true),
+                    TotalySold = table.Column<int>(nullable: false),
+                    TotalyAvilable = table.Column<int>(nullable: true),
+                    IsAvilable = table.Column<bool>(nullable: false),
+                    ElectricCigaretId = table.Column<int>(nullable: false),
+                    JuiceId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShopItemMangment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ShopItem_ShopItemMangment_ElectricCigaretMangmentId",
-                        column: x => x.ElectricCigaretMangmentId,
-                        principalTable: "ShopItemMangment",
+                        name: "FK_ShopItemMangment_ShopItem_ElectricCigaretId",
+                        column: x => x.ElectricCigaretId,
+                        principalTable: "ShopItem",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ShopItemMangment_JuiceItem_JuiceId",
+                        column: x => x.JuiceId,
+                        principalTable: "JuiceItem",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
                 table: "ShopItemLookUp",
-                columns: new[] { "Id", "Brand", "Category", "Description", "Type" },
+                columns: new[] { "Id", "Brand", "Category", "Description", "NicotinePercentage", "Type" },
                 values: new object[,]
                 {
-                    { 1, 0, 0, "ECigaert -سيقارة الكترونية", 1 },
-                    { 2, 0, 0, "EJuic -عصير الكتروني", 2 },
-                    { 3, 0, 0, "Vape -فيب الكترونية", 3 },
-                    { 4, 0, 1, "سيقارة الكترونية", 1 },
-                    { 5, 0, 2, "بود سيقارة الكترونية", 1 },
-                    { 6, 1, 0, "Smoke", 1 },
-                    { 7, 2, 0, "Drag", 1 }
+                    { 1, 0, 0, "ECigaert -سيقارة الكترونية", 0.0, 1 },
+                    { 2, 0, 0, "EJuic -عصير الكتروني", 0.0, 2 },
+                    { 3, 0, 0, "Vape -فيب الكترونية", 0.0, 3 },
+                    { 4, 1, 0, "عصير الكترونية", 0.0, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -284,6 +326,16 @@ namespace ApplicationDomianEntity.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_JuiceItem_BrandId",
+                table: "JuiceItem",
+                column: "BrandId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JuiceItem_CategoryId",
+                table: "JuiceItem",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ShopItem_BrandId",
                 table: "ShopItem",
                 column: "BrandId");
@@ -294,9 +346,14 @@ namespace ApplicationDomianEntity.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShopItem_ElectricCigaretMangmentId",
-                table: "ShopItem",
-                column: "ElectricCigaretMangmentId");
+                name: "IX_ShopItemMangment_ElectricCigaretId",
+                table: "ShopItemMangment",
+                column: "ElectricCigaretId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShopItemMangment_JuiceId",
+                table: "ShopItemMangment",
+                column: "JuiceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -317,7 +374,7 @@ namespace ApplicationDomianEntity.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "ShopItem");
+                name: "ShopItemMangment");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -326,10 +383,13 @@ namespace ApplicationDomianEntity.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "ShopItemLookUp");
+                name: "ShopItem");
 
             migrationBuilder.DropTable(
-                name: "ShopItemMangment");
+                name: "JuiceItem");
+
+            migrationBuilder.DropTable(
+                name: "ShopItemLookUp");
         }
     }
 }

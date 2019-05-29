@@ -13,7 +13,8 @@ namespace ApplicationDomianEntity.Models
         public string Description { get; set; }
         public ICollection<ShopItem> ShopItemBrand { get; set; }
         public ICollection<ShopItem> ShopItemCategory { get; set; }
-
-
+        public ICollection<JuiceItem> JuiceBrand { get; set; }
+        public ICollection<JuiceItem> JuiceCategory { get; set; }
+        public double NicotinePercentage { get; set; }
     }
 }

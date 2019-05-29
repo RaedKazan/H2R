@@ -36,6 +36,29 @@ namespace ApplicationService
 
         }
 
+        public async Task CreateItemMangment(int? Type, int? Brand, int? Category)
+        {
+            var model = new List<ShopItemMangment>();
+            if (Type != 0)
+            {
+                var result = await electricCigaretMangment.FindAllAsync(c => c.Type == Type);
+                model = result.ToList();
+            }
+            if (Brand != 0)
+            {
+                var result = await electricCigaretMangment.FindAllAsync(c => c.Brand == Brand);
+                model = result.ToList();
+            }
+            if (Category != 0)
+            {
+                var result = await electricCigaretMangment.FindAllAsync(c => c.Category == Category);
+                model = result.ToList();
+            }
+            var a = await electricCigaretMangment.GetAllAsync();
+
+        }
+
+
 
 
     }

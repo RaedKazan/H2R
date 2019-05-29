@@ -1,14 +1,13 @@
 ﻿using ApplicationDomianEntity.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace ApplicationService.ViewModels
 {
-    public class GetElectricCigaretViewModel
+    public class GetJuiceViewModel
     {
 
-        public GetElectricCigaretViewModel(ShopItem Model)
+        public GetJuiceViewModel(JuiceItem Model)
         {
             this.Id = Model.Id;
             this.Category = Model.CategoryId;
@@ -23,7 +22,7 @@ namespace ApplicationService.ViewModels
             this.IsAvilable = Model.ElectricCigaretMangment.FirstOrDefault().IsAvilable;
             this.CurrentlyCountAvilabil = Model.ElectricCigaretMangment.FirstOrDefault().TotalyAvilable;
         }
-        public GetElectricCigaretViewModel()
+        public GetJuiceViewModel()
         {
         }
         public int Id { get; set; }

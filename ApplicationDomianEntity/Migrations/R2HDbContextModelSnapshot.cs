@@ -19,13 +19,15 @@ namespace ApplicationDomianEntity.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItem", b =>
+            modelBuilder.Entity("ApplicationDomianEntity.Models.JuiceItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BrandId");
+
+                    b.Property<double?>("BuyingPrice");
 
                     b.Property<int>("CategoryId");
 
@@ -43,7 +45,7 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<double?>("Price");
+                    b.Property<double?>("SellingPrice");
 
                     b.Property<int>("TypeId");
 
@@ -53,7 +55,44 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("ElectricCigaretMangmentId");
+                    b.ToTable("JuiceItem");
+                });
+
+            modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BrandId");
+
+                    b.Property<double?>("BuyingPrice");
+
+                    b.Property<int>("CategoryId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("ElectricCigaretMangmentId");
+
+                    b.Property<byte[]>("Image");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<DateTime>("LastModificationDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<double?>("SellingPrice");
+
+                    b.Property<int>("TypeId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("ShopItem");
                 });
@@ -70,6 +109,8 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<double>("NicotinePercentage");
+
                     b.Property<int>("Type");
 
                     b.HasKey("Id");
@@ -83,6 +124,7 @@ namespace ApplicationDomianEntity.Migrations
                             Brand = 0,
                             Category = 0,
                             Description = "ECigaert -سيقارة الكترونية",
+                            NicotinePercentage = 0.0,
                             Type = 1
                         },
                         new
@@ -91,6 +133,7 @@ namespace ApplicationDomianEntity.Migrations
                             Brand = 0,
                             Category = 0,
                             Description = "EJuic -عصير الكتروني",
+                            NicotinePercentage = 0.0,
                             Type = 2
                         },
                         new
@@ -99,39 +142,17 @@ namespace ApplicationDomianEntity.Migrations
                             Brand = 0,
                             Category = 0,
                             Description = "Vape -فيب الكترونية",
+                            NicotinePercentage = 0.0,
                             Type = 3
                         },
                         new
                         {
                             Id = 4,
-                            Brand = 0,
-                            Category = 1,
-                            Description = "سيقارة الكترونية",
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Brand = 0,
-                            Category = 2,
-                            Description = "بود سيقارة الكترونية",
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 6,
                             Brand = 1,
                             Category = 0,
-                            Description = "Smoke",
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Brand = 2,
-                            Category = 0,
-                            Description = "Drag",
-                            Type = 1
+                            Description = "عصير الكترونية",
+                            NicotinePercentage = 0.0,
+                            Type = 2
                         });
                 });
 
@@ -145,9 +166,11 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.Property<int>("Category");
 
-                    b.Property<int>("ElectricCigaretId");
+                    b.Property<int?>("ElectricCigaretId");
 
                     b.Property<bool>("IsAvilable");
+
+                    b.Property<int?>("JuiceId");
 
                     b.Property<int?>("TotalyAvilable");
 
@@ -158,6 +181,10 @@ namespace ApplicationDomianEntity.Migrations
                     b.Property<int>("Type");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ElectricCigaretId");
+
+                    b.HasIndex("JuiceId");
 
                     b.ToTable("ShopItemMangment");
                 });
@@ -327,6 +354,19 @@ namespace ApplicationDomianEntity.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ApplicationDomianEntity.Models.JuiceItem", b =>
+                {
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Brand")
+                        .WithMany("JuiceBrand")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Category")
+                        .WithMany("JuiceCategory")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItem", b =>
                 {
                     b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Brand")
@@ -338,10 +378,18 @@ namespace ApplicationDomianEntity.Migrations
                         .WithMany("ShopItemCategory")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
 
-                    b.HasOne("ApplicationDomianEntity.Models.ShopItemMangment", "ElectricCigaretMangment")
-                        .WithMany("ElectricCigaret")
-                        .HasForeignKey("ElectricCigaretMangmentId")
+            modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItemMangment", b =>
+                {
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItem", "ElectricCigaret")
+                        .WithMany("ElectricCigaretMangment")
+                        .HasForeignKey("ElectricCigaretId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ApplicationDomianEntity.Models.JuiceItem", "JuiceItem")
+                        .WithMany("ElectricCigaretMangment")
+                        .HasForeignKey("JuiceId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
