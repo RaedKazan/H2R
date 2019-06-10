@@ -26,30 +26,35 @@
                     </div>
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.Brand, new { @class = "font-italic" })
-                        @Html.TextBoxFor(model => model.Brand, Model.BrandText, new { @class = "form-control", @readonly = true })
+                        @Html.TextBoxFor(model => model.Brand, Model.BrandText, new { @class = "form-control", @readonly = true})
                         @Html.ValidationMessageFor(c => c.Brand, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.Name, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @readonly = true })
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @readonly = true, @id = "Name" })
                         @Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.Description, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @Required = "Required", @readonly = true })
+                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @Required = "Required", @readonly = true, @id = "Description" })
                         @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
-                        @Html.LabelFor(x => x.Price, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @readonly = true })
+                        @Html.LabelFor(x => x.BuyingPrice, new { @class = "font-italic" })
+                        @Html.TextBoxFor(x => x.BuyingPrice, new { @class = "form-control", @readonly = true, @id = "BuyingPrice" })
                         @Html.ValidationMessageFor(c => c.Price, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-4">
-                        @{ 
+                        @Html.LabelFor(x => x.SellingPrice, new { @class = "font-italic" })
+                        @Html.TextBoxFor(x => x.SellingPrice, new { @class = "form-control", @readonly = true, @id = "SellingPrice" })
+                        @Html.ValidationMessageFor(c => c.Price, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @{
 
                             if (Model.IsAvilable == true)
                             {
@@ -67,19 +72,31 @@
                     <div class="col-md-4">
                         @{ var image64 = System.Text.Encoding.UTF8.GetString(Model.Image);
                             var imgSrc = String.Format("data:image/jpeg;base64,/{0}", image64);
-                        <div>
-                            <img style="    height: 266px;" src="@imgSrc" />
-                        </div>   
+                            <div>
+                                <img style="    height: 266px;" src="@imgSrc" />
+                            </div>
                         }
                     </div>
-                 
+
                 </div>
             </div>
         </row>
     </fieldset>
-}
-<script>
-          $(document).ready(function () {
+    <div class="form-group row col-md-12">
+
+        <div id="Save" style="display:none">
+            <button style="margin-left: 36px;" type="submit" class="btn btn-primary font-italic" value="submit" >حفظ</button>
+
+        </div>
+        <div>
+            <button style="margin-left: 36px;" type="button" class="btn btn-primary font-italic" onclick="myFunction()" id="Edit">تعديل</button>
+
+        </div>
+        </div>
+        }
+        <script>
+    $(document).ready(function () {
+
             var errorMassag = '@ViewBag.ErrorMassag';
             if ( errorMassag != "")
             {
@@ -95,8 +112,26 @@
                 output.src = reader.result;
             };
             var x = reader.readAsDataURL(event.target.files[0]);
-        };
-</script>
+    };
+
+
+    function myFunction() {
+        var x = document.getElementById("Save");
+        var z = document.getElementById("Edit");
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            z.style.display = "none";
+
+     
+        }
+        document.getElementById('Name').removeAttribute('readonly');
+        document.getElementById('Description').removeAttribute('readonly');
+        document.getElementById('BuyingPrice').removeAttribute('readonly');
+        document.getElementById('SellingPrice').removeAttribute('readonly');
+
+    }
+        </script>
 
 
 

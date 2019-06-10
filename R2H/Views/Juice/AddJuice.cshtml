@@ -52,6 +52,24 @@
                 </div>
                 <div class="form-group row col-md-12">
 
+                    @for (int i = 0; i < Model.NicotinePercentage.Count(); i++)
+                    {
+                        @Html.HiddenFor(x => x.NicotinePercentage[i].Id)
+                        <div class="col-md-1">
+                            @Html.DisplayFor(x => x.NicotinePercentage[i].Name, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-1">
+                            @Html.TextBoxFor(x => x.NicotinePercentage[i].CountToInsert, new { @class = "form-control" })
+
+                        </div>
+                        <div class="col-md-1">
+                            @Html.CheckBoxFor(x => x.NicotinePercentage[i].IsChecked, new { @class = "form-control", @id = "Checked" })
+                        </div>
+                    }
+
+                </div>
+                <div class="form-group row col-md-12">
+
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.Image, new { @class = "font-italic" })
                         @Html.HiddenFor(x => x.Image)
@@ -59,31 +77,17 @@
                         <img id="output" style="width:300px" />
                         @Html.ValidationMessageFor(c => c.Image, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-primary font-italic" value="submit" style="display: block; margin: 6% auto;">حفظ</button>
-                    </div>
-                </div>
-
-                <div class="form-group row col-md-12">
-
-                    @for (int i = 0; i < Model.NicotinePercentage.Count(); i++)
-                    {
-                        @Html.HiddenFor(x => x.NicotinePercentage[i].Id)
-
-                        <div class="col-md-1">
-                            @Html.DisplayFor(x => x.NicotinePercentage[i].Name, new { @class = "form-control" })
-                        </div>
-                        <div class="col-md-1">
-                            @Html.TextBoxFor(x => x.NicotinePercentage[i].CountToInsert, new { @class = "form-control" })
-                        </div>
-                        <div class="col-md-1">
-                            @Html.CheckBoxFor(x => x.NicotinePercentage[i].IsChecked, new { @class = "form-control" })
-                        </div>
-                    }
 
                 </div>
+
+
 
             </div>
+            <div>
+                <button type="submit"style="    margin-left: 45px;" class="btn btn-primary font-italic" value="submit"  margin: 6% auto;" onclick="return submitWith();" id="Submit">حفظ</button>
+
+            </div>
+           
         </row>
     </fieldset>
 }
@@ -118,6 +122,20 @@
             };
             var x = reader.readAsDataURL(event.target.files[0]);
     };
+    function submitWith() {
+        var checkedCount = $("#Checked:checked").length;
+  
+        var valid = checkedCount > 0;
+
+
+        if (!valid) {
+            alert(' الرجاء اختيار نسبة النيكوتين');
+         
+                event.preventDefault();
+           
+        }
+        return valid;
+    }
 
 
 </script>

@@ -14,10 +14,15 @@
             margin-left: 10px;
         }
 
-        .check2 {
+        .CategoryCheckBox {
             width: 22px;
             margin-left: 5px;
         }
+        .Check5 {
+            width: 22px;
+            margin-left: 10px;
+        }
+
     </style>
 </head>
 <h1 class="font-italic">AddLookUp</h1>
@@ -36,8 +41,8 @@
                 <div class="form-group row col-md-12">                    
                     <div class="col-md-1">
                         @Html.LabelFor(x => x.Category, new { @class = "font-italic" })
-                        <div class="check2">
-                            @Html.CheckBoxFor(x => x.Category, new { @class = "form-control", @id = "check2" })
+                        <div class="CategoryCheckBox">
+                            @Html.CheckBoxFor(x => x.Category, new { @class = "form-control", @id = "CategoryCheckBox" })
                             @Html.ValidationMessageFor(c => c.Category, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -57,15 +62,17 @@
                         <div class="col-md-3">
                             @Html.DisplayFor(x => x.NicotinePercentage[i].Name, new { @class = "form-control" })
                         </div>
-                        <div class="col-md-1">
-                            @Html.CheckBoxFor(x => x.NicotinePercentage[i].IsChecked, new { @class = "form-control" })
+                        <div class="col-md-1"style="    margin-left: -134px;">
+                            @Html.CheckBoxFor(x => x.NicotinePercentage[i].IsChecked, new { @class = "form-control" , @id= "NicotenCheckBox", @style = "width:22px" })
+
                         </div>
                     }
                 </div>
             </div>
         </row>
     </fieldset>
-    <button style="margin-left: 36px;" type="submit" class="btn btn-primary font-italic" value="submit">حفظ</button>
+
+    <button style="margin-left: 36px;" type="submit" class="btn btn-primary font-italic" value="submit" onclick="return ValidateForm();">حفظ</button>
 }
 
 
@@ -92,20 +99,23 @@
 </script>
 <script>
 
-    $(document).ready(function () {
-        $("#check1").click(function () {
-            $("#check2").attr('disabled', !$("#check2").attr('disabled'));
-            $('#check2').prop('checked', false);
-            $("#check2").val("false")
-        });
-    });
 
-    $(document).ready(function () {
-        $("#check2").click(function () {
-            $("#check1").attr('disabled', !$("#check1").attr('disabled'));
-            $('#check1').prop('checked', false);
-        });
-    });
+
+    function ValidateForm() {
+        var checkedCount = $("#CategoryCheckBox:checked").length;
+        var checkedCount1 = $("#NicotenCheckBox:checked").length;
+ 
+        var validCateg = checkedCount > 0;
+        var validNicoten = checkedCount1 > 0;
+        debugger;
+
+        if (validCateg == 0 || validNicoten==0) {
+            alert(' الرجاء اختيار نسبة النيكوتين والنوعية');
+            event.preventDefault();
+
+        }
+        return valid;
+    }
+
 
 </script>
-
