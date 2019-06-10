@@ -1,33 +1,36 @@
 ﻿using ApplicationService;
 using ApplicationService.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Logging;
 using R2H.Models;
 using System;
-using System.Data;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace R2H.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IElectricCigaretService _electricCigaretService;
+
         private readonly ILogger logger;
 
-        public HomeController(IElectricCigaretService electricCigaretService, ILoggerFactory LoggerFactory)
+        public HomeController(IElectricCigaretService electricCigaretService, ILoggerFactory LoggerFactory, UserManager<ApplicationUser> userManager)
+            :base(userManager)
         {
             _electricCigaretService = electricCigaretService;
             this.logger = LoggerFactory.CreateLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         }
-        public IActionResult Index()
+        [AllowAnonymous]
+        public async Task<IActionResult> Index()
         {
             try
             {
-                logger.LogDebug("Start Index [GET]");
+               var x= await  base.GetCurrentUserRoles();
+                //logger.LogDebug("Start Index [GET]");
                 return View();
             }
             catch (Exception ex)
@@ -153,7 +156,6 @@ namespace R2H.Controllers
             }
         }
         //Massage need to be added and redirect to Index
-        [HttpDelete]
         public async Task<IActionResult> DeleteItem(int Id)
         {
             try

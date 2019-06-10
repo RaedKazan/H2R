@@ -43,11 +43,14 @@ namespace ApplicationService.ViewModels
 
         public string Description { get; set; }
         public int? CurrentlyCountAvilabil { get; set; }
-        public Double? SellingPrice { get; set; }
-        public Double? BuyingPrice { get; set; }
-        [Display(Name = "السعر")]
+        [Display(Name = "  سعر البيع")]
 
-        public Double? Price { get; set; }
+        public Double? SellingPrice { get; set; }
+        [Display(Name = "  سعر التكلفة")]
+
+        public Double? BuyingPrice { get; set; }
+
+
         [Display(Name = "الصورة")]
 
         public byte[] Image { get; set; }
