@@ -1,5 +1,4 @@
-﻿using ApplicationDomianEntity.Models;
-using ApplicationService.ViewModels;
+﻿using ApplicationService.ViewModels;
 using System.Threading.Tasks;
 
 namespace ApplicationService

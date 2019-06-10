@@ -9,4 +9,10 @@
        TwelvePercent = 5,
        FifteenePercent = 6,
     }
+    public enum DomainValues
+    {
+        Vape = 1,
+        Juice = 2,
+        ECigaret = 3
+    }
 }

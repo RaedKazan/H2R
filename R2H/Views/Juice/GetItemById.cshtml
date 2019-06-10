@@ -1,6 +1,6 @@
 ﻿
 @using ApplicationService.ViewModels
-@model ApplicationService.ViewModels.GetElectricCigaretViewModel
+@model ApplicationService.ViewModels.GetJuiceViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group row col-md-12">
 
-                    <div class="col-md-4">
+                    @*<div class="col-md-4">
                         @{
 
                             if (Model.IsAvilable == true)
@@ -69,7 +69,7 @@
                         }
                         @Html.LabelFor(x => x.IsAvilable, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.IsAvilableText, new { @class = "form-control", @readonly = true })
-                    </div>
+                    </div>*@
                 </div>
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">

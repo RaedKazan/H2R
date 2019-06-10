@@ -30,11 +30,10 @@ namespace ApplicationService
         public async Task<bool> CreateNewJuice(AddJuiceViewModel JuiceViewModel)
         {
 
-            var Category = ShopItemLookUp.Find(c => c.Type == JuiceViewModel.TypeId && c.Id == JuiceViewModel.CategoryId).Id;
+            var Category = ShopItemLookUp.Find(c => c.Type == JuiceViewModel.TypeId && c.Id == JuiceViewModel.CategoryId);
 
-            var CategoryID = ShopItemLookUp.Find(c => c.Type == JuiceViewModel.TypeId && c.Id == JuiceViewModel.CategoryId).Category;
 
-            var isExist = await ItemMangment.FindAllAsync(c => c.Type == JuiceViewModel.TypeId && c.Category == Category);
+            var isExist = await ItemMangment.FindAllAsync(c => c.Type == JuiceViewModel.TypeId && c.Category == Category.Id);
             if (isExist.Any())
             {
                 return false;
@@ -69,7 +68,7 @@ namespace ApplicationService
                             TotalySold = 0,
                             Type = JuiceViewModel.TypeId,
                             Brand = JuiceViewModel.BrandId.Value,
-                            Category = ShopItemLookUp.Find(c => c.Type == 2 && c.Category == CategoryID && c.NicotinePercentage == item.Id).Id,
+                            Category = ShopItemLookUp.Find(c => c.Type == 2 && c.Category == Category.Category && c.NicotinePercentage == item.Id).Id,
                             JuiceId = Juice.Id
 
                         });
@@ -154,42 +153,55 @@ namespace ApplicationService
         }
         public async Task UpdateItemById(int Id, AddJuiceViewModel JuiceViewModel)
         {
-          //  var Item = await JuiceRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.Id == Id).FirstAsync();
-          //  Item.Image = Encoding.ASCII.GetBytes(JuiceViewModel.Image.Substring(JuiceViewModel.Image.IndexOf("64") + 4));
-          //  Item.Name = JuiceViewModel.Name;
-          //  Item.LastModificationDate = DateTime.Now;
-          //  Item.Description = JuiceViewModel.Description;
-          //  Item.BuyingPrice = JuiceViewModel.BuyingPrice;
-          //  Item.SellingPrice = JuiceViewModel.SelligPrice;
-          // await  JuiceRepository.UpdateAsync(Item,Id);
+            var Item = await JuiceRepository.GetAllIncluding(c => c.ElectricCigaretMangment,v=>v.Category).Where(c => c.Id == Id).FirstAsync();
+            Item.Image = Encoding.ASCII.GetBytes(JuiceViewModel.Image.Substring(JuiceViewModel.Image.IndexOf("64") + 4));
+            Item.Name = JuiceViewModel.Name;
+            Item.LastModificationDate = DateTime.Now;
+            Item.Description = JuiceViewModel.Description;
+            Item.BuyingPrice = JuiceViewModel.BuyingPrice;
+            Item.SellingPrice = JuiceViewModel.SelligPrice;
+            await JuiceRepository.UpdateAsync(Item, Id);
 
-          //  foreach (var item in Item.ElectricCigaretMangment)
-          //  {
 
-          //  }
+            var test = await ShopItemLookUp.FindAllAsync(c => c.Category == Item.Category.Category);
+            foreach (var item in JuiceViewModel.NicotinePercentage)
+            {
+                if(item.IsChecked)
+                {
+                    var checck = test.Where(c => c.NicotinePercentage == item.Id);
+                    if(checck.Any())
+                    {
+                    //    update
+                    }
+                        else
+                    {
+                        //add
+                    }
+                }
+             }
 
-          //  foreach (var item in JuiceViewModel.NicotinePercentage)
-          //  {
-          //      if (item.IsChecked)
-          //      {
-          //          var model = await ItemMangment.AddAsync(new ShopItemMangment
-          //          {
-          //              IsAvilable = true,
-          //              TotalyAvilable = item.CountToInsert,
-          //              TotalyInserted = item.CountToInsert,
-          //              TotalySold = 0,
-          //              Type = JuiceViewModel.TypeId,
-          //              Brand = JuiceViewModel.BrandId.Value,
-          //              Category = ShopItemLookUp.Find(c => c.Type == 2 && c.Category == Category && c.NicotinePercentage == item.Id).Id,
-          //              JuiceId = Item.Id
+            //foreach (var item in JuiceViewModel.NicotinePercentage)
+            //{
+            //    if (item.IsChecked)
+            //    {
+            //        var model = await ItemMangment.AddAsync(new ShopItemMangment
+            //        {
+            //            IsAvilable = true,
+            //            TotalyAvilable = item.CountToInsert,
+            //            TotalyInserted = item.CountToInsert,
+            //            TotalySold = 0,
+            //            Type = JuiceViewModel.TypeId,
+            //            Brand = JuiceViewModel.BrandId.Value,
+            //            Category = ShopItemLookUp.Find(c => c.Type == 2 && c.Category == Category && c.NicotinePercentage == item.Id).Id,
+            //            JuiceId = Item.Id
 
-          //          });
-          //      }
-          //  }
-          //  var electricCigaretMangment = ItemMangment.Find(c => c.Id == Item.ElectricCigaretMangmentId);
-          //  electricCigaretMangment.TotalyAvilable = electricCigaretMangment.TotalyAvilable + ElectricCigaret.;
-          //  electricCigaretMangment.TotalyInserted = electricCigaretMangment.TotalyInserted + ElectricCigaret.CountToInsert;
-          //await  ItemMangment.UpdateAsync(electricCigaretMangment, electricCigaretMangment.Id);
+            //        });
+            //    }
+            //}
+            //var electricCigaretMangment = ItemMangment.Find(c => c.Id == Item.ElectricCigaretMangmentId);
+            //electricCigaretMangment.TotalyAvilable = electricCigaretMangment.TotalyAvilable + ElectricCigaret.;
+            //electricCigaretMangment.TotalyInserted = electricCigaretMangment.TotalyInserted + ElectricCigaret.CountToInsert;
+            //await ItemMangment.UpdateAsync(electricCigaretMangment, electricCigaretMangment.Id);
         }
         public async Task DeleteJuice(int Id)
         {
