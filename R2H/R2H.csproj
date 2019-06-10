@@ -32,6 +32,12 @@
 
 
   <ItemGroup>
+    <None Include="wwwroot\css\CustomStyle.css" />
+    <None Include="wwwroot\js\CustomScript.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -23,25 +23,44 @@ namespace R2H.Controllers
         }
 
         //this view need enehancment
+        //should be moved to Look up controller
         public async Task<IActionResult> AddLookUp()
         {
             var result = await _lookUpService.AddLookUpForJuice();
             return View(result);
         }
+        //should be moved to Look up controller
         [HttpPost]
         public async Task<IActionResult> CreateLookUp(AddLookUpViewModel AddLookUpViewModel)
         {
-            await _lookUpService.CreateLookUpForEjuice(AddLookUpViewModel);
-            ViewBag.SuccessMessage = "تم الأضافة بنجاح";
-            return View("AddLookUp", await _lookUpService.AddLookUpForJuice());
+            try
+            {
+                await _lookUpService.CreateLookUpForEjuice(AddLookUpViewModel);
+                ViewBag.SuccessMessage = "تم الأضافة بنجاح";
+                return View("AddLookUp", await _lookUpService.AddLookUpForJuice());
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+                ViewBag.ErrorMassag = "حدث خطاء الرجاء المحاولة مرة اخرى ";
+                return View("CreateLookUp", await _lookUpService.AddLookUpForJuice());
+            }
         }
 
         //this view need enehancment and validation
         public async Task<IActionResult> AddJuice()
         {
-            var result = await _juiceService.AddNewJuice();
-
-            return View(result);
+            try
+            {
+                var result = await _juiceService.AddNewJuice();
+                return View(result);
+            }
+            catch (Exception ex )
+            {
+                logger.LogError(ex.Message);
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
         }
 
 
@@ -53,9 +72,9 @@ namespace R2H.Controllers
                 logger.LogDebug("Start CreateItem [Post]", JuiceViewModel.ToString());
                 if (ModelState.IsValid)
                 {
-                    var result = await _juiceService.CreateNewJuice(JuiceViewModel);
-                    if (result)
-                        return RedirectToAction("Index","Home");
+                    var valid = await _juiceService.CreateNewJuice(JuiceViewModel);
+                    if (valid)
+                        return RedirectToAction("Index", "Home");
                     else
                     {
                         ViewBag.ErrorMassag = "هذا العنصر مدخل مسبقا يجب عليه تعديل نفس العنصر ";
@@ -93,7 +112,8 @@ namespace R2H.Controllers
             catch (Exception ex)
             {
                 logger.LogError(ex.Message);
-                return RedirectToAction("Error");
+                ViewBag.ErrorMassag = "حدث خطاء الرجاء المحاولة مرة اخرى ";
+                return RedirectToAction("Index", "Home");
             }
         }
         [HttpGet]
@@ -108,11 +128,11 @@ namespace R2H.Controllers
             catch (Exception ex)
             {
                 logger.LogError(ex.Message);
-                return RedirectToAction("Error");
+                ViewBag.ErrorMassag = "حدث خطاء الرجاء المحاولة مرة اخرى ";
+                return RedirectToAction("Index", "Home");
             }
         }
         //Massage need to be added and redirect to Index
-        [HttpDelete]
         public async Task<IActionResult> DeleteItem(int Id)
         {
             try
@@ -124,10 +144,10 @@ namespace R2H.Controllers
             catch (Exception ex)
             {
                 logger.LogError(ex.Message);
-                return RedirectToAction("Error");
+                ViewBag.ErrorMassag = "حدث خطاء الرجاء المحاولة مرة اخرى ";
+                return RedirectToAction("Index", "Home");
             }
         }
-
         [HttpPut]
         public async Task<IActionResult> UpdateItem(AddJuiceViewModel Model)
         {
@@ -140,11 +160,9 @@ namespace R2H.Controllers
             catch (Exception ex)
             {
                 logger.LogError(ex.Message);
-                return RedirectToAction("Error");
+                ViewBag.ErrorMassag = "حدث خطاء الرجاء المحاولة مرة اخرى ";
+                return RedirectToAction("Index", "Home");
             }
         }
-
-
-
     }
 }

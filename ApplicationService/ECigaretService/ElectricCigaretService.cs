@@ -62,19 +62,18 @@ namespace ApplicationService
                 electricCigaret.ElectricCigaretMangmentId = model.Id;
                 ElectricCigaretRepository.Update(electricCigaret, electricCigaret.Id);
                 return true;
-
             }
             else
             {
                 return false;
-
             }
         }
         public async Task DeleteElectricCigaret(int Id)
         {
-            var ElectricCigaret = await ElectricCigaretRepository.GetAsync(Id);
+            var ElectricCigaret = await ElectricCigaretRepository.GetAllIncluding(c=>c.ElectricCigaretMangment).Where(x=>x.Id==Id).FirstOrDefaultAsync();
             ElectricCigaret.IsActive = false;
-            ElectricCigaretRepository.UpdateAsync(ElectricCigaret);
+            ElectricCigaret.ElectricCigaretMangment.FirstOrDefault().IsAvilable = false;
+          await ElectricCigaretRepository.UpdateAsync(ElectricCigaret,Id);
         }
         public async Task<GetAllElectricCigaretViewModel> GetAllItem(int Type=0,int Brand=0 , int Category=0)
         {

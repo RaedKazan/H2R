@@ -1,6 +1,6 @@
 ﻿
 @using ApplicationService.ViewModels
-@model ApplicationService.ViewModels.GetElectricCigaretViewModel
+@model ApplicationService.ViewModels.GetJuiceViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -27,28 +27,24 @@
                     </div>
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.Brand, new { @class = "font-italic" })
-                        @Html.TextBoxFor(model => model.Brand, Model.BrandText, new { @class = "form-control", @readonly = true})
+                        @Html.TextBoxFor(model => model.Brand, Model.BrandText, new { @class = "form-control", @readonly = true })
                         @Html.ValidationMessageFor(c => c.Brand, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.Name, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @readonly = true, @id = "Name" })
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @readonly = true })
                         @Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.Description, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @Required = "Required", @readonly = true, @id = "Description" })
+                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @Required = "Required", @readonly = true })
                         @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
-                        @Html.LabelFor(x => x.BuyingPrice, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.BuyingPrice, new { @class = "form-control", @readonly = true, @id = "BuyingPrice" })
-                        @Html.ValidationMessageFor(c => c.Price, "", new { @class = "text-danger" })
-                    </div>
                         @Html.LabelFor(x => x.SellingPrice, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.SellingPrice, new { @class = "form-control", @readonly = true })
                         @Html.ValidationMessageFor(c => c.SellingPrice, "", new { @class = "text-danger" })
@@ -62,12 +58,7 @@
                 </div>
                 <div class="form-group row col-md-12">
 
-                    <div class="col-md-4">
-                        @Html.LabelFor(x => x.SellingPrice, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.SellingPrice, new { @class = "form-control", @readonly = true, @id = "SellingPrice" })
-                        @Html.ValidationMessageFor(c => c.Price, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-md-4">
+                    @*<div class="col-md-4">
                         @{
 
                             if (Model.IsAvilable == true)
@@ -78,7 +69,7 @@
                         }
                         @Html.LabelFor(x => x.IsAvilable, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.IsAvilableText, new { @class = "form-control", @readonly = true })
-                    </div>
+                    </div>*@
                 </div>
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
@@ -138,26 +129,8 @@
                 output.src = reader.result;
             };
             var x = reader.readAsDataURL(event.target.files[0]);
-    };
-
-
-    function myFunction() {
-        var x = document.getElementById("Save");
-        var z = document.getElementById("Edit");
-
-        if (x.style.display === "none") {
-            x.style.display = "block";
-            z.style.display = "none";
-
-     
-        }
-        document.getElementById('Name').removeAttribute('readonly');
-        document.getElementById('Description').removeAttribute('readonly');
-        document.getElementById('BuyingPrice').removeAttribute('readonly');
-        document.getElementById('SellingPrice').removeAttribute('readonly');
-
-    }
-        </script>
+        };
+</script>
 
 
 

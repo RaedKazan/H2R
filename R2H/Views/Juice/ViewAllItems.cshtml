@@ -24,7 +24,7 @@
                     var imgSrc = String.Format("data:image/jpeg;base64,/{0}", image64);
                     @Html.HiddenFor(c => c.ElectricCigarets[i].Id)
                     <div class="col-md-4">
-                        <a href="@Url.Action("GetItemById","Home",new {id=@Model.ElectricCigarets[i].Id})">
+                        <a href="@Url.Action("GetItemById","Juice",new {id=@Model.ElectricCigarets[i].Id})">
                             <img style="width:200px" src="@imgSrc" />
                         </a>
                         <br />
