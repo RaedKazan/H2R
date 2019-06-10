@@ -22,12 +22,12 @@
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.Category, new { @class = "font-italic" })
-                        @Html.TextBoxFor(model => model.Category, Model.CategoryText, new { @class = "form-control", @readonly = true })
+                        @Html.TextBoxFor(model => model.Category, Model.CategoryText, new { @class = "form-control", @readonly = true ,@id="Category"})
                         @Html.ValidationMessageFor(c => c.Category, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.Brand, new { @class = "font-italic" })
-                        @Html.TextBoxFor(model => model.Brand, Model.BrandText, new { @class = "form-control", @readonly = true})
+                        @Html.TextBoxFor(model => model.Brand, Model.BrandText, new { @class = "form-control", @readonly = true,@id = "Brand" })
                         @Html.ValidationMessageFor(c => c.Brand, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -43,30 +43,22 @@
                         @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="form-group row col-md-12">
-                    <div class="col-md-4">
-                        @Html.LabelFor(x => x.BuyingPrice, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.BuyingPrice, new { @class = "form-control", @readonly = true, @id = "BuyingPrice" })
-                        @Html.ValidationMessageFor(c => c.Price, "", new { @class = "text-danger" })
-                    </div>
-                        @Html.LabelFor(x => x.SellingPrice, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.SellingPrice, new { @class = "form-control", @readonly = true })
-                        @Html.ValidationMessageFor(c => c.SellingPrice, "", new { @class = "text-danger" })
-                    </div>
 
+
+                <div class="form-group row col-md-12">
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.BuyingPrice, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.BuyingPrice, new { @class = "form-control", @readonly = true })
                         @Html.ValidationMessageFor(c => c.BuyingPrice, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="form-group row col-md-12">
-
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.SellingPrice, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.SellingPrice, new { @class = "form-control", @readonly = true, @id = "SellingPrice" })
-                        @Html.ValidationMessageFor(c => c.Price, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(c => c.SellingPrice, "", new { @class = "text-danger" })
                     </div>
+
+                </div>
+                <div class="form-group row col-md-12">
                     <div class="col-md-4">
                         @{
 
@@ -77,9 +69,12 @@
                             else { Model.IsAvilableText = "لا"; }
                         }
                         @Html.LabelFor(x => x.IsAvilable, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.IsAvilableText, new { @class = "form-control", @readonly = true })
+                        @Html.TextBoxFor(x => x.IsAvilableText, new { @class = "form-control", @readonly = true , @id = "Avilable" })
                     </div>
                 </div>
+            </div>
+    
+         
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
                         @{ var image64 = System.Text.Encoding.UTF8.GetString(Model.Image);
@@ -95,7 +90,7 @@
                         <button id="Save" type="submit" class="btn btn-primary font-italic" style="display: none; margin: 6% auto;">Save</button>
                     </div>
                 </div>
-            </div>
+
         </row>
     </fieldset>
     <div class="form-group row col-md-12">
@@ -103,7 +98,7 @@
             <text id="Edit" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;">Edit</text>
         </div>
         <div class="col-md-4">
-            <text id="Delete" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;">Delete</text>
+            <text id="Delete" class="btn btn-primary font-italic" name="test" style="display: block; margin: 6% auto;">Not Avilable</text>
         </div>
     </div>
 
@@ -114,15 +109,41 @@
         $("#Edit").hide();
         $("#Delete").hide();
         $("#Save").show();
+        $('#Avilable').attr("disabled", true) 
+        $('#Category').attr("disabled", true) 
+        $('#Brand').attr("disabled", true) 
+
+
     });
     $("#Delete").click(function () {
+       
         var val = $("#Id").val();
         window.location.href = '/Home/DeleteItem/' + val;
+        var ControlName = $('#Avilable').val();
+        if (ControlName == "لا") {
+            $(function () {
+                $("#Delete").text("Avilable");
+            });
+        } else {
+            $(function () {
+                $('.Delete input').text("Delete");
+            });
+        }
+        
     });
 
 
     $(document).ready(function () {
-
+        var ControlName = $('#Avilable').val();
+        if (ControlName == "لا") {
+            $(function () {
+                $("#Delete").text("Avilable");
+            });
+        } else {
+            $(function () {
+                $('.Delete input').text("Not Avilable");
+            });
+        }
             var errorMassag = '@ViewBag.ErrorMassag';
             if ( errorMassag != "")
             {
