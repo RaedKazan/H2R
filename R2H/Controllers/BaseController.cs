@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ApplicationDomianEntity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using R2H.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace R2H.Controllers
 {

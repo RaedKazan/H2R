@@ -4,14 +4,16 @@ using ApplicationDomianEntity.ApplicationDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApplicationDomianEntity.Migrations
 {
     [DbContext(typeof(R2HDbContext))]
-    partial class R2HDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190610190342_wish-list")]
+    partial class wishlist
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,7 +203,9 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.Property<int>("ShopItemId");
 
-                    b.Property<string>("UserId");
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("UserId1");
 
                     b.HasKey("Id");
 
@@ -209,7 +213,7 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.HasIndex("ShopItemId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("WishList");
                 });
@@ -446,8 +450,7 @@ namespace ApplicationDomianEntity.Migrations
 
                     b.HasOne("R2H.Models.ApplicationUser", "User")
                         .WithMany("WishList")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

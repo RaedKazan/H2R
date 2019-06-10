@@ -21,6 +21,10 @@ namespace ApplicationDomianEntity.Models
         public DateTime LastModificationDate { get; set; }
         public byte[] Image { get; set; }
         public List<ShopItemMangment> ElectricCigaretMangment { get; set; }
+
+        public List<WishList> WishList { get; set; }
+
+        
         public int ElectricCigaretMangmentId { get; set; }
         public bool IsActive { get; set; }
     }

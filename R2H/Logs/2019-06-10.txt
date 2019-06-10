@@ -1,0 +1,6 @@
+2019-06-10 22:19:39,219 [13] WARN  App  
+ Invalid password for user ad30bf92-d632-49e0-a05b-b6812ca60860. 
+ 
+2019-06-10 22:19:39,230 [13] WARN  App  
+ User ad30bf92-d632-49e0-a05b-b6812ca60860 failed to provide the correct password. 
+ 

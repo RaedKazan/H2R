@@ -1,4 +1,5 @@
-﻿using ApplicationService;
+﻿using ApplicationDomianEntity.Models;
+using ApplicationService;
 using ApplicationService.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
