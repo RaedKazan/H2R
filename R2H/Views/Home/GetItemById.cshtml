@@ -47,7 +47,6 @@
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.BuyingPrice, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.BuyingPrice, new { @class = "form-control", @readonly = true, @id = "BuyingPrice" })
-                        @Html.ValidationMessageFor(c => c.Price, "", new { @class = "text-danger" })
                     </div>
                         @Html.LabelFor(x => x.SellingPrice, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.SellingPrice, new { @class = "form-control", @readonly = true })
@@ -65,7 +64,6 @@
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.SellingPrice, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.SellingPrice, new { @class = "form-control", @readonly = true, @id = "SellingPrice" })
-                        @Html.ValidationMessageFor(c => c.Price, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-4">
                         @{
@@ -95,7 +93,6 @@
                         <button id="Save" type="submit" class="btn btn-primary font-italic" style="display: none; margin: 6% auto;">Save</button>
                     </div>
                 </div>
-            </div>
         </row>
     </fieldset>
     <div class="form-group row col-md-12">
