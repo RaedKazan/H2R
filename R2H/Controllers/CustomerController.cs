@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ApplicationService;
+using ApplicationService.ViewModels.Customer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -25,10 +26,11 @@ namespace R2H.Controllers
             try
             {
                 logger.LogDebug("CustomerController: Start Index [GET]");
-                //return View();
-                
-                var modul = await _electricCigaretService.GetAllItem(0);
-                return View(modul);
+                int tst = 0;
+                var tmp1 = await _electricCigaretService.GetAllItem(tst);
+                //var tmp2 = await _electricCigaretService.GetAllItem(1);
+                var model = new ViewAllItemsForCustomers(tmp1);
+                return View(model);
             }
             catch (Exception ex)
             {
