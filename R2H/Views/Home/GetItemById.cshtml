@@ -60,6 +60,11 @@
                 </div>
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
+                        @Html.LabelFor(x => x.CurrentlyCountAvilabil, new { @class = "font-italic" })
+                        @Html.TextBoxFor(x => x.CurrentlyCountAvilabil, new { @class = "form-control", @readonly = true, @id = "CurrentlyCountAvilabil" })
+                        @Html.ValidationMessageFor(c => c.SellingPrice, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
                         @{
 
                             if (Model.IsAvilable == true)
@@ -69,7 +74,7 @@
                             else { Model.IsAvilableText = "لا"; }
                         }
                         @Html.LabelFor(x => x.IsAvilable, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.IsAvilableText, new { @class = "form-control", @readonly = true , @id = "Avilable" })
+                        @Html.TextBoxFor(x => x.IsAvilableText, new { @class = "form-control", @readonly = true, @id = "Avilable" })
                     </div>
                 </div>
             </div>

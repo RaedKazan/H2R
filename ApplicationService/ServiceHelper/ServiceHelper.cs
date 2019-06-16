@@ -44,7 +44,7 @@ namespace ApplicationService
 
             return NicotinePercentage;
         }
-        public static List<NicotinePercentage> CreateNicotinePercentageEumList( IEnumerable<double> Range)
+        public static List<NicotinePercentage> CreateNicotinePercentageEumList(IEnumerable<double> Range)
         {
             var NicotinePercentage = new List<NicotinePercentage>();
             foreach (var item in Range)
@@ -54,7 +54,7 @@ namespace ApplicationService
                     {
                         Id = (int)SystemEum.ZeroPercent,
                         Name = "Zero Percent",
-                        IsChecked=false
+                        IsChecked = false
                     });
                 if (item == (int)SystemEum.ThreePercent)
                     NicotinePercentage.Add(new ViewModels.NicotinePercentage
@@ -103,5 +103,47 @@ namespace ApplicationService
             return NicotinePercentage;
         }
 
-    }
+
+        public static string GetNicotinePercentageName(int Id)
+        {
+
+
+            if (Id == (int)SystemEum.ZeroPercent)
+                return "Zero Percent";
+
+
+            else if (Id == (int)SystemEum.ThreePercent)
+
+
+                return "Three Percent";
+
+
+
+            else if (Id == (int)SystemEum.SixPercent)
+
+
+                return "Six Percent";
+
+            else if (Id == (int)SystemEum.NinePercent)
+
+
+                return "Nine Percent";
+
+            else if (Id == (int)SystemEum.TwelvePercent)
+
+                return "Twelve Percent";
+
+
+
+            else if (Id == (int)SystemEum.FifteenePercent)
+                return "Fifteene Percent";
+            else return string.Empty;
+            
+
+
+            
+
+        } 
+      
+    } 
 }
