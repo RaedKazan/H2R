@@ -1,4 +1,6 @@
-﻿namespace ApplicationDomianEntity.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ApplicationDomianEntity.Models
 {
     public enum SystemEum
     {
@@ -12,6 +14,13 @@
     public enum DomainValues
     {
         Vape = 1,
+        Juice = 2,
+        ECigaret = 3
+    }
+    public enum ErrorEnum
+    {
+        [Display(Name = "TheQuantityIsNotEnough")]
+        TheQuantityIsNotEnough = 1,
         Juice = 2,
         ECigaret = 3
     }

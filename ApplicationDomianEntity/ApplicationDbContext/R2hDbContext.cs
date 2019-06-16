@@ -16,7 +16,6 @@ namespace ApplicationDomianEntity.ApplicationDbContext
         public virtual DbSet<ShopItemLookUp> ShopItemLookUp { get; set; }
         public virtual DbSet<ShopItemMangment> ShopItemMangment { get; set; }
         public virtual DbSet<JuiceItem> JuiceItem { get; set; }
-        public virtual DbSet<WishList> WishList { get; set; }
 
         public R2HDbContext(DbContextOptions<R2HDbContext> options)
           : base(options)
@@ -150,11 +149,7 @@ namespace ApplicationDomianEntity.ApplicationDbContext
              .HasForeignKey(e => e.BrandId)
              .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<WishList>()
-          .HasOne(e => e.User)
-          .WithMany(e => e.WishList)
-          .HasForeignKey(e => e.UserId)
-          .OnDelete(DeleteBehavior.Restrict);
+
 
 
         }
