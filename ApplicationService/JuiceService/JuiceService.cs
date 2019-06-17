@@ -76,7 +76,7 @@ namespace ApplicationService
                 }
                 return true;
             }
-        
+
 
         }
         public async Task<AddJuiceViewModel> AddNewJuice()
@@ -153,7 +153,7 @@ namespace ApplicationService
         }
         public async Task UpdateItemById(int Id, AddJuiceViewModel JuiceViewModel)
         {
-            var Item = await JuiceRepository.GetAllIncluding(c => c.ElectricCigaretMangment,v=>v.Category).Where(c => c.Id == Id).FirstAsync();
+            var Item = await JuiceRepository.GetAllIncluding(c => c.ElectricCigaretMangment, v => v.Category).Where(c => c.Id == Id).FirstAsync();
             Item.Image = Encoding.ASCII.GetBytes(JuiceViewModel.Image.Substring(JuiceViewModel.Image.IndexOf("64") + 4));
             Item.Name = JuiceViewModel.Name;
             Item.LastModificationDate = DateTime.Now;
@@ -166,19 +166,19 @@ namespace ApplicationService
             var test = await ShopItemLookUp.FindAllAsync(c => c.Category == Item.Category.Category);
             foreach (var item in JuiceViewModel.NicotinePercentage)
             {
-                if(item.IsChecked)
+                if (item.IsChecked)
                 {
                     var checck = test.Where(c => c.NicotinePercentage == item.Id);
-                    if(checck.Any())
+                    if (checck.Any())
                     {
-                    //    update
+                        //    update
                     }
-                        else
+                    else
                     {
                         //add
                     }
                 }
-             }
+            }
 
             //foreach (var item in JuiceViewModel.NicotinePercentage)
             //{

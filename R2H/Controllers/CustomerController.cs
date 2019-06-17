@@ -1,8 +1,10 @@
 ﻿using ApplicationService;
 using ApplicationService.CustomerServices;
 using ApplicationService.ViewModels.Card;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using R2H.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 namespace R2H.Controllers
 {
 
-    public class CustomerController : Controller
+    public class CustomerController : BaseController
     {
         private readonly IElectricCigaretService _electricCigaretService;
         private readonly ICustomerService _CustomerService;
@@ -19,7 +21,8 @@ namespace R2H.Controllers
         public CustomerController(
             IElectricCigaretService electricCigaretService,
             ILoggerFactory LoggerFactory,
-            ICustomerService CustomerService)
+            ICustomerService CustomerService,
+            UserManager<ApplicationUser> userManager) : base(userManager)
         {
             _electricCigaretService = electricCigaretService;
             _CustomerService = CustomerService;
@@ -53,9 +56,6 @@ namespace R2H.Controllers
             ViewBag.total = cart.Sum(item => item.Product.Price * item.Quantity);
             return View();
         }
-        // ajax call should be done here 
-        // the atrubite should be object  not only Id
-       // the  object should look like itemId and JuiceId and quantity
 
         public async Task<IActionResult> Buy([FromBody]BuyItemViewModel BuyItemViewModel)
         {
@@ -64,6 +64,7 @@ namespace R2H.Controllers
             {
                 List<Item> cart = new List<Item>();
                 var result= await  _CustomerService.AddToCard(BuyItemViewModel);
+                result.Product.UserId = base.GetCurrentUserId();
                 cart.Add(new Item { Product = result.Product, Quantity = result.Quantity });
                 SystemHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
@@ -78,6 +79,7 @@ namespace R2H.Controllers
                 else
                 {
                     var result = await _CustomerService.AddToCard(BuyItemViewModel);
+                    result.Product.UserId = base.GetCurrentUserId();
                     cart.Add(new Item { Product = result.Product, Quantity = result.Quantity });
                 }
                 SystemHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);

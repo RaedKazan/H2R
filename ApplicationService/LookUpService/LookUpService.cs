@@ -16,11 +16,11 @@ namespace ApplicationService
         }
         public async Task<AddLookUpViewModel> AddLookUp(int Type)
         {
-                AddLookUpViewModel addLookUpViewModel = new AddLookUpViewModel();
-                var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Brand == 0 && c.Category == 0 && c.Type == Type);
-                addLookUpViewModel.TypeId = Type;
-                return addLookUpViewModel;
-           
+            AddLookUpViewModel addLookUpViewModel = new AddLookUpViewModel();
+            var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Brand == 0 && c.Category == 0 && c.Type == Type);
+            addLookUpViewModel.TypeId = Type;
+            return addLookUpViewModel;
+
         }
         public async Task<bool> CreateLookUpForItems(AddLookUpViewModel AddLookUpViewModel)
         {
@@ -64,7 +64,7 @@ namespace ApplicationService
             // if the user wish to add more then one  Nicotine all must be at the same categoty
             //but every record has it own  NicotinePercentage which it's Eum
             var result = await _electricCigaretLookUpRepository.FindAllAsync(c => c.Type == AddLookUpViewModel.TypeId && c.Category != 0);
-            var Id = (result.Any()) ? result.Max(c => c.Category) + 1: 1;
+            var Id = (result.Any()) ? result.Max(c => c.Category) + 1 : 1;
             foreach (var item in AddLookUpViewModel.NicotinePercentage)
             {
                 if (item.IsChecked)
