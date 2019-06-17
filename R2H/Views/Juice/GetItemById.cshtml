@@ -22,12 +22,12 @@
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.Category, new { @class = "font-italic" })
-                        @Html.TextBoxFor(model => model.Category, Model.CategoryText, new { @class = "form-control", @readonly = true })
+                        @Html.TextBoxFor(model => model.Category, Model.CategoryText, new { @class = "form-control", @readonly = true, @id = "CategoryJuice" })
                         @Html.ValidationMessageFor(c => c.Category, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-4">
                         @Html.LabelFor(x => x.Brand, new { @class = "font-italic" })
-                        @Html.TextBoxFor(model => model.Brand, Model.BrandText, new { @class = "form-control", @readonly = true })
+                        @Html.TextBoxFor(model => model.Brand, Model.BrandText, new { @class = "form-control", @readonly = true, @id = "BrandJuice" })
                         @Html.ValidationMessageFor(c => c.Brand, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -59,20 +59,36 @@
                 <div class="form-group row col-md-12">
 
                     @*<div class="col-md-4">
-                        @{
+                @{
 
-                            if (Model.IsAvilable == true)
-                            {
-                                Model.IsAvilableText = "نعم";
-                            }
-                            else { Model.IsAvilableText = "لا"; }
+                    if (Model.IsAvilable == true)
+                    {
+                        Model.IsAvilableText = "نعم";
+                    }
+                    else { Model.IsAvilableText = "لا"; }
+                }
+                @Html.LabelFor(x => x.IsAvilable, new { @class = "font-italic" })
+                @Html.TextBoxFor(x => x.IsAvilableText, new { @class = "form-control", @readonly = true })
+            </div>*@
+                    <div class="form-group row col-md-12">
+
+                        @for (int i = 0; i < Model.NicotinePercentageView.Count(); i++)
+                        {
+                            @Html.HiddenFor(x => x.NicotinePercentageView[i].JuiceManagmentID)
+                            <div class="col-md-1">
+                                @Html.DisplayFor(x => x.NicotinePercentageView[i].NicotinePercentage, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.TextBoxFor(x => x.NicotinePercentageView[i].Quantity, new { @class = "form-control", @readonly = true })
+
+                            </div>
+
                         }
-                        @Html.LabelFor(x => x.IsAvilable, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.IsAvilableText, new { @class = "form-control", @readonly = true })
-                    </div>*@
+
+                    </div>
                 </div>
                 <div class="form-group row col-md-12">
-                    <div class="col-md-4">
+                    <div class="col-md-4"id="CurrentImage">
                         @{ var image64 = System.Text.Encoding.UTF8.GetString(Model.Image);
                             var imgSrc = String.Format("data:image/jpeg;base64,/{0}", image64);
                             <div>
@@ -80,23 +96,32 @@
                             </div>
                         }
                     </div>
+                    <div class="col-md-4" id="ImageDiv">
+                        @Html.LabelFor(x => x.Image, new { @class = "font-italic" })
+                        @Html.HiddenFor(x => x.Image)
+                        <input id="ImageButton" class="btn btn-default" type="file" accept="image/*" onchange="loadFile(event)">
+                        <img id="output" style="width:300px" />
+                        @Html.ValidationMessageFor(c => c.Image, "", new { @class = "text-danger" })
+                    </div>
                 </div>
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
                         <button id="Save" type="submit" class="btn btn-primary font-italic" style="display: none; margin: 6% auto;">Save</button>
+                        <text id="Edit" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;    width: 23%;">Edit</text>
+
+                    </div>
+                </div>
+                <div class="form-group row col-md-12">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                        <text id="Delete" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;">Delete</text>
                     </div>
                 </div>
             </div>
         </row>
     </fieldset>
-    <div class="form-group row col-md-12">
-        <div class="col-md-4">
-            <text id="Edit" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;">Edit</text>
-        </div>
-        <div class="col-md-4">
-            <text id="Delete" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;">Delete</text>
-        </div>
-    </div>
+
 
 }
 <script>
@@ -105,15 +130,25 @@
         $("#Edit").hide();
         $("#Delete").hide();
         $("#Save").show();
+        $('#CategoryJuice').attr("readonly", true);	
+        $('#BrandJuice').attr("readonly", true);	
+        $("#ImageDiv").show();
+
+
     });
     $("#Delete").click(function () {
         var val = $("#Id").val();
         window.location.href = '/Home/DeleteItem/' + val;
+    }); $("#ImageButton").click(function () {
+        
+        $("#CurrentImage").hide();
+
     });
 
 
     $(document).ready(function () {
-
+        $("#Delete").hide();
+        $("#ImageDiv").hide();
             var errorMassag = '@ViewBag.ErrorMassag';
             if ( errorMassag != "")
             {
