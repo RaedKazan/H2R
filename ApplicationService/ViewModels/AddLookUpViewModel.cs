@@ -20,7 +20,6 @@ namespace ApplicationService.ViewModels
         [Display(Name = "الوصف")]
         [Required(ErrorMessage = "الرجاء ادخال الوصف")]
         public string Description { get; set; }
-
         public List<NicotinePercentage> NicotinePercentage { get; set; }
 
     }

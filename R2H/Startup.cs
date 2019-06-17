@@ -2,6 +2,7 @@
 using ApplicationDataAccess.ApplicationUOF;
 using ApplicationDomianEntity.ApplicationDbContext;
 using ApplicationDomianEntity.IdentityModels;
+using ApplicationDomianEntity.Models;
 using ApplicationService;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;

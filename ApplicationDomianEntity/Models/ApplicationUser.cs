@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ApplicationDomianEntity.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,5 @@ namespace R2H.Models
         public string City { get; set; }
         public string Street { get; set; }
         public string PhoneNumber { get; set; }
-
-
     }
 }

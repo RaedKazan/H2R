@@ -1,6 +1,6 @@
 ﻿using ApplicationDomianEntity.ApplicationDbContext;
+using ApplicationDomianEntity.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using R2H.Models;
 using System;
 using System.Threading.Tasks;
