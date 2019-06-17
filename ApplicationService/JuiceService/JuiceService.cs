@@ -4,6 +4,7 @@ using ApplicationService.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,7 +77,7 @@ namespace ApplicationService
                 }
                 return true;
             }
-        
+
 
         }
         public async Task<AddJuiceViewModel> AddNewJuice()
@@ -149,65 +150,78 @@ namespace ApplicationService
         public async Task<GetJuiceViewModel> GetItemById(int Id)
         {
             var juiceItem = await JuiceRepository.GetAllIncluding(c => c.Category, x => x.Brand, a => a.ElectricCigaretMangment).Where(z => z.Id == Id).FirstAsync();
-            return new GetJuiceViewModel(juiceItem);
+            var JuiceItems = new List<NicotinePercentageView>();
+            foreach (var Juice in juiceItem.ElectricCigaretMangment)
+            {
+                var model = await ShopItemLookUp.FindAsync(x => x.Id == Juice.Category);
+                JuiceItems.Add(new NicotinePercentageView
+                {
+                    JuiceManagmentID = Juice.Id,
+                    Quantity = Juice.TotalyAvilable.Value,
+                    NicotinePercentage = ServiceHelper.GetNicotinePercentageName((int)model.NicotinePercentage)
+
+                });
+            }
+            return new GetJuiceViewModel(juiceItem, JuiceItems);
+
         }
         public async Task UpdateItemById(int Id, AddJuiceViewModel JuiceViewModel)
-        {
-            var Item = await JuiceRepository.GetAllIncluding(c => c.ElectricCigaretMangment,v=>v.Category).Where(c => c.Id == Id).FirstAsync();
-            Item.Image = Encoding.ASCII.GetBytes(JuiceViewModel.Image.Substring(JuiceViewModel.Image.IndexOf("64") + 4));
-            Item.Name = JuiceViewModel.Name;
-            Item.LastModificationDate = DateTime.Now;
-            Item.Description = JuiceViewModel.Description;
-            Item.BuyingPrice = JuiceViewModel.BuyingPrice;
-            Item.SellingPrice = JuiceViewModel.SelligPrice;
-            await JuiceRepository.UpdateAsync(Item, Id);
-
-
-            var test = await ShopItemLookUp.FindAllAsync(c => c.Category == Item.Category.Category);
-            foreach (var item in JuiceViewModel.NicotinePercentage)
             {
-                if(item.IsChecked)
+                var Item = await JuiceRepository.GetAllIncluding(c => c.ElectricCigaretMangment, v => v.Category).Where(c => c.Id == Id).FirstAsync();
+                Item.Image = Encoding.ASCII.GetBytes(JuiceViewModel.Image.Substring(JuiceViewModel.Image.IndexOf("64") + 4));
+                Item.Name = JuiceViewModel.Name;
+                Item.LastModificationDate = DateTime.Now;
+                Item.Description = JuiceViewModel.Description;
+                Item.BuyingPrice = JuiceViewModel.BuyingPrice;
+                Item.SellingPrice = JuiceViewModel.SelligPrice;
+                await JuiceRepository.UpdateAsync(Item, Id);
+
+
+                var test = await ShopItemLookUp.FindAllAsync(c => c.Category == Item.Category.Category);
+                foreach (var item in JuiceViewModel.NicotinePercentage)
                 {
-                    var checck = test.Where(c => c.NicotinePercentage == item.Id);
-                    if(checck.Any())
+                    if (item.IsChecked)
                     {
-                    //    update
-                    }
+                        var checck = test.Where(c => c.NicotinePercentage == item.Id);
+                        if (checck.Any())
+                        {
+                            //    update
+                        }
                         else
-                    {
-                        //add
+                        {
+                            //add
+                        }
                     }
                 }
-             }
 
-            //foreach (var item in JuiceViewModel.NicotinePercentage)
-            //{
-            //    if (item.IsChecked)
-            //    {
-            //        var model = await ItemMangment.AddAsync(new ShopItemMangment
-            //        {
-            //            IsAvilable = true,
-            //            TotalyAvilable = item.CountToInsert,
-            //            TotalyInserted = item.CountToInsert,
-            //            TotalySold = 0,
-            //            Type = JuiceViewModel.TypeId,
-            //            Brand = JuiceViewModel.BrandId.Value,
-            //            Category = ShopItemLookUp.Find(c => c.Type == 2 && c.Category == Category && c.NicotinePercentage == item.Id).Id,
-            //            JuiceId = Item.Id
+                //foreach (var item in JuiceViewModel.NicotinePercentage)
+                //{
+                //    if (item.IsChecked)
+                //    {
+                //        var model = await ItemMangment.AddAsync(new ShopItemMangment
+                //        {
+                //            IsAvilable = true,
+                //            TotalyAvilable = item.CountToInsert,
+                //            TotalyInserted = item.CountToInsert,
+                //            TotalySold = 0,
+                //            Type = JuiceViewModel.TypeId,
+                //            Brand = JuiceViewModel.BrandId.Value,
+                //            Category = ShopItemLookUp.Find(c => c.Type == 2 && c.Category == Category && c.NicotinePercentage == item.Id).Id,
+                //            JuiceId = Item.Id
 
-            //        });
-            //    }
-            //}
-            //var electricCigaretMangment = ItemMangment.Find(c => c.Id == Item.ElectricCigaretMangmentId);
-            //electricCigaretMangment.TotalyAvilable = electricCigaretMangment.TotalyAvilable + ElectricCigaret.;
-            //electricCigaretMangment.TotalyInserted = electricCigaretMangment.TotalyInserted + ElectricCigaret.CountToInsert;
-            //await ItemMangment.UpdateAsync(electricCigaretMangment, electricCigaretMangment.Id);
+                //        });
+                //    }
+                //}
+                //var electricCigaretMangment = ItemMangment.Find(c => c.Id == Item.ElectricCigaretMangmentId);
+                //electricCigaretMangment.TotalyAvilable = electricCigaretMangment.TotalyAvilable + ElectricCigaret.;
+                //electricCigaretMangment.TotalyInserted = electricCigaretMangment.TotalyInserted + ElectricCigaret.CountToInsert;
+                //await ItemMangment.UpdateAsync(electricCigaretMangment, electricCigaretMangment.Id);
+            }
+            public async Task DeleteJuice(int Id)
+            {
+                var Juice = await JuiceRepository.GetAsync(Id);
+                Juice.IsActive = false;
+                await JuiceRepository.UpdateAsync(Juice, Id);
+            }
         }
-        public async Task DeleteJuice(int Id)
-        {
-            var Juice = await JuiceRepository.GetAsync(Id);
-            Juice.IsActive = false;
-            await JuiceRepository.UpdateAsync(Juice, Id);
-        }
-    }
-}
+    } 

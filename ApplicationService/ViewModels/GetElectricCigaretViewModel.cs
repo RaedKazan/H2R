@@ -42,6 +42,7 @@ namespace ApplicationService.ViewModels
         [Display(Name = "الوصف")]
 
         public string Description { get; set; }
+        [Display(Name = "العدد")]
         public int? CurrentlyCountAvilabil { get; set; }
         [Display(Name = "  سعر البيع")]
 

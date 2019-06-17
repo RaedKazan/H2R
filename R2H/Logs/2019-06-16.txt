@@ -1,12 +1,177 @@
-2019-06-16 01:33:23,528 [4] ERROR App  
- Object reference not set to an instance of an object. 
+2019-06-16 21:50:19,486 [1] FATAL App  
+ Application startup exception 
  
-2019-06-16 01:33:23,615 [4] ERROR App  
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. Error occurred during LocalDB instance startup: SQL Server process failed to start.
+) ---> System.ComponentModel.Win32Exception (0x89C5010A): Unknown error (0x89c5010a)
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass18_0.<Exists>b__0(DateTime giveUp)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.<>c__DisplayClass12_0`2.<Execute>b__0(DbContext c, TState s)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, Func`2 operation, Func`2 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, TState state, Func`2 operation)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.Exists(Boolean retryOnNotExists)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.Exists()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreated()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated()
+   at R2H.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, R2HDbContext context, RoleManager`1 roleManager, UserManager`1 userManager) in C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Startup.cs:line 145
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Internal.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.Internal.AutoRequestServicesStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:-1983577846,State:0,Class:20
+2019-06-16 21:51:47,665 [1] FATAL App  
+ Application startup exception 
+ 
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 50 - Local Database Runtime error occurred. Error occurred during LocalDB instance startup: SQL Server process failed to start.
+) ---> System.ComponentModel.Win32Exception (0x89C5010A): Unknown error (0x89c5010a)
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass18_0.<Exists>b__0(DateTime giveUp)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.<>c__DisplayClass12_0`2.<Execute>b__0(DbContext c, TState s)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, Func`2 operation, Func`2 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.Execute[TState,TResult](IExecutionStrategy strategy, TState state, Func`2 operation)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.Exists(Boolean retryOnNotExists)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.Exists()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreated()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated()
+   at R2H.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, R2HDbContext context, RoleManager`1 roleManager, UserManager`1 userManager) in C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Startup.cs:line 145
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Internal.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.Internal.AutoRequestServicesStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:-1983577846,State:0,Class:20
+2019-06-16 22:17:52,942 [127] ERROR App  
  An unhandled exception has occurred while executing the request. 
  
-System.InvalidOperationException: No route matches the supplied values.
-   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
-   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: One or more compilation failures occurred:
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(82,143): error CS1026: ) expected
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(82,143): error CS1026: ) expected
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(82,143): error CS1002: ; expected
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(82,144): error CS1513: } expected
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(146,52): error CS1001: Identifier expected
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(146,27): error CS1520: Method must have a return type
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(146,27): error CS0501: 'Views_Juice_GetItemById.Views_Juice_GetItemById(ViewBag.ErrorMassag)' must declare a body because it is not marked abstract, extern, or partial
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(146,33): error CS0246: The type or namespace name 'ViewBag' could not be found (are you missing a using directive or an assembly reference?)
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(13,9): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(17,14): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(24,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(25,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(26,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(29,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(30,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(31,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(36,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(37,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(38,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(41,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(42,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(43,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(48,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(49,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(50,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(54,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(55,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(56,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(77,30): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(79,34): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(82,34): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(100,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(101,26): error CS0103: The name 'Html' does not exist in the current context
+C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Juice\GetItemById.cshtml(104,26): error CS0103: The name 'Html' does not exist in the current context
+wp5e2o5o.ceg(389,26): error CS1001: Identifier expected
+wp5e2o5o.ceg(389,30): error CS1031: Type expected
+wp5e2o5o.ceg(389,30): error CS1001: Identifier expected
+wp5e2o5o.ceg(389,32): error CS1031: Type expected
+wp5e2o5o.ceg(389,32): error CS1001: Identifier expected
+wp5e2o5o.ceg(389,32): error CS1003: Syntax error, ',' expected
+wp5e2o5o.ceg(389,37): error CS1031: Type expected
+wp5e2o5o.ceg(389,37): error CS1001: Identifier expected
+wp5e2o5o.ceg(389,37): error CS1003: Syntax error, ',' expected
+wp5e2o5o.ceg(390,26): error CS1001: Identifier expected
+wp5e2o5o.ceg(411,26): error CS1001: Identifier expected
+wp5e2o5o.ceg(411,30): error CS1031: Type expected
+wp5e2o5o.ceg(411,30): error CS1001: Identifier expected
+wp5e2o5o.ceg(411,32): error CS1031: Type expected
+wp5e2o5o.ceg(411,32): error CS1001: Identifier expected
+wp5e2o5o.ceg(411,32): error CS1003: Syntax error, ',' expected
+wp5e2o5o.ceg(411,36): error CS1031: Type expected
+wp5e2o5o.ceg(411,36): error CS1001: Identifier expected
+wp5e2o5o.ceg(411,36): error CS1003: Syntax error, ',' expected
+wp5e2o5o.ceg(418,26): error CS1001: Identifier expected
+wp5e2o5o.ceg(418,30): error CS1031: Type expected
+wp5e2o5o.ceg(418,30): error CS1001: Identifier expected
+wp5e2o5o.ceg(418,32): error CS1031: Type expected
+wp5e2o5o.ceg(418,32): error CS1001: Identifier expected
+wp5e2o5o.ceg(418,32): error CS1003: Syntax error, ',' expected
+wp5e2o5o.ceg(418,37): error CS1031: Type expected
+wp5e2o5o.ceg(418,37): error CS1001: Identifier expected
+wp5e2o5o.ceg(418,37): error CS1003: Syntax error, ',' expected
+wp5e2o5o.ceg(419,26): error CS1001: Identifier expected
+wp5e2o5o.ceg(454,1): error CS1022: Type or namespace definition, or end-of-file expected
+wp5e2o5o.ceg(389,13): error CS1520: Method must have a return type
+wp5e2o5o.ceg(389,13): error CS0501: 'Views_Juice_GetItemById.Views_Juice_GetItemById(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
+wp5e2o5o.ceg(390,13): error CS1520: Method must have a return type
+wp5e2o5o.ceg(390,13): error CS0501: 'Views_Juice_GetItemById.Views_Juice_GetItemById()' must declare a body because it is not marked abstract, extern, or partial
+wp5e2o5o.ceg(410,13): error CS1520: Method must have a return type
+wp5e2o5o.ceg(410,13): error CS0501: 'Views_Juice_GetItemById.Views_Juice_GetItemById()' must declare a body because it is not marked abstract, extern, or partial
+wp5e2o5o.ceg(411,13): error CS1520: Method must have a return type
+wp5e2o5o.ceg(411,13): error CS0501: 'Views_Juice_GetItemById.Views_Juice_GetItemById(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
+wp5e2o5o.ceg(417,13): error CS1520: Method must have a return type
+wp5e2o5o.ceg(417,13): error CS0501: 'Views_Juice_GetItemById.Views_Juice_GetItemById()' must declare a body because it is not marked abstract, extern, or partial
+wp5e2o5o.ceg(418,13): error CS1520: Method must have a return type
+wp5e2o5o.ceg(418,13): error CS0501: 'Views_Juice_GetItemById.Views_Juice_GetItemById(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
+wp5e2o5o.ceg(419,13): error CS1520: Method must have a return type
+wp5e2o5o.ceg(419,13): error CS0501: 'Views_Juice_GetItemById.Views_Juice_GetItemById()' must declare a body because it is not marked abstract, extern, or partial
+wp5e2o5o.ceg(440,13): error CS1520: Method must have a return type
+wp5e2o5o.ceg(440,13): error CS0501: 'Views_Juice_GetItemById.Views_Juice_GetItemById()' must declare a body because it is not marked abstract, extern, or partial
+wp5e2o5o.ceg(444,87): error CS0116: A namespace cannot directly contain members such as fields or methods
+wp5e2o5o.ceg(446,60): error CS0116: A namespace cannot directly contain members such as fields or methods
+wp5e2o5o.ceg(448,70): error CS0116: A namespace cannot directly contain members such as fields or methods
+wp5e2o5o.ceg(450,71): error CS0116: A namespace cannot directly contain members such as fields or methods
+wp5e2o5o.ceg(452,120): error CS0116: A namespace cannot directly contain members such as fields or methods
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorViewCompiler.CompileAndEmit(RazorCodeDocument codeDocument, String generatedCode)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorViewCompiler.CompileAndEmit(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorViewCompiler.OnCacheMiss(String normalizedPath)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)

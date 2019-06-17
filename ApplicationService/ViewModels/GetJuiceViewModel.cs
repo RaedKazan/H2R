@@ -1,5 +1,6 @@
 ﻿using ApplicationDomianEntity.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ApplicationService.ViewModels
@@ -22,6 +23,26 @@ namespace ApplicationService.ViewModels
             this.IsAvilable = Model.ElectricCigaretMangment.FirstOrDefault().IsAvilable;
             this.CurrentlyCountAvilabil = Model.ElectricCigaretMangment.FirstOrDefault().TotalyAvilable;
         }
+        public GetJuiceViewModel(JuiceItem Model,List< NicotinePercentageView> nicotinePercentage)
+        {
+            this.Id = Model.Id;
+            this.Category = Model.CategoryId;
+            this.BrandText = Model.Brand.Description;
+            this.CategoryText = Model.Category.Description;
+            this.Brand = Model.BrandId;
+            this.Name = Model.Name;
+            this.Description = Model.Description;
+            this.SellingPrice = Model.SellingPrice;
+            this.BuyingPrice = Model.BuyingPrice;
+            this.Image = Model.Image;
+            this.IsAvilable = Model.ElectricCigaretMangment.FirstOrDefault().IsAvilable;
+            this.CurrentlyCountAvilabil = Model.ElectricCigaretMangment.FirstOrDefault().TotalyAvilable;
+            if (nicotinePercentage.Any())
+            {
+                NicotinePercentageView = nicotinePercentage;
+
+            }
+        }
         public GetJuiceViewModel()
         {
         }
@@ -37,5 +58,14 @@ namespace ApplicationService.ViewModels
         public Double? BuyingPrice { get; set; }
         public byte[] Image { get; set; }
         public bool? IsAvilable { get; set; }
+        public List<NicotinePercentage> NicotinePercentage { get; set; }
+        public List<NicotinePercentageView> NicotinePercentageView { get; set; }
+        
+    }
+    public class NicotinePercentageView
+    {
+        public int JuiceManagmentID { get; set; }
+        public int Quantity { get; set; }
+        public string NicotinePercentage { get; set; }
     }
 }
