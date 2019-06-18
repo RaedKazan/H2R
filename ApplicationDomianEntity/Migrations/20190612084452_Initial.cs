@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApplicationDomianEntity.Migrations
 {
-    public partial class Initail : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -250,6 +250,45 @@ namespace ApplicationDomianEntity.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    OrderId = table.Column<int>(nullable: false),
+                    JuiceItemId = table.Column<int>(nullable: true),
+                    ShopItemId = table.Column<int>(nullable: true),
+                    ItemMangmentId = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    Date = table.Column<int>(nullable: false),
+                    IsPending = table.Column<bool>(nullable: false),
+                    IsCanceled = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Order_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Order_JuiceItem_JuiceItemId",
+                        column: x => x.JuiceItemId,
+                        principalTable: "JuiceItem",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Order_ShopItem_ShopItemId",
+                        column: x => x.ShopItemId,
+                        principalTable: "ShopItem",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ShopItemMangment",
                 columns: table => new
                 {
@@ -343,6 +382,21 @@ namespace ApplicationDomianEntity.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Order_ApplicationUserId",
+                table: "Order",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Order_JuiceItemId",
+                table: "Order",
+                column: "JuiceItemId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Order_ShopItemId",
+                table: "Order",
+                column: "ShopItemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ShopItem_BrandId",
                 table: "ShopItem",
                 column: "BrandId");
@@ -379,6 +433,9 @@ namespace ApplicationDomianEntity.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Order");
 
             migrationBuilder.DropTable(
                 name: "ShopItemMangment");

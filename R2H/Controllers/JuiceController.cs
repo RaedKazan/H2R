@@ -1,6 +1,7 @@
 ﻿
 using ApplicationService;
 using ApplicationService.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -148,8 +149,7 @@ namespace R2H.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        [HttpPut]
-        public async Task<IActionResult> UpdateItem(AddJuiceViewModel Model)
+        public async Task<IActionResult> UpdateJuice(AddJuiceViewModel Model)
         {
             try
             {

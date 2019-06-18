@@ -3,8 +3,10 @@ using ApplicationService;
 using ApplicationService.CustomerServices;
 using ApplicationService.ViewModels.Card;
 using ApplicationService.ViewModels.Customer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using R2H.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ using System.Threading.Tasks;
 namespace R2H.Controllers
 {
 
-    public class CustomerController : Controller
+    public class CustomerController : BaseController
     {
         private readonly IElectricCigaretService _electricCigaretService;
         private readonly ICustomerService _CustomerService;
@@ -21,7 +23,8 @@ namespace R2H.Controllers
         public CustomerController(
             IElectricCigaretService electricCigaretService,
             ILoggerFactory LoggerFactory,
-            ICustomerService CustomerService)
+            ICustomerService CustomerService,
+            UserManager<ApplicationUser> userManager) : base(userManager)
         {
             _electricCigaretService = electricCigaretService;
             _CustomerService = CustomerService;
@@ -97,6 +100,7 @@ namespace R2H.Controllers
                 else
                 {
                     var result = await _CustomerService.AddToCard(BuyItemViewModel);
+                    result.Product.UserId = base.GetCurrentUserId();
                     cart.Add(new Item { Product = result.Product, Quantity = result.Quantity });
                 }
                 SystemHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
