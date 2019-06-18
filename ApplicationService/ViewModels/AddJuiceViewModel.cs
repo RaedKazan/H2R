@@ -37,12 +37,16 @@ namespace ApplicationService.ViewModels
 
         [Display(Name = " سعر البيع")]
         [Required(ErrorMessage = "الرجاء ادخال السعر")]
-        public Double? SelligPrice { get; set; }
+        public Double? SellingPrice { get; set; }
 
         [Display(Name = "الصورة")]
         [Required(ErrorMessage = "الرجاء ادخال الصورة")]
         public string Image { get; set; }
 
         public List<NicotinePercentage> NicotinePercentage { get; set; }
+        public List<NicotinePercentageView> NicotinePercentageView { get; set; }
+
+
+        
     }
 }

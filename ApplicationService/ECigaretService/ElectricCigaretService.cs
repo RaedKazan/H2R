@@ -71,8 +71,8 @@ namespace ApplicationService
         public async Task DeleteElectricCigaret(int Id)
         {
             var ElectricCigaret = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(x => x.Id == Id).FirstOrDefaultAsync();
-            ElectricCigaret.IsActive = false;
-            ElectricCigaret.ElectricCigaretMangment.FirstOrDefault().IsAvilable = false;
+            ElectricCigaret.IsActive = !ElectricCigaret.IsActive;
+            ElectricCigaret.ElectricCigaretMangment.FirstOrDefault().IsAvilable = !ElectricCigaret.ElectricCigaretMangment.FirstOrDefault().IsAvilable;
             await ElectricCigaretRepository.UpdateAsync(ElectricCigaret, Id);
         }
         public async Task<GetAllElectricCigaretViewModel> GetAllItem(int Type = 0, int Brand = 0, int Category = 0)
