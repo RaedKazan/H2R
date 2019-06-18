@@ -22,7 +22,7 @@ namespace ApplicationService.ViewModels.Customer
         }
         public ViewAllItemsForCustomers()
         {
-
+            
         }
 
     }

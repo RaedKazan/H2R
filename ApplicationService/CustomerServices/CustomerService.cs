@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationService.CustomerServices
 {
-    class CustomerService : ICustomerService
+   public class CustomerService : ICustomerService
     {
         private readonly IRepository<ShopItemLookUp> ElectricCigaretLookUpRepository;
         private readonly IRepository<ShopItem> ElectricCigaretRepository;

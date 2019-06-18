@@ -26,6 +26,7 @@ namespace ApplicationService.ViewModels
         }
         public GetElectricCigaretViewModel()
         {
+            
         }
         public int Id { get; set; }
         [Display(Name = "النوع")]

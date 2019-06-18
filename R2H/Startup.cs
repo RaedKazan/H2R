@@ -4,6 +4,7 @@ using ApplicationDomianEntity.ApplicationDbContext;
 using ApplicationDomianEntity.IdentityModels;
 using ApplicationDomianEntity.Models;
 using ApplicationService;
+using ApplicationService.CustomerServices;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -60,7 +61,10 @@ namespace R2H
             builder.RegisterType<LookUpService>().As<ILookUpService>();
             builder.RegisterType<ItemMangmentService>().As<IItemMangmentService>();
             builder.RegisterType<JuiceService>().As<IJuiceService>();
+            builder.RegisterType<CustomerService>().As<ICustomerService>();
 
+
+            
 
 
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();

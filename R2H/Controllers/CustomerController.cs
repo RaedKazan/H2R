@@ -1,6 +1,8 @@
-﻿using ApplicationService;
+﻿using ApplicationDomianEntity.Models;
+using ApplicationService;
 using ApplicationService.CustomerServices;
 using ApplicationService.ViewModels.Card;
+using ApplicationService.ViewModels.Customer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -32,18 +34,35 @@ namespace R2H.Controllers
             {
                 logger.LogDebug("CustomerController: Start Index [GET]");
                 //return View();
-                
-                var modul = await _electricCigaretService.GetAllItem(0);
-                return View(modul);
+
+                var vapeModel = await _electricCigaretService.GetAllItem((int)DomainValues.Vape);
+                var vm = new ViewAllItemsForCustomers();
+
+                vm.GetAllElectricCigaretViewModel = vapeModel;
+                return View(vm);
             }
             catch (Exception ex)
             {
                 logger.LogError(ex.Message);
                 return RedirectToAction("Error");
             }
+        }
 
+        public async Task<IActionResult> ViewItemDetails(int id)
+        {
+            try
+            {
+                logger.LogDebug("Start ViewItemDetails ", "Id= " + id);
+                var item = await _electricCigaretService.GetItemById(id);
 
-            
+                return View(item);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+                return RedirectToAction("Error");
+
+            }
         }
 
         public IActionResult ViewCardInformation()
@@ -55,7 +74,7 @@ namespace R2H.Controllers
         }
         // ajax call should be done here 
         // the atrubite should be object  not only Id
-       // the  object should look like itemId and JuiceId and quantity
+        // the  object should look like itemId and JuiceId and quantity
 
         public async Task<IActionResult> Buy([FromBody]BuyItemViewModel BuyItemViewModel)
         {
@@ -63,7 +82,7 @@ namespace R2H.Controllers
             if (SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart") == null)
             {
                 List<Item> cart = new List<Item>();
-                var result= await  _CustomerService.AddToCard(BuyItemViewModel);
+                var result = await _CustomerService.AddToCard(BuyItemViewModel);
                 cart.Add(new Item { Product = result.Product, Quantity = result.Quantity });
                 SystemHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
@@ -87,11 +106,21 @@ namespace R2H.Controllers
 
         public IActionResult Remove([FromBody]BuyItemViewModel BuyItemViewModel)
         {
-            List<Item> cart = SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            int index = isExist(BuyItemViewModel.ItemId, BuyItemViewModel.JuiceId, BuyItemViewModel.JuiceMangmentId);
-            cart.RemoveAt(index);
-            SystemHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
-            return RedirectToAction("Index");
+            try
+            {
+                logger.LogDebug("Start Remove ");
+                List<Item> cart = SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+                int index = isExist(BuyItemViewModel.ItemId, BuyItemViewModel.JuiceId, BuyItemViewModel.JuiceMangmentId);
+                cart.RemoveAt(index);
+                SystemHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+                return RedirectToAction("Error");
+
+            }
         }
         private int isExist(int ItemId, int JuiceId, int JuiceMangmentId)
         {
@@ -102,12 +131,14 @@ namespace R2H.Controllers
                 {
                     return i;
                 }
-                if(cart[i].Product.JuiceId.Equals(JuiceId)&& cart[i].Product.JuiceMangmentId.Equals(JuiceMangmentId))
+                if (cart[i].Product.JuiceId.Equals(JuiceId) && cart[i].Product.JuiceMangmentId.Equals(JuiceMangmentId))
                 {
                     return i;
                 }
             }
             return -1;
         }
+
+
     }
 }
