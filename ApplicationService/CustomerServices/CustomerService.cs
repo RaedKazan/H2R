@@ -38,9 +38,9 @@ namespace ApplicationService.CustomerServices
 
         public async Task<ViewAllItemsForCustomers> GetAllItems()
         {
-            var vapes = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.Vape)).Take(10).ToListAsync();
-            var eCigrete = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.ECigaret)).Take(10).ToListAsync();
-            var juice = await JuiceItemRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.Juice)).Take(10).ToListAsync();
+            var vapes = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId == (int)DomainValues.Vape)).Take(10).ToListAsync();
+            var eCigrete = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId == (int)DomainValues.ECigaret)).Take(10).ToListAsync();
+            var juice = await JuiceItemRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true).Take(10).ToListAsync();
             return new ViewAllItemsForCustomers(vapes, eCigrete, juice);
         }
 

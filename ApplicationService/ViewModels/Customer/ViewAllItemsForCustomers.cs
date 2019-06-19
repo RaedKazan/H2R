@@ -8,6 +8,9 @@ namespace ApplicationService.ViewModels.Customer
     {
         public ViewAllItemsForCustomers(IList<ShopItem> ElectricCigarets, IList<ShopItem> VapesList, IList<JuiceItem> JuicesList)
         {
+            this.ElectricCigarets = new List<GetElectricCigaretViewModel>();
+            this.Juices = new List<GetJuiceViewModel>();
+            this.Vapes = new List<GetElectricCigaretViewModel>();
             foreach (var item in ElectricCigarets)
             {
                 this.ElectricCigarets.Add(
