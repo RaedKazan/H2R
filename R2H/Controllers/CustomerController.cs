@@ -38,6 +38,7 @@ namespace R2H.Controllers
                 logger.LogDebug("CustomerController: Start Index [GET]");
                 //return View();
 
+
                 var Items = await _CustomerService.GetAllItems();
 
                 return View(Items);

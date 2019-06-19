@@ -3,6 +3,7 @@ using ApplicationDomianEntity.Models;
 using ApplicationService.ViewModels.Card;
 using ApplicationService.ViewModels.Customer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,14 +14,16 @@ namespace ApplicationService.CustomerServices
     {
         private readonly IRepository<ShopItem> ElectricCigaretRepository;
         private readonly IRepository<JuiceItem> JuiceItemRepository;
-
+        private readonly ILogger logger;
         public CustomerService(
             IRepository<ShopItem> ElectricCigaretRepository,
-            IRepository<JuiceItem> JuiceItemRepository
+            IRepository<JuiceItem> JuiceItemRepository,
+               ILoggerFactory LoggerFactory
            )
         {
             this.ElectricCigaretRepository = ElectricCigaretRepository;
             this.JuiceItemRepository = JuiceItemRepository;
+            this.logger = LoggerFactory.CreateLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         }
 
         public async Task<Item> AddToCard(BuyItemViewModel Model)
@@ -38,10 +41,18 @@ namespace ApplicationService.CustomerServices
 
         public async Task<ViewAllItemsForCustomers> GetAllItems()
         {
-            var vapes = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.Vape)).Take(10).ToListAsync();
-            var eCigrete = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.ECigaret)).Take(10).ToListAsync();
-            var juice = await JuiceItemRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.Juice)).Take(10).ToListAsync();
-            return new ViewAllItemsForCustomers(vapes, eCigrete, juice);
+            try
+            {
+                var vapes = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId == (int)DomainValues.Vape)).Take(10).ToListAsync();
+                var eCigrete = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId == (int)DomainValues.ECigaret)).Take(10).ToListAsync();
+                var juice = await JuiceItemRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true).Take(10).ToListAsync();
+                return new ViewAllItemsForCustomers(vapes, eCigrete, juice);
+            }
+            catch(Exception ex)
+            {
+                logger.LogError(ex.Message);
+                return null;
+            }
         }
 
 
