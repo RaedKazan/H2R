@@ -88,10 +88,11 @@
                     </div>
                 </div>
                 <div class="form-group row col-md-12">
-                    <div class="col-md-4"id="CurrentImage">
+                    <div class="col-md-4" id="CurrentImage">
                         @{ var image64 = System.Text.Encoding.UTF8.GetString(Model.Image);
                             var imgSrc = String.Format("data:image/jpeg;base64,/{0}", image64);
-                            <div>
+                            <div style="    width: 82%;height: 100%;">
+
                                 <img style="    height: 266px;" src="@imgSrc" />
                             </div>
                         }
@@ -107,7 +108,8 @@
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
                         <button id="Save" type="submit" class="btn btn-primary font-italic" style="display: none; margin: 6% auto;">Save</button>
-                        <text id="Edit" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;    width: 23%;">Edit</text>
+                        <text id="Edit" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;      margin-left: -12px;
+  width: 23%;">Edit</text>
 
                     </div>
                 </div>
