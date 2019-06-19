@@ -23,7 +23,7 @@ namespace ApplicationService.ViewModels
             this.IsAvilable = Model.ElectricCigaretMangment.FirstOrDefault().IsAvilable;
             this.CurrentlyCountAvilabil = Model.ElectricCigaretMangment.FirstOrDefault().TotalyAvilable;
         }
-        public GetJuiceViewModel(JuiceItem Model,List< NicotinePercentageView> nicotinePercentage)
+        public GetJuiceViewModel(JuiceItem Model, List<NicotinePercentageView> nicotinePercentage)
         {
             this.Id = Model.Id;
             this.Category = Model.CategoryId;
@@ -60,12 +60,13 @@ namespace ApplicationService.ViewModels
         public bool? IsAvilable { get; set; }
         public List<NicotinePercentage> NicotinePercentage { get; set; }
         public List<NicotinePercentageView> NicotinePercentageView { get; set; }
-        
+
     }
     public class NicotinePercentageView
     {
         public int JuiceManagmentID { get; set; }
         public int Quantity { get; set; }
         public string NicotinePercentage { get; set; }
+        public bool IsActive { get; set; }
     }
 }

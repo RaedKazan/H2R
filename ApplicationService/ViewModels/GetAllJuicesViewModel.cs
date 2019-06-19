@@ -7,13 +7,13 @@ namespace ApplicationService.ViewModels
 {
     public class GetAllJuicesViewModel
     {
-        public GetAllJuicesViewModel(IList<JuiceItem> ElectricCigarets)
+        public GetAllJuicesViewModel(IList<JuiceItem> JuiceList)
         {
-            this.ElectricCigarets = new List<GetJuiceViewModel>();
+            this.Juices = new List<GetJuiceViewModel>();
 
-            foreach (var item in ElectricCigarets)
+            foreach (var item in JuiceList)
             {
-                this.ElectricCigarets.Add(
+                this.Juices.Add(
                    new GetJuiceViewModel
                    {
                        Id = item.Id,
@@ -29,6 +29,6 @@ namespace ApplicationService.ViewModels
                    });
             }
         }
-        public List<GetJuiceViewModel> ElectricCigarets { get; set; }
+        public List<GetJuiceViewModel> Juices { get; set; }
     }
 }

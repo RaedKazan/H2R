@@ -23,5 +23,9 @@ namespace R2H.Controllers
                 return await _userManager.GetRolesAsync(userDetials);
             else return null;
         }
+        public string GetCurrentUserId()
+        {
+            return  _userManager.GetUserId(HttpContext.User);
+        }
     }
 }

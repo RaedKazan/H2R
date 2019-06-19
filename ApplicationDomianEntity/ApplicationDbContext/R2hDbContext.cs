@@ -16,6 +16,7 @@ namespace ApplicationDomianEntity.ApplicationDbContext
         public virtual DbSet<ShopItemLookUp> ShopItemLookUp { get; set; }
         public virtual DbSet<ShopItemMangment> ShopItemMangment { get; set; }
         public virtual DbSet<JuiceItem> JuiceItem { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
 
         public R2HDbContext(DbContextOptions<R2HDbContext> options)
           : base(options)

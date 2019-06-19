@@ -1,0 +1,42 @@
+﻿@model ApplicationService.ViewModels.GetElectricCigaretViewModel
+@{
+    ViewData["Title"] = "ViewItemDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ViewItemDetails</h1>
+
+    <style >
+        @@media only screen and (min-width: 600px) 
+        {
+            img {
+                width: 50%;
+                border-radius: 20px;
+                
+            }
+        }
+</style>
+<row>
+    <div class="col-md-12">
+        <br/>
+        <br/>
+        <br/>
+    </div>
+    <div class="row col-md-12">
+        <div class="col-md-7">
+            @{
+                var image64 = System.Text.Encoding.UTF8.GetString(Model.Image);
+                var imgSrc = String.Format("data:image/jpeg;base64,/{0}", image64);
+            <div>
+                <img src="@imgSrc" style="float:left" />
+            </div>
+            
+            }
+        </div>
+        <div class="col-md-4">
+            <p>
+                HIIIIIIIIIIIIIIII
+            </p>
+        </div>
+    </div>
+</row>

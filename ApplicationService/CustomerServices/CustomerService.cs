@@ -1,6 +1,7 @@
 ﻿using ApplicationDataAccess.ApplicationRepository;
 using ApplicationDomianEntity.Models;
 using ApplicationService.ViewModels.Card;
+using ApplicationService.ViewModels.Customer;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -8,65 +9,46 @@ using System.Threading.Tasks;
 
 namespace ApplicationService.CustomerServices
 {
-    class CustomerService : ICustomerService
+   public class CustomerService : ICustomerService
     {
-        private readonly IRepository<ShopItemLookUp> ElectricCigaretLookUpRepository;
         private readonly IRepository<ShopItem> ElectricCigaretRepository;
-        private readonly IRepository<ShopItemMangment> ElectricCigaretMangment;
         private readonly IRepository<JuiceItem> JuiceItemRepository;
 
         public CustomerService(
             IRepository<ShopItem> ElectricCigaretRepository,
-            IRepository<ShopItemLookUp> ElectricCigaretLookUpRepository,
-            IRepository<ShopItemMangment> ElectricCigaretMangment,
             IRepository<JuiceItem> JuiceItemRepository
            )
         {
-            this.ElectricCigaretLookUpRepository = ElectricCigaretLookUpRepository;
             this.ElectricCigaretRepository = ElectricCigaretRepository;
-            this.ElectricCigaretMangment = ElectricCigaretMangment;
             this.JuiceItemRepository = JuiceItemRepository;
         }
 
         public async Task<Item> AddToCard(BuyItemViewModel Model)
         {
-            if(Model.ItemId>0)
+            if (Model.ItemId > 0)
             {
-                return await AddItemToCard(Model.ItemId,Model.Quantity);
+                return await AddItemToCard(Model.ItemId, Model.Quantity);
             }
             else
             {
-              return await  AddJuiceToCard(Model.JuiceId, Model.JuiceMangmentId, Model.Quantity);
+                return await AddJuiceToCard(Model.JuiceId, Model.JuiceMangmentId, Model.Quantity);
             }
 
         }
 
-        private async Task<Item> AddItemToCard(int ItemId,int Quantity)
+        public async Task<ViewAllItemsForCustomers> GetAllItems()
+        {
+            var vapes = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.Vape)).Take(10).ToListAsync();
+            var eCigrete = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.ECigaret)).Take(10).ToListAsync();
+            var juice = await JuiceItemRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.Juice)).Take(10).ToListAsync();
+            return new ViewAllItemsForCustomers(vapes, eCigrete, juice);
+        }
+
+
+        private async Task<Item> AddItemToCard(int ItemId, int Quantity)
         {
             var result = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.Id == ItemId).FirstOrDefaultAsync();
-            if(result.ElectricCigaretMangment.FirstOrDefault().TotalyAvilable>Quantity)
-            {
-               return new Item()
-                {
-                    Product = new Product
-                    {
-                        ItemId = result.Id,
-                        Name = result.Name,
-                        Price = result.Id
-                    },
-                    Quantity = Quantity
-                };
-            }
-            else
-            {
-                throw new Exception(ErrorEnum.TheQuantityIsNotEnough.ToString());
-            }
-        }
-
-        private async Task<Item> AddJuiceToCard(int JuiceId ,int JuiceMangmentId, int Quantity)
-        {
-            var result = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.Id == JuiceId).FirstOrDefaultAsync();
-            if (result.ElectricCigaretMangment.Where(c=>c.Id==JuiceMangmentId).FirstOrDefault().TotalyAvilable > Quantity)
+            if (result.ElectricCigaretMangment.FirstOrDefault().TotalyAvilable > Quantity)
             {
                 return new Item()
                 {
@@ -74,7 +56,6 @@ namespace ApplicationService.CustomerServices
                     {
                         ItemId = result.Id,
                         Name = result.Name,
-                        JuiceMangmentId=JuiceMangmentId,
                         Price = result.Id
                     },
                     Quantity = Quantity
@@ -84,8 +65,29 @@ namespace ApplicationService.CustomerServices
             {
                 throw new Exception(ErrorEnum.TheQuantityIsNotEnough.ToString());
             }
-
         }
 
+        private async Task<Item> AddJuiceToCard(int JuiceId, int JuiceMangmentId, int Quantity)
+        {
+            var result = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.Id == JuiceId).FirstOrDefaultAsync();
+            if (result.ElectricCigaretMangment.Where(c => c.Id == JuiceMangmentId).FirstOrDefault().TotalyAvilable > Quantity)
+            {
+                return new Item()
+                {
+                    Product = new Product
+                    {
+                        ItemId = result.Id,
+                        Name = result.Name,
+                        JuiceMangmentId = JuiceMangmentId,
+                        Price = result.Id
+                    },
+                    Quantity = Quantity
+                };
+            }
+            else
+            {
+                throw new Exception(ErrorEnum.TheQuantityIsNotEnough.ToString());
+            }
+        }
     }
 }

@@ -1,14 +1,58 @@
-2019-06-17 21:41:11,916 [47] ERROR App  
- The view 'DeleteItem' was not found. Searched locations: /Views/Home/DeleteItem.cshtml, /Views/Shared/DeleteItem.cshtml, /Pages/Shared/DeleteItem.cshtml 
- 
-2019-06-17 21:41:11,940 [47] ERROR App  
+2019-06-17 18:57:18,346 [55] ERROR App  
  An unhandled exception has occurred while executing the request. 
  
-System.InvalidOperationException: The view 'DeleteItem' was not found. The following locations were searched:
-/Views/Home/DeleteItem.cshtml
-/Views/Shared/DeleteItem.cshtml
-/Pages/Shared/DeleteItem.cshtml
-   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+System.InvalidOperationException: Unable to resolve service for type 'ApplicationService.CustomerServices.ICustomerService' while attempting to activate 'R2H.Controllers.CustomerController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 18:58:13,945 [4] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: Unable to resolve service for type 'ApplicationService.CustomerServices.ICustomerService' while attempting to activate 'R2H.Controllers.CustomerController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 19:11:27,557 [26] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'ApplicationService.ViewModels.GetAllElectricCigaretViewModel', but this ViewDataDictionary instance requires a model item of type 'ApplicationService.ViewModels.Customer.ViewAllItemsForCustomers'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary..ctor(ViewDataDictionary source, Object model, Type declaredModelType)
+   at lambda_method(Closure , ViewDataDictionary )
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.CreateViewDataDictionary(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
    at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
    at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
@@ -26,17 +70,21 @@ System.InvalidOperationException: The view 'DeleteItem' was not found. The follo
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
-2019-06-17 21:41:16,330 [71] ERROR App  
- The view 'DeleteItem' was not found. Searched locations: /Views/Home/DeleteItem.cshtml, /Views/Shared/DeleteItem.cshtml, /Pages/Shared/DeleteItem.cshtml 
- 
-2019-06-17 21:41:16,337 [71] ERROR App  
+2019-06-17 19:11:36,618 [29] ERROR App  
  An unhandled exception has occurred while executing the request. 
  
-System.InvalidOperationException: The view 'DeleteItem' was not found. The following locations were searched:
-/Views/Home/DeleteItem.cshtml
-/Views/Shared/DeleteItem.cshtml
-/Pages/Shared/DeleteItem.cshtml
-   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'ApplicationService.ViewModels.GetAllElectricCigaretViewModel', but this ViewDataDictionary instance requires a model item of type 'ApplicationService.ViewModels.Customer.ViewAllItemsForCustomers'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary..ctor(ViewDataDictionary source, Object model, Type declaredModelType)
+   at lambda_method(Closure , ViewDataDictionary )
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.CreateViewDataDictionary(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
    at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
    at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
@@ -54,17 +102,21 @@ System.InvalidOperationException: The view 'DeleteItem' was not found. The follo
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
-2019-06-17 21:42:44,638 [54] ERROR App  
- The view 'DeleteItem' was not found. Searched locations: /Views/Home/DeleteItem.cshtml, /Views/Shared/DeleteItem.cshtml, /Pages/Shared/DeleteItem.cshtml 
- 
-2019-06-17 21:42:44,644 [54] ERROR App  
+2019-06-17 19:14:17,037 [12] ERROR App  
  An unhandled exception has occurred while executing the request. 
  
-System.InvalidOperationException: The view 'DeleteItem' was not found. The following locations were searched:
-/Views/Home/DeleteItem.cshtml
-/Views/Shared/DeleteItem.cshtml
-/Pages/Shared/DeleteItem.cshtml
-   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'ApplicationService.ViewModels.GetAllElectricCigaretViewModel', but this ViewDataDictionary instance requires a model item of type 'ApplicationService.ViewModels.Customer.ViewAllItemsForCustomers'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary..ctor(ViewDataDictionary source, Object model, Type declaredModelType)
+   at lambda_method(Closure , ViewDataDictionary )
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.CreateViewDataDictionary(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
    at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
    at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
@@ -82,177 +134,21 @@ System.InvalidOperationException: The view 'DeleteItem' was not found. The follo
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
-2019-06-17 21:44:09,492 [96] ERROR App  
+2019-06-17 19:14:56,251 [29] ERROR App  
  An unhandled exception has occurred while executing the request. 
  
-Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: One or more compilation failures occurred:
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(101,10): error CS1002: ; expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(101,10): error CS1513: } expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(101,10): error CS1513: } expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(101,15): error CS1001: Identifier expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(101,15): error CS1514: { expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(101,15): error CS1513: } expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(101,15): error CS1519: Invalid token '=' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(102,14): error CS1519: Invalid token 'class' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(102,19): error CS1001: Identifier expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(102,19): error CS1514: { expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(102,19): error CS1513: } expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(102,19): error CS1519: Invalid token '=' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,29): error CS1002: ; expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,34): error CS1001: Identifier expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,34): error CS1514: { expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,34): error CS1513: } expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,34): error CS1519: Invalid token '=' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,70): error CS1519: Invalid token '=' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,70): error CS1519: Invalid token '=' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,126): error CS1031: Type expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,126): error CS1003: Syntax error, ',' expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,127): error CS1003: Syntax error, ',' expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(104,9): error CS1519: Invalid token '<' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(104,14): error CS1519: Invalid token '>' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(104,14): error CS1519: Invalid token '>' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(105,14): error CS1519: Invalid token 'class' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(105,19): error CS1001: Identifier expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(105,19): error CS1514: { expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(105,19): error CS1513: } expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(105,19): error CS1519: Invalid token '=' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,31): error CS1002: ; expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,36): error CS1001: Identifier expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,36): error CS1514: { expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,36): error CS1513: } expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,36): error CS1519: Invalid token '=' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,71): error CS1519: Invalid token '=' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,71): error CS1519: Invalid token '=' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,84): error CS1519: Invalid token '=' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,84): error CS1519: Invalid token '=' in class, struct, or interface member declaration
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,144): error CS1001: Identifier expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,144): error CS1003: Syntax error, ',' expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,145): error CS1003: Syntax error, '>' expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,145): error CS1003: Syntax error, '(' expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,149): error CS1001: Identifier expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,149): error CS1003: Syntax error, ',' expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(107,11): error CS1003: Syntax error, ',' expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(107,14): error CS1001: Identifier expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(107,14): error CS1003: Syntax error, ',' expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(108,7): error CS1003: Syntax error, ',' expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(108,10): error CS1001: Identifier expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(108,10): error CS1003: Syntax error, ',' expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(108,11): error CS1026: ) expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(108,11): error CS1002: ; expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(152,52): error CS1001: Identifier expected
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(152,27): error CS1520: Method must have a return type
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(152,27): error CS0501: '<invalid-global-code>.<invalid-global-code>(ViewBag.ErrorMassag)' must declare a body because it is not marked abstract, extern, or partial
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(102,19): error CS0102: The type 'Views_Home_GetItemById' already contains a definition for ''
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,34): error CS0102: The type 'Views_Home_GetItemById' already contains a definition for ''
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(105,19): error CS0102: The type 'Views_Home_GetItemById' already contains a definition for ''
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,36): error CS0102: The type 'Views_Home_GetItemById' already contains a definition for ''
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(152,33): error CS0246: The type or namespace name 'ViewBag' could not be found (are you missing a using directive or an assembly reference?)
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,145): error CS0246: The type or namespace name 'text' could not be found (are you missing a using directive or an assembly reference?)
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(107,11): error CS0246: The type or namespace name 'div' could not be found (are you missing a using directive or an assembly reference?)
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(108,7): error CS0246: The type or namespace name 'div' could not be found (are you missing a using directive or an assembly reference?)
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,131): error CS0246: The type or namespace name 'Not' could not be found (are you missing a using directive or an assembly reference?)
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,135): error CS0501: 'Views_Home_GetItemById.Avilable<>(text, div, div)' must declare a body because it is not marked abstract, extern, or partial
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,19): error CS0102: The type 'Views_Home_GetItemById' already contains a definition for 'id'
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(103,14): error CS0246: The type or namespace name 'text' could not be found (are you missing a using directive or an assembly reference?)
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(106,14): error CS0246: The type or namespace name 'text' could not be found (are you missing a using directive or an assembly reference?)
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(13,9): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(17,14): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(24,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(25,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(26,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(29,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(30,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(31,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(36,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(37,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(38,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(41,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(42,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(43,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(50,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(51,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(52,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(55,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(56,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(57,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(63,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(64,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(65,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(76,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(77,26): error CS0103: The name 'Html' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(100,16): error CS0103: The name 'style' does not exist in the current context
-C:\Users\hussama\Desktop\HussamFIles\WebApplication1\R2H\Views\Home\GetItemById.cshtml(101,6): error CS0103: The name 'div' does not exist in the current context
-xjrxzwcc.0vq(372,26): error CS1001: Identifier expected
-xjrxzwcc.0vq(372,30): error CS1031: Type expected
-xjrxzwcc.0vq(372,30): error CS1001: Identifier expected
-xjrxzwcc.0vq(372,32): error CS1031: Type expected
-xjrxzwcc.0vq(372,32): error CS1001: Identifier expected
-xjrxzwcc.0vq(372,32): error CS1003: Syntax error, ',' expected
-xjrxzwcc.0vq(372,38): error CS1031: Type expected
-xjrxzwcc.0vq(372,38): error CS1001: Identifier expected
-xjrxzwcc.0vq(372,38): error CS1003: Syntax error, ',' expected
-xjrxzwcc.0vq(373,26): error CS1001: Identifier expected
-xjrxzwcc.0vq(409,26): error CS1001: Identifier expected
-xjrxzwcc.0vq(411,26): error CS1001: Identifier expected
-xjrxzwcc.0vq(411,30): error CS1031: Type expected
-xjrxzwcc.0vq(411,30): error CS1001: Identifier expected
-xjrxzwcc.0vq(411,32): error CS1031: Type expected
-xjrxzwcc.0vq(411,32): error CS1001: Identifier expected
-xjrxzwcc.0vq(411,32): error CS1003: Syntax error, ',' expected
-xjrxzwcc.0vq(411,36): error CS1031: Type expected
-xjrxzwcc.0vq(411,36): error CS1001: Identifier expected
-xjrxzwcc.0vq(411,36): error CS1003: Syntax error, ',' expected
-xjrxzwcc.0vq(418,26): error CS1001: Identifier expected
-xjrxzwcc.0vq(418,30): error CS1031: Type expected
-xjrxzwcc.0vq(418,30): error CS1001: Identifier expected
-xjrxzwcc.0vq(418,32): error CS1031: Type expected
-xjrxzwcc.0vq(418,32): error CS1001: Identifier expected
-xjrxzwcc.0vq(418,32): error CS1003: Syntax error, ',' expected
-xjrxzwcc.0vq(418,38): error CS1031: Type expected
-xjrxzwcc.0vq(418,38): error CS1001: Identifier expected
-xjrxzwcc.0vq(418,38): error CS1003: Syntax error, ',' expected
-xjrxzwcc.0vq(419,26): error CS1001: Identifier expected
-xjrxzwcc.0vq(450,26): error CS1001: Identifier expected
-xjrxzwcc.0vq(464,5): error CS1022: Type or namespace definition, or end-of-file expected
-xjrxzwcc.0vq(465,1): error CS1022: Type or namespace definition, or end-of-file expected
-xjrxzwcc.0vq(455,87): error CS0116: A namespace cannot directly contain members such as fields or methods
-xjrxzwcc.0vq(457,60): error CS0116: A namespace cannot directly contain members such as fields or methods
-xjrxzwcc.0vq(459,70): error CS0116: A namespace cannot directly contain members such as fields or methods
-xjrxzwcc.0vq(461,71): error CS0116: A namespace cannot directly contain members such as fields or methods
-xjrxzwcc.0vq(372,13): error CS1520: Method must have a return type
-xjrxzwcc.0vq(372,13): error CS0501: '<invalid-global-code>.<invalid-global-code>(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
-xjrxzwcc.0vq(373,13): error CS1520: Method must have a return type
-xjrxzwcc.0vq(373,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
-xjrxzwcc.0vq(409,13): error CS1520: Method must have a return type
-xjrxzwcc.0vq(409,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
-xjrxzwcc.0vq(410,13): error CS0116: A namespace cannot directly contain members such as fields or methods
-xjrxzwcc.0vq(410,13): error CS1520: Method must have a return type
-xjrxzwcc.0vq(410,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
-xjrxzwcc.0vq(411,13): error CS1520: Method must have a return type
-xjrxzwcc.0vq(411,13): error CS0501: '<invalid-global-code>.<invalid-global-code>(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
-xjrxzwcc.0vq(417,13): error CS0116: A namespace cannot directly contain members such as fields or methods
-xjrxzwcc.0vq(417,13): error CS1520: Method must have a return type
-xjrxzwcc.0vq(417,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
-xjrxzwcc.0vq(418,13): error CS1520: Method must have a return type
-xjrxzwcc.0vq(418,13): error CS0501: '<invalid-global-code>.<invalid-global-code>(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
-xjrxzwcc.0vq(419,13): error CS1520: Method must have a return type
-xjrxzwcc.0vq(419,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
-xjrxzwcc.0vq(450,13): error CS1520: Method must have a return type
-xjrxzwcc.0vq(450,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
-xjrxzwcc.0vq(451,13): error CS0116: A namespace cannot directly contain members such as fields or methods
-xjrxzwcc.0vq(451,13): error CS1520: Method must have a return type
-xjrxzwcc.0vq(451,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
-   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorViewCompiler.CompileAndEmit(RazorCodeDocument codeDocument, String generatedCode)
-   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorViewCompiler.CompileAndEmit(String relativePath)
-   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorViewCompiler.OnCacheMiss(String normalizedPath)
---- End of stack trace from previous location where exception was thrown ---
-   at Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
-   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
-   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
-   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
-   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
-   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
-   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'ApplicationService.ViewModels.GetAllElectricCigaretViewModel', but this ViewDataDictionary instance requires a model item of type 'ApplicationService.ViewModels.Customer.ViewAllItemsForCustomers'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary..ctor(ViewDataDictionary source, Object model, Type declaredModelType)
+   at lambda_method(Closure , ViewDataDictionary )
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.CreateViewDataDictionary(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
    at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
    at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
@@ -270,17 +166,21 @@ xjrxzwcc.0vq(451,13): error CS0501: '<invalid-global-code>.<invalid-global-code>
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
-2019-06-17 21:45:43,391 [110] ERROR App  
- The view 'DeleteItem' was not found. Searched locations: /Views/Home/DeleteItem.cshtml, /Views/Shared/DeleteItem.cshtml, /Pages/Shared/DeleteItem.cshtml 
- 
-2019-06-17 21:45:43,397 [110] ERROR App  
+2019-06-17 19:21:49,304 [13] ERROR App  
  An unhandled exception has occurred while executing the request. 
  
-System.InvalidOperationException: The view 'DeleteItem' was not found. The following locations were searched:
-/Views/Home/DeleteItem.cshtml
-/Views/Shared/DeleteItem.cshtml
-/Pages/Shared/DeleteItem.cshtml
-   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'ApplicationService.ViewModels.GetAllElectricCigaretViewModel', but this ViewDataDictionary instance requires a model item of type 'ApplicationService.ViewModels.Customer.ViewAllItemsForCustomers'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary..ctor(ViewDataDictionary source, Object model, Type declaredModelType)
+   at lambda_method(Closure , ViewDataDictionary )
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.CreateViewDataDictionary(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
    at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
    at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
@@ -298,17 +198,21 @@ System.InvalidOperationException: The view 'DeleteItem' was not found. The follo
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
-2019-06-17 21:45:49,722 [88] ERROR App  
- The view 'DeleteItem' was not found. Searched locations: /Views/Home/DeleteItem.cshtml, /Views/Shared/DeleteItem.cshtml, /Pages/Shared/DeleteItem.cshtml 
- 
-2019-06-17 21:45:49,728 [88] ERROR App  
+2019-06-17 19:22:16,258 [17] ERROR App  
  An unhandled exception has occurred while executing the request. 
  
-System.InvalidOperationException: The view 'DeleteItem' was not found. The following locations were searched:
-/Views/Home/DeleteItem.cshtml
-/Views/Shared/DeleteItem.cshtml
-/Pages/Shared/DeleteItem.cshtml
-   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'ApplicationService.ViewModels.GetAllElectricCigaretViewModel', but this ViewDataDictionary instance requires a model item of type 'ApplicationService.ViewModels.Customer.ViewAllItemsForCustomers'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary..ctor(ViewDataDictionary source, Object model, Type declaredModelType)
+   at lambda_method(Closure , ViewDataDictionary )
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.CreateViewDataDictionary(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
    at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
    at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
@@ -326,17 +230,21 @@ System.InvalidOperationException: The view 'DeleteItem' was not found. The follo
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
-2019-06-17 21:47:05,645 [111] ERROR App  
- The view 'DeleteItem' was not found. Searched locations: /Views/Home/DeleteItem.cshtml, /Views/Shared/DeleteItem.cshtml, /Pages/Shared/DeleteItem.cshtml 
- 
-2019-06-17 21:47:05,658 [111] ERROR App  
+2019-06-17 19:22:37,519 [5] ERROR App  
  An unhandled exception has occurred while executing the request. 
  
-System.InvalidOperationException: The view 'DeleteItem' was not found. The following locations were searched:
-/Views/Home/DeleteItem.cshtml
-/Views/Shared/DeleteItem.cshtml
-/Pages/Shared/DeleteItem.cshtml
-   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+System.InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'ApplicationService.ViewModels.GetAllElectricCigaretViewModel', but this ViewDataDictionary instance requires a model item of type 'ApplicationService.ViewModels.Customer.ViewAllItemsForCustomers'.
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.EnsureCompatible(Object value)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary..ctor(ViewDataDictionary source, Object model, Type declaredModelType)
+   at lambda_method(Closure , ViewDataDictionary )
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.CreateViewDataDictionary(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorPagePropertyActivator.Activate(Object page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.Activate(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
    at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
    at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
@@ -354,17 +262,464 @@ System.InvalidOperationException: The view 'DeleteItem' was not found. The follo
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
-2019-06-17 21:47:18,803 [111] ERROR App  
- The view 'DeleteItem' was not found. Searched locations: /Views/Home/DeleteItem.cshtml, /Views/Shared/DeleteItem.cshtml, /Pages/Shared/DeleteItem.cshtml 
+2019-06-17 19:51:15,823 [57] ERROR App  
+ Object reference not set to an instance of an object. 
  
-2019-06-17 21:47:18,809 [111] ERROR App  
+2019-06-17 19:51:15,864 [57] ERROR App  
  An unhandled exception has occurred while executing the request. 
  
-System.InvalidOperationException: The view 'DeleteItem' was not found. The following locations were searched:
-/Views/Home/DeleteItem.cshtml
-/Views/Shared/DeleteItem.cshtml
-/Pages/Shared/DeleteItem.cshtml
-   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 19:51:24,556 [51] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 19:51:24,563 [51] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 19:51:36,280 [53] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 19:51:36,287 [53] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 19:51:58,302 [57] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 19:51:58,316 [57] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 19:52:10,276 [53] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 19:52:10,281 [53] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 19:52:19,173 [49] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 19:52:19,178 [49] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 19:52:19,807 [50] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 19:52:19,814 [50] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 19:52:55,048 [56] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 19:52:55,065 [56] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 19:54:57,383 [56] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 19:54:57,460 [56] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 20:29:00,514 [43] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 20:29:00,552 [43] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 20:29:18,088 [45] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 20:29:18,101 [45] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 20:31:27,615 [20] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 20:31:27,622 [20] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 20:32:36,691 [11] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 20:32:36,725 [11] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 20:34:32,457 [5] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 20:34:32,482 [5] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 20:36:56,218 [35] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+2019-06-17 20:36:56,231 [35] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: No route matches the supplied values.
+   at Microsoft.AspNetCore.Mvc.Infrastructure.RedirectToActionResultExecutor.ExecuteAsync(ActionContext context, RedirectToActionResult result)
+   at Microsoft.AspNetCore.Mvc.RedirectToActionResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 21:27:17,142 [4] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: Cannot return null from an action method with a return type of 'Microsoft.AspNetCore.Mvc.IActionResult'.
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.EnsureActionResultNotNull(ObjectMethodExecutor executor, IActionResult actionResult)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 21:27:31,068 [7] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: Cannot return null from an action method with a return type of 'Microsoft.AspNetCore.Mvc.IActionResult'.
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.EnsureActionResultNotNull(ObjectMethodExecutor executor, IActionResult actionResult)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 21:28:12,546 [7] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: Cannot return null from an action method with a return type of 'Microsoft.AspNetCore.Mvc.IActionResult'.
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.EnsureActionResultNotNull(ObjectMethodExecutor executor, IActionResult actionResult)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 21:28:36,429 [7] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.InvalidOperationException: Cannot return null from an action method with a return type of 'Microsoft.AspNetCore.Mvc.IActionResult'.
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.EnsureActionResultNotNull(ObjectMethodExecutor executor, IActionResult actionResult)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-06-17 23:53:06,933 [20] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AspNetCore.Views_Customer_ViewItemDetails.ExecuteAsync() in C:\Users\hamzaa\Desktop\H2R-master\R2H\Views\Customer\ViewItemDetails.cshtml:line 11
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
    at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
    at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
@@ -382,17 +737,16 @@ System.InvalidOperationException: The view 'DeleteItem' was not found. The follo
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
-2019-06-17 21:56:02,355 [111] ERROR App  
- The view 'DeleteItem' was not found. Searched locations: /Views/Home/DeleteItem.cshtml, /Views/Shared/DeleteItem.cshtml, /Pages/Shared/DeleteItem.cshtml 
- 
-2019-06-17 21:56:02,445 [111] ERROR App  
+2019-06-17 23:54:17,540 [20] ERROR App  
  An unhandled exception has occurred while executing the request. 
  
-System.InvalidOperationException: The view 'DeleteItem' was not found. The following locations were searched:
-/Views/Home/DeleteItem.cshtml
-/Views/Shared/DeleteItem.cshtml
-/Pages/Shared/DeleteItem.cshtml
-   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AspNetCore.Views_Customer_ViewItemDetails.ExecuteAsync() in C:\Users\hamzaa\Desktop\H2R-master\R2H\Views\Customer\ViewItemDetails.cshtml:line 11
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
    at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
    at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
    at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)

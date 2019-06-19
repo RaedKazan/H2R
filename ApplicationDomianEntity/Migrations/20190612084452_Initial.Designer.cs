@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplicationDomianEntity.Migrations
 {
     [DbContext(typeof(R2HDbContext))]
-    [Migration("20190529225327_Initail")]
-    partial class Initail
+    [Migration("20190612084452_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,41 @@ namespace ApplicationDomianEntity.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("JuiceItem");
+                });
+
+            modelBuilder.Entity("ApplicationDomianEntity.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("Date");
+
+                    b.Property<bool>("IsCanceled");
+
+                    b.Property<bool>("IsPending");
+
+                    b.Property<int>("ItemMangmentId");
+
+                    b.Property<int?>("JuiceItemId");
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<int?>("ShopItemId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("JuiceItemId");
+
+                    b.HasIndex("ShopItemId");
+
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItem", b =>
@@ -381,6 +416,21 @@ namespace ApplicationDomianEntity.Migrations
                         .WithMany("JuiceCategory")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ApplicationDomianEntity.Models.Order", b =>
+                {
+                    b.HasOne("R2H.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("ApplicationDomianEntity.Models.JuiceItem", "JuiceItem")
+                        .WithMany()
+                        .HasForeignKey("JuiceItemId");
+
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItem", "ShopItem")
+                        .WithMany()
+                        .HasForeignKey("ShopItemId");
                 });
 
             modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItem", b =>

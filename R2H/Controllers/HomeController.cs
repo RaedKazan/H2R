@@ -1,5 +1,4 @@
-﻿using ApplicationDomianEntity.Models;
-using ApplicationService;
+﻿using ApplicationService;
 using ApplicationService.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -30,9 +29,19 @@ namespace R2H.Controllers
         {
             try
             {
-               var x= await  base.GetCurrentUserRoles();
-                //logger.LogDebug("Start Index [GET]");
-                return View();
+                logger.LogDebug("Start Index [GET]  ");
+
+
+
+                var userRoles =await  base.GetCurrentUserRoles() ;
+                if(userRoles!=null)
+                if (userRoles.Contains("Admin"))
+                    return View();
+                else
+                    return RedirectToAction("Index", "Customer");
+
+                return RedirectToAction("Index", "Customer");
+
             }
             catch (Exception ex)
             {
@@ -40,6 +49,7 @@ namespace R2H.Controllers
                 return RedirectToAction("Error");
             }
         }
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddItem(int Id)
         {
             try
@@ -54,6 +64,7 @@ namespace R2H.Controllers
                 return RedirectToAction("Error");
             }
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> CreatItem(AddElectricCigaretViewModel Model)
         {
@@ -84,6 +95,7 @@ namespace R2H.Controllers
             }
         }
         //please rename this method
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateItem()
         {
             try
@@ -97,7 +109,7 @@ namespace R2H.Controllers
                 return RedirectToAction("Error");
             }
         }
-         //please rename this method
+        //please rename this method
         public IActionResult ViewItems()
         {
             try
@@ -140,7 +152,7 @@ namespace R2H.Controllers
                 return RedirectToAction("Error");
             }
         }
-        // View Must be added
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public async Task<IActionResult> UpdateItem(AddElectricCigaretViewModel Model)
         {
@@ -157,6 +169,7 @@ namespace R2H.Controllers
             }
         }
         //Massage need to be added and redirect to Index
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteItem(int Id)
         {
             try

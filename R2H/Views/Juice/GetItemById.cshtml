@@ -10,7 +10,7 @@
 <h1>Details</h1>
 
 
-@using (Html.BeginForm("UpdateItem", "Home"))
+@using (Html.BeginForm("UpdateJuice", "Juice",FormMethod.Post))
 {
     <fieldset id="thisform">
         <row>
@@ -45,42 +45,35 @@
                 </div>
                 <div class="form-group row col-md-12">
                     <div class="col-md-4">
-                        @Html.LabelFor(x => x.SellingPrice, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.SellingPrice, new { @class = "form-control", @readonly = true })
-                        @Html.ValidationMessageFor(c => c.SellingPrice, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="col-md-4">
                         @Html.LabelFor(x => x.BuyingPrice, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.BuyingPrice, new { @class = "form-control", @readonly = true })
                         @Html.ValidationMessageFor(c => c.BuyingPrice, "", new { @class = "text-danger" })
                     </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(x => x.SellingPrice, new { @class = "font-italic" })
+                        @Html.TextBoxFor(x => x.SellingPrice, new { @class = "form-control", @readonly = true })
+                        @Html.ValidationMessageFor(c => c.SellingPrice, "", new { @class = "text-danger" })
+                    </div>
                 </div>
                 <div class="form-group row col-md-12">
 
-                    @*<div class="col-md-4">
-                @{
-
-                    if (Model.IsAvilable == true)
-                    {
-                        Model.IsAvilableText = "نعم";
-                    }
-                    else { Model.IsAvilableText = "لا"; }
-                }
-                @Html.LabelFor(x => x.IsAvilable, new { @class = "font-italic" })
-                @Html.TextBoxFor(x => x.IsAvilableText, new { @class = "form-control", @readonly = true })
-            </div>*@
+ 
                     <div class="form-group row col-md-12">
 
                         @for (int i = 0; i < Model.NicotinePercentageView.Count(); i++)
                         {
                             @Html.HiddenFor(x => x.NicotinePercentageView[i].JuiceManagmentID)
+
+
+
                             <div class="col-md-1">
                                 @Html.DisplayFor(x => x.NicotinePercentageView[i].NicotinePercentage, new { @class = "form-control" })
                             </div>
                             <div class="col-md-1">
                                 @Html.TextBoxFor(x => x.NicotinePercentageView[i].Quantity, new { @class = "form-control", @readonly = true })
-
+                            </div>
+                            <div class="col-md-1">
+                                @Html.CheckBoxFor(x => x.NicotinePercentageView[i].IsActive, new { @class = "form-control", @readonly = true })
                             </div>
 
                         }
@@ -111,13 +104,6 @@
                         <text id="Edit" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;      margin-left: -12px;
   width: 23%;">Edit</text>
 
-                    </div>
-                </div>
-                <div class="form-group row col-md-12">
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-4">
-                        <text id="Delete" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;">Delete</text>
                     </div>
                 </div>
             </div>

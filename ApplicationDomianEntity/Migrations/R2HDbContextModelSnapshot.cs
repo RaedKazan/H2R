@@ -58,6 +58,41 @@ namespace ApplicationDomianEntity.Migrations
                     b.ToTable("JuiceItem");
                 });
 
+            modelBuilder.Entity("ApplicationDomianEntity.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("Date");
+
+                    b.Property<bool>("IsCanceled");
+
+                    b.Property<bool>("IsPending");
+
+                    b.Property<int>("ItemMangmentId");
+
+                    b.Property<int?>("JuiceItemId");
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<int?>("ShopItemId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("JuiceItemId");
+
+                    b.HasIndex("ShopItemId");
+
+                    b.ToTable("Order");
+                });
+
             modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItem", b =>
                 {
                     b.Property<int>("Id")
@@ -187,31 +222,6 @@ namespace ApplicationDomianEntity.Migrations
                     b.HasIndex("JuiceId");
 
                     b.ToTable("ShopItemMangment");
-                });
-
-            modelBuilder.Entity("ApplicationDomianEntity.Models.WishList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Count");
-
-                    b.Property<int>("JuiceItemId");
-
-                    b.Property<int>("ShopItemId");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("JuiceItemId");
-
-                    b.HasIndex("ShopItemId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("WishList");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -406,6 +416,21 @@ namespace ApplicationDomianEntity.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("ApplicationDomianEntity.Models.Order", b =>
+                {
+                    b.HasOne("R2H.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("ApplicationDomianEntity.Models.JuiceItem", "JuiceItem")
+                        .WithMany()
+                        .HasForeignKey("JuiceItemId");
+
+                    b.HasOne("ApplicationDomianEntity.Models.ShopItem", "ShopItem")
+                        .WithMany()
+                        .HasForeignKey("ShopItemId");
+                });
+
             modelBuilder.Entity("ApplicationDomianEntity.Models.ShopItem", b =>
                 {
                     b.HasOne("ApplicationDomianEntity.Models.ShopItemLookUp", "Brand")
@@ -429,24 +454,6 @@ namespace ApplicationDomianEntity.Migrations
                     b.HasOne("ApplicationDomianEntity.Models.JuiceItem", "JuiceItem")
                         .WithMany("ElectricCigaretMangment")
                         .HasForeignKey("JuiceId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("ApplicationDomianEntity.Models.WishList", b =>
-                {
-                    b.HasOne("ApplicationDomianEntity.Models.JuiceItem", "JuiceItem")
-                        .WithMany("WishList")
-                        .HasForeignKey("JuiceItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ApplicationDomianEntity.Models.ShopItem", "ShopItem")
-                        .WithMany("WishList")
-                        .HasForeignKey("ShopItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("R2H.Models.ApplicationUser", "User")
-                        .WithMany("WishList")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
