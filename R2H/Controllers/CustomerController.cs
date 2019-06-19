@@ -38,11 +38,9 @@ namespace R2H.Controllers
                 logger.LogDebug("CustomerController: Start Index [GET]");
                 //return View();
 
-                var vapeModel = await _electricCigaretService.GetAllItem((int)DomainValues.Vape);
-                var vm = new ViewAllItemsForCustomers();
+                var Items = await _CustomerService.GetAllItems();
 
-                vm.GetAllElectricCigaretViewModel = vapeModel;
-                return View(vm);
+                return View(Items);
             }
             catch (Exception ex)
             {

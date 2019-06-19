@@ -50,7 +50,7 @@
 <!--slider1-->
 <div class="rio-promos">
 
-    @for (int i = 0; i < Model.GetAllElectricCigaretViewModel.ElectricCigarets.Count; ++i)
+    @*@for (int i = 0; i < Model.GetAllElectricCigaretViewModel.ElectricCigarets.Count; ++i)
     {
         var item = Model.GetAllElectricCigaretViewModel.ElectricCigarets[i];
         var image64 = System.Text.Encoding.UTF8.GetString(item.Image);
@@ -59,7 +59,7 @@
     
         <img src="@imgSrc" onclick="location.href='@Url.Action("ViewItemDetails", "Customer", new  {id=item.Id })'" />
     
-    }
+    }*@
 </div>
 
 <!--slider2-->

@@ -1,6 +1,7 @@
 ﻿using ApplicationDataAccess.ApplicationRepository;
 using ApplicationDomianEntity.Models;
 using ApplicationService.ViewModels.Card;
+using ApplicationService.ViewModels.Customer;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -34,6 +35,15 @@ namespace ApplicationService.CustomerServices
             }
 
         }
+
+        public async Task<ViewAllItemsForCustomers> GetAllItems()
+        {
+            var vapes = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.Vape)).Take(10).ToListAsync();
+            var eCigrete = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.ECigaret)).Take(10).ToListAsync();
+            var juice = await JuiceItemRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.IsActive == true && (c.TypeId != (int)DomainValues.Juice)).Take(10).ToListAsync();
+            return new ViewAllItemsForCustomers(vapes, eCigrete, juice);
+        }
+
 
         private async Task<Item> AddItemToCard(int ItemId, int Quantity)
         {
