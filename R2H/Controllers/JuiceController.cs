@@ -155,7 +155,7 @@ namespace R2H.Controllers
             {
                 logger.LogDebug("Start GetItemById ", "Id= " + Model.Id);
                 await _juiceService.UpdateItemById(Model.Id, Model);
-                return View(/*modul*/);
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {

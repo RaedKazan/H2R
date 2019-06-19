@@ -176,7 +176,7 @@ namespace R2H.Controllers
             {
                 logger.LogDebug("Start DeleteItem  ", "Id= " + Id);
                 await _electricCigaretService.DeleteElectricCigaret(Id);
-                return View(/*modul*/);
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
