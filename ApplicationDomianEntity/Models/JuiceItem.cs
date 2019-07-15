@@ -21,6 +21,9 @@ namespace ApplicationDomianEntity.Models
         public DateTime LastModificationDate { get; set; }
         public byte[] Image { get; set; }
         public List<ShopItemMangment> ElectricCigaretMangment { get; set; }
+        //to be added later
+        //public List<Images> Images { get; set; }
+
         public int ElectricCigaretMangmentId { get; set; }
         public bool IsActive { get; set; }
     }

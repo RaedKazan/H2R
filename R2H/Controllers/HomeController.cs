@@ -14,7 +14,6 @@ namespace R2H.Controllers
     public class HomeController : BaseController
     {
         private readonly IElectricCigaretService _electricCigaretService;
-
         private readonly ILogger logger;
 
         public HomeController(IElectricCigaretService electricCigaretService, ILoggerFactory LoggerFactory, UserManager<ApplicationUser> userManager)
@@ -30,9 +29,6 @@ namespace R2H.Controllers
             try
             {
                 logger.LogDebug("Start Index [GET]  ");
-
-
-
                 var userRoles =await  base.GetCurrentUserRoles() ;
                 if(userRoles!=null)
                 if (userRoles.Contains("Admin"))

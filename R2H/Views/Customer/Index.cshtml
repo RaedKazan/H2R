@@ -74,7 +74,7 @@
         var imgSrc = String.Format("data:image/jpeg;base64,/{0}", image64);
 
 
-        <img src="@imgSrc" onclick="location.href='@Url.Action("ViewItemDetails", "Customer", new  {id=item.Id })'" />
+        <img src="@imgSrc" onclick="location.href='@Url.Action("ViewJuiceDetails", "Customer", new  {id=item.Id })'" />
 
     }
 </div>

@@ -1,8 +1,6 @@
-﻿using ApplicationDomianEntity.Models;
-using ApplicationService;
+﻿using ApplicationService;
 using ApplicationService.CustomerServices;
 using ApplicationService.ViewModels.Card;
-using ApplicationService.ViewModels.Customer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,16 +16,20 @@ namespace R2H.Controllers
     public class CustomerController : BaseController
     {
         private readonly IElectricCigaretService _electricCigaretService;
+        private readonly IJuiceService _juiceService;
         private readonly ICustomerService _CustomerService;
         private readonly ILogger logger;
+
         public CustomerController(
             IElectricCigaretService electricCigaretService,
             ILoggerFactory LoggerFactory,
-            ICustomerService CustomerService,
-            UserManager<ApplicationUser> userManager) : base(userManager)
+            ICustomerService customerService,
+            UserManager<ApplicationUser> userManager,
+            IJuiceService juiceService) : base(userManager)
         {
             _electricCigaretService = electricCigaretService;
-            _CustomerService = CustomerService;
+            _CustomerService = customerService;
+            _juiceService=juiceService;
             this.logger = LoggerFactory.CreateLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         }
 
@@ -36,11 +38,7 @@ namespace R2H.Controllers
             try
             {
                 logger.LogDebug("CustomerController: Start Index [GET]");
-                //return View();
-
-
                 var Items = await _CustomerService.GetAllItems();
-
                 return View(Items);
             }
             catch (Exception ex)
@@ -50,13 +48,29 @@ namespace R2H.Controllers
             }
         }
 
+        // this view need to be changed 
         public async Task<IActionResult> ViewItemDetails(int id)
         {
             try
             {
                 logger.LogDebug("Start ViewItemDetails ", "Id= " + id);
                 var item = await _electricCigaretService.GetItemById(id);
+                return View(item);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+                return RedirectToAction("Error");
 
+            }
+        }
+        // this view need to be changed 
+        public async Task<IActionResult> ViewJuiceDetails(int id)
+        {
+            try
+            {
+                logger.LogDebug("Start ViewItemDetails ", "Id= " + id);
+                var item = await _juiceService.GetItemById(id);
                 return View(item);
             }
             catch (Exception ex)
@@ -77,7 +91,7 @@ namespace R2H.Controllers
         // ajax call should be done here 
         // the atrubite should be object  not only Id
         // the  object should look like itemId and JuiceId and quantity
-
+        [HttpPost]
         public async Task<IActionResult> Buy([FromBody]BuyItemViewModel BuyItemViewModel)
         {
             Product productModel = new Product();
@@ -106,7 +120,6 @@ namespace R2H.Controllers
             }
             return RedirectToAction("Index");
         }
-
         public IActionResult Remove([FromBody]BuyItemViewModel BuyItemViewModel)
         {
             try
@@ -141,7 +154,5 @@ namespace R2H.Controllers
             }
             return -1;
         }
-
-
     }
 }

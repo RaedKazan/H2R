@@ -1,5 +1,4 @@
-﻿using ApplicationDomianEntity.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using R2H.Models;
 using System.Collections.Generic;
@@ -17,11 +16,12 @@ namespace R2H.Controllers
         }
         public async  Task<IList<string>>  GetCurrentUserRoles()
         {
-            var userId=  _userManager.GetUserId(HttpContext.User);
+            var userId= _userManager.GetUserId(HttpContext.User);
             var userDetials = await _userManager.FindByIdAsync(userId);
             if (userDetials != null)
                 return await _userManager.GetRolesAsync(userDetials);
-            else return null;
+            else
+                return null;
         }
         public string GetCurrentUserId()
         {

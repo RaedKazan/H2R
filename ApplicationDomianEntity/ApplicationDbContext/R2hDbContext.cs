@@ -17,6 +17,8 @@ namespace ApplicationDomianEntity.ApplicationDbContext
         public virtual DbSet<ShopItemMangment> ShopItemMangment { get; set; }
         public virtual DbSet<JuiceItem> JuiceItem { get; set; }
         public virtual DbSet<Order> Order { get; set; }
+        // to be added later
+        //public virtual DbSet<Images> Images { get; set; }
 
         public R2HDbContext(DbContextOptions<R2HDbContext> options)
           : base(options)
@@ -131,6 +133,12 @@ namespace ApplicationDomianEntity.ApplicationDbContext
             .HasForeignKey(e => e.ElectricCigaretId)
             .OnDelete(DeleteBehavior.Restrict);
 
+            // to be add later
+            //modelBuilder.Entity<ShopItem>()
+            //.HasMany(e => e.Images)
+            //.WithOne(e => e.ShopItem)
+            //.HasForeignKey(e => e.ItemId)
+            //.OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<JuiceItem>()
             .HasMany(e => e.ElectricCigaretMangment)
@@ -150,7 +158,12 @@ namespace ApplicationDomianEntity.ApplicationDbContext
              .HasForeignKey(e => e.BrandId)
              .OnDelete(DeleteBehavior.Restrict);
 
-
+            // to be add later
+            //modelBuilder.Entity<JuiceItem>()
+            //.HasMany(e => e.Images)
+            //.WithOne(e => e.JuiceItem)
+            //.HasForeignKey(e => e.JuiceId)
+            //.OnDelete(DeleteBehavior.Restrict);
 
 
         }
