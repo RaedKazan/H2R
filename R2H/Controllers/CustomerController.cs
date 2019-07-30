@@ -103,7 +103,7 @@ namespace R2H.Controllers
                 SystemHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             else
-            {
+            { 
                 List<Item> cart = SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
                 int index = isExist(BuyItemViewModel.ItemId, BuyItemViewModel.JuiceId, BuyItemViewModel.JuiceMangmentId);
                 if (index != -1)
