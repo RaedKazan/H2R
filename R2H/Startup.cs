@@ -135,9 +135,11 @@ namespace R2H
 
             //Added by Hamza
             loggerFactory.AddLog4Net(); // << Add this line
-                                        //app.UseMvc();
+
+           
+
             //Added by hussam
-        
+
             var UserName = Configuration.GetSection("InitilaizeAdmin")["UserName"];
             var Password = Configuration.GetSection("InitilaizeAdmin")["Password"];
 

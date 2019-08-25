@@ -1,5 +1,7 @@
-﻿<!DOCTYPE html>
-<html >
+﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+<!DOCTYPE html>
+<html>
 <head>
 
     <meta charset="utf-8" />
@@ -11,10 +13,48 @@
     <script src="~/lib/jquery-validation/dist/additional-methods.js" type='text/javascript'></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" type='text/javascript'></script>
     <script src="~/js/site.js" type='text/javascript'></script>
-    
+
+    <style>
+        *.icon-blue {
+            color: yellow;
+        }
+
+        *.icon-grey {
+            color: red;
+            font-size: 20px;
+        }
+
+        i {
+            width: 100px;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        .badge:after {
+            content: attr(data-count);
+            position: absolute;
+            background: #ff6600;
+            height: 2rem;
+            top: 1rem;
+            right: 1.5rem;
+            width: 2rem;
+            text-align: center;
+            line-height: 2rem;
+            font-size: 1rem;
+            border-radius: 50%;
+            color: blue;
+            border: 1px solid #ff6600;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+    </style>
 
     <environment include="Development">
+        <link href="~/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
@@ -24,9 +64,28 @@
               integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
-    
+
 </head>
 <body>
+
+    @{
+
+
+        //Shopping cart code
+        var serializedItems = Context.Session.GetString("cart");
+        int itemsCount = 0;
+        if (serializedItems != null)
+        {
+            var itemsList = JsonConvert.DeserializeObject<List<string>>(serializedItems);
+
+            if (itemsList != null)
+            {
+                itemsCount = itemsList.Count();
+            }
+        }
+
+
+    }
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -37,6 +96,7 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -44,7 +104,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @*Shooping Cart*@
+                        <li>
+                            <a href='@Url.Action("ViewAllItems","Customer")'>
+                                <i id="shoppingCartIcon" data-count="" class="fa fa-shopping-cart fa-5x  icon-grey badge"> </i>
+                            </a>
+                        </li>
+
                     </ul>
+
                 </div>
             </div>
         </nav>
@@ -82,7 +150,13 @@
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
+    <script>
+        //script for shopping cart
+        $('#shoppingCartIcon').attr('data-count', '@itemsCount');
+    </script>
 
     @RenderSection("Scripts", required: false)
 </body>
+
+
 </html>

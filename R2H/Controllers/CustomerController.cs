@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace R2H.Controllers
 {
 
@@ -29,7 +30,7 @@ namespace R2H.Controllers
         {
             _electricCigaretService = electricCigaretService;
             _CustomerService = customerService;
-            _juiceService=juiceService;
+            _juiceService = juiceService;
             this.logger = LoggerFactory.CreateLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         }
 
@@ -37,6 +38,7 @@ namespace R2H.Controllers
         {
             try
             {
+              
                 logger.LogDebug("CustomerController: Start Index [GET]");
                 var Items = await _CustomerService.GetAllItems();
                 return View(Items);
@@ -83,6 +85,7 @@ namespace R2H.Controllers
 
         public IActionResult ViewCardInformation()
         {
+
             var cart = SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
             ViewBag.total = cart.Sum(item => item.Product.Price * item.Quantity);
@@ -153,6 +156,13 @@ namespace R2H.Controllers
                 }
             }
             return -1;
+        }
+
+        public IActionResult ViewAllItems()
+        {
+            var items = SystemHelper.GetObjectFromJson<List<string>>(HttpContext.Session, "cart");
+           
+            return View(items);
         }
     }
 }

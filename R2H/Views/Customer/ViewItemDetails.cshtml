@@ -18,29 +18,47 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group row col-md-12">
+
                     <div class="col-md-4">
-                        @Html.LabelFor(x => x.Category, new { @class = "font-italic" })
-                        @Html.TextBoxFor(model => model.Category, Model.CategoryText, new { @class = "form-control", @readonly = true, @id = "Category" })
-                        @Html.ValidationMessageFor(c => c.Category, "", new { @class = "text-danger" })
+                        <div class="form-group row col-md-12">
+                            <div class="col-md-4" id="CurrentImage">
+                                @{ var image64 = System.Text.Encoding.UTF8.GetString(Model.Image);
+                                    var imgSrc = String.Format("data:image/jpeg;base64,/{0}", image64);
+                                    <div style=" width: 82%;height: 100%;">
+                                        <img style=" height: 266px;" src="@imgSrc" />
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        @Html.LabelFor(x => x.Brand, new { @class = "font-italic" })
-                        @Html.TextBoxFor(model => model.Brand, Model.BrandText, new { @class = "form-control", @readonly = true, @id = "Brand" })
-                        @Html.ValidationMessageFor(c => c.Brand, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row col-md-12">
-                    <div class="col-md-4">
-                        @Html.LabelFor(x => x.Name, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @readonly = true, @id = "Name" })
-                        @Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" style="direction:rtl; top:15px; text-align:right">
+                        @Html.LabelFor(x => x.Brand, new { @class = "font-italic" })&nbsp
+                        @Html.DisplayFor(model => Model.BrandText, new { @class = "form-control", @readonly = true, @id = "Brand" })
+                        <br />
+
+                        @Html.LabelFor(x => x.Category, new { @class = "font-italic" })&nbsp
+                        @Html.DisplayFor(model => Model.CategoryText, new { @class = "form-control", @readonly = true, @id = "Category" })
+                        <br />
+                        @Html.LabelFor(x => x.Name, new { @class = "font-italic" })&nbsp
+                        @Html.DisplayFor(x => x.Name, new { @class = "form-control", @readonly = true, @id = "Name" })
+                        <br />
                         @Html.LabelFor(x => x.Description, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @Required = "Required", @readonly = true, @id = "Description" })
-                        @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger" })
+                        @Html.DisplayFor(x => x.Description, new { @class = "form-control", @id = "Description" })
+                        <br />
+                        @Html.LabelFor(x => x.SellingPrice, new { @class = "font-italic" })
+                        @Html.DisplayFor(x => x.SellingPrice, new { @class = "form-control", @id = "SellingPrice" })
+                        <br />
+                        @Html.LabelFor(x => x.IsAvilable, new { @class = "font-italic" })
+                        @Html.DisplayFor(x => x.IsAvilableText, new { @class = "form-control", @id = "Avilable" })
                     </div>
+
+                    <div class="col-md-4">
+
+                    </div>
+
                 </div>
+              
 
 
                 <div class="form-group row col-md-12">
@@ -48,53 +66,32 @@
                         @Html.LabelFor(x => x.BuyingPrice, new { @class = "font-italic" })
                         @Html.TextBoxFor(x => x.BuyingPrice, new { @class = "form-control", @readonly = true })
                         @Html.ValidationMessageFor(c => c.BuyingPrice, "", new { @class = "text-danger" })
+
                     </div>
                     <div class="col-md-4">
-                        @Html.LabelFor(x => x.SellingPrice, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.SellingPrice, new { @class = "form-control", @readonly = true, @id = "SellingPrice" })
-                        @Html.ValidationMessageFor(c => c.SellingPrice, "", new { @class = "text-danger" })
+
+
                     </div>
 
                 </div>
                 <div class="form-group row col-md-12">
-                    <div class="col-md-4">
-                        @Html.LabelFor(x => x.CurrentlyCountAvilabil, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.CurrentlyCountAvilabil, new { @class = "form-control", @readonly = true, @id = "CurrentlyCountAvilabil" })
-                        @Html.ValidationMessageFor(c => c.SellingPrice, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-md-4">
-                        @{
 
-                            if (Model.IsAvilable == true)
-                            {
-                                Model.IsAvilableText = "نعم";
+                    @*<div class="col-md-4">
+                            @{
+
+                                if (Model.IsAvilable == true)
+                                {
+                                    Model.IsAvilableText = "نعم";
+                                }
+                                else { Model.IsAvilableText = "لا"; }
                             }
-                            else { Model.IsAvilableText = "لا"; }
-                        }
-                        @Html.LabelFor(x => x.IsAvilable, new { @class = "font-italic" })
-                        @Html.TextBoxFor(x => x.IsAvilableText, new { @class = "form-control", @readonly = true, @id = "Avilable" })
-                    </div>
+
+                        </div>*@
                 </div>
             </div>
 
 
-            <div class="form-group row col-md-12">
-                <div class="col-md-4" id="CurrentImage">
-                    @{ var image64 = System.Text.Encoding.UTF8.GetString(Model.Image);
-                        var imgSrc = String.Format("data:image/jpeg;base64,/{0}", image64);
-                        <div style="    width: 82%;height: 100%;">
-                            <img style="    height: 266px;" src="@imgSrc" />
-                        </div>
-                    }
-                </div>
-                <div class="col-md-4" id="ImageDiv">
-                    @Html.LabelFor(x => x.Image, new { @class = "font-italic" })
-                    @Html.HiddenFor(x => x.Image)
-                    <input id="ImageButton" class="btn btn-default" type="file" accept="image/*" onchange="loadFile(event)">
-                    <img id="output" style="width:300px" />
-                    @Html.ValidationMessageFor(c => c.Image, "", new { @class = "text-danger" })
-                </div>
-            </div>
+
             <div class="form-group row col-md-12">
                 <div class="col-md-4">
                     <button id="Save" type="submit" class="btn btn-primary font-italic" style="display: none; margin: 6% auto;">Save</button>
@@ -103,12 +100,12 @@
 
         </row>
     </fieldset>
-    <div class="form-group row col-md-12" style="    margin-right: -231px;margin-left: -132px;">
+    <div class="form-group  col-md-12">
+        @*<div class="col-md-4">
+                <text id="Edit" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;    width: 20%;">Edit</text>
+            </div>*@
         <div class="col-md-4">
-            <text id="Edit" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;    width: 20%;">Edit</text>
-        </div>
-        <div class="col-md-4">
-            <text id="Delete" class="btn btn-primary font-italic" name="test" style="display: block; margin: 6% auto;margin-left: -125px;width: 38%;">Not Avilable</text>
+            <text id="Delete" class="btn btn-primary font-italic" name="test">Not Avilable</text>
         </div>
     </div>
 }
