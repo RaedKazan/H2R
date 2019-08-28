@@ -32,11 +32,11 @@ namespace ApplicationService.CustomerServices
         {
             if (Model.ItemId > 0)
             {
-                return await AddItemToCard(Model.ItemId, Model.Quantity);
+                return await AddItemToCard(Model.ItemId, Model.Quantity,Model.UserId);
             }
             else
             {
-                return await AddJuiceToCard(Model.JuiceId, Model.JuiceMangmentId, Model.Quantity);
+                return await AddJuiceToCard(Model.JuiceId, Model.JuiceMangmentId, Model.Quantity, Model.UserId);
             }
 
         }
@@ -91,7 +91,7 @@ namespace ApplicationService.CustomerServices
         }
 
 
-        private async Task<Item> AddItemToCard(int ItemId, int Quantity)
+        private async Task<Item> AddItemToCard(int ItemId, int Quantity, string UserId)
         {
             var result = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.Id == ItemId).FirstOrDefaultAsync();
             if (result.ElectricCigaretMangment.FirstOrDefault().TotalyAvilable > Quantity)
@@ -102,7 +102,10 @@ namespace ApplicationService.CustomerServices
                     {
                         ItemId = result.Id,
                         Name = result.Name,
-                        Price = result.Id
+                        Price = result.SellingPrice.Value,
+                        UserId= UserId,
+                        // note this line should be removed later on the image size is to large fot the session 
+                        Photo=result.Image
                     },
                     Quantity = Quantity
                 };
@@ -113,7 +116,7 @@ namespace ApplicationService.CustomerServices
             }
         }
 
-        private async Task<Item> AddJuiceToCard(int JuiceId, int JuiceMangmentId, int Quantity)
+        private async Task<Item> AddJuiceToCard(int JuiceId, int JuiceMangmentId, int Quantity,string UserId)
         {
             var result = await ElectricCigaretRepository.GetAllIncluding(c => c.ElectricCigaretMangment).Where(c => c.Id == JuiceId).FirstOrDefaultAsync();
             if (result.ElectricCigaretMangment.Where(c => c.Id == JuiceMangmentId).FirstOrDefault().TotalyAvilable > Quantity)
@@ -122,10 +125,12 @@ namespace ApplicationService.CustomerServices
                 {
                     Product = new Product
                     {
-                        ItemId = result.Id,
+                        JuiceId = result.Id,
                         Name = result.Name,
                         JuiceMangmentId = JuiceMangmentId,
-                        Price = result.Id
+                        Price = result.SellingPrice.Value,
+                        UserId=UserId,
+                        Photo=result.Image
                     },
                     Quantity = Quantity
                 };

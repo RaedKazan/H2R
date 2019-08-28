@@ -28,7 +28,7 @@ namespace ApplicationService.Orders
                     JuiceItemId = item.Product.JuiceId,
                     OrderId = maxOrderId,
                     Quantity = item.Quantity,
-                    IsCanceled = true,
+                    IsCanceled = false,
                     IsPending = true,
                     ShopItemId = item.Product.ItemId
                 });

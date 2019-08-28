@@ -62,11 +62,6 @@ namespace R2H
             builder.RegisterType<ItemMangmentService>().As<IItemMangmentService>();
             builder.RegisterType<JuiceService>().As<IJuiceService>();
             builder.RegisterType<CustomerService>().As<ICustomerService>();
-
-
-            
-
-
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
 
 

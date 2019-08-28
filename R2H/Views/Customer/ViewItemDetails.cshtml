@@ -8,8 +8,7 @@
 <h1>Details</h1>
 
 
-@using (Html.BeginForm("UpdateItem", "Home"))
-{
+
     <fieldset id="thisform">
         <row>
             @Html.HiddenFor(c => c.Id)
@@ -68,25 +67,8 @@
                         @Html.ValidationMessageFor(c => c.BuyingPrice, "", new { @class = "text-danger" })
 
                     </div>
-                    <div class="col-md-4">
+                   
 
-
-                    </div>
-
-                </div>
-                <div class="form-group row col-md-12">
-
-                    @*<div class="col-md-4">
-                            @{
-
-                                if (Model.IsAvilable == true)
-                                {
-                                    Model.IsAvilableText = "نعم";
-                                }
-                                else { Model.IsAvilableText = "لا"; }
-                            }
-
-                        </div>*@
                 </div>
             </div>
 
@@ -94,21 +76,14 @@
 
             <div class="form-group row col-md-12">
                 <div class="col-md-4">
-                    <button id="Save" type="submit" class="btn btn-primary font-italic" style="display: none; margin: 6% auto;">Save</button>
+                    <button id="Buy" class="btn btn-primary font-italic" style="margin: 6% auto;">Buy</button>
                 </div>
             </div>
 
         </row>
     </fieldset>
-    <div class="form-group  col-md-12">
-        @*<div class="col-md-4">
-                <text id="Edit" class="btn btn-primary font-italic" style="display: block; margin: 6% auto;    width: 20%;">Edit</text>
-            </div>*@
-        <div class="col-md-4">
-            <text id="Delete" class="btn btn-primary font-italic" name="test">Not Avilable</text>
-        </div>
-    </div>
-}
+
+
 <script>
 
 
@@ -116,25 +91,32 @@
     $(document).ready(function () {
 
         $("#Buy").click(function () {
-            var person = {
-                ItemId: $("#id-name").val(),
-                JuiceId: $("#id-address").val(),
-                JuiceMangmentId: $("#id-phone").val(),
-                Quantity: $("#id-address").val()
+            var Item = {
+                ItemId: $("#Id").val(),
+                JuiceId: 0,
+                JuiceMangmentId: 0,
+                Quantity: 0
             }
+            debugger;
         $.ajax(
             {
                 url: '@Url.Action("Buy", "Customer")',
                 contentType: 'application/json; charset=utf-8',
                 datatype: 'json',
-                data: JSON.stringify(person),
-                type: "GET",
+                data: JSON.stringify(Item),
+                type: "POST",
                 success: function () {
-                    window.location = '@Url.Action("DownloadFileCSV", "Home")' + '?' + JsonData;
+                    debugger;
+
+                    alert("Added successfully :)");
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status);
-                    alert(thrownError);
+                    debugger;
+                    if (xhr.status == 403)
+                    {
+                        alert("You need to login first :)");
+                        window.location.href = '/Identity/Account/Login';
+                    }
                 }
             });
         });

@@ -1,5 +1,6 @@
 ﻿using ApplicationService;
 using ApplicationService.CustomerServices;
+using ApplicationService.Orders;
 using ApplicationService.ViewModels.Card;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,8 @@ namespace R2H.Controllers
         private readonly IElectricCigaretService _electricCigaretService;
         private readonly IJuiceService _juiceService;
         private readonly ICustomerService _CustomerService;
+        private readonly IOrderService _orderService;
+        
         private readonly ILogger logger;
 
         public CustomerController(
@@ -83,21 +86,16 @@ namespace R2H.Controllers
             }
         }
 
-        public IActionResult ViewCardInformation()
-        {
-
-            var cart = SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            ViewBag.cart = cart;
-            ViewBag.total = cart.Sum(item => item.Product.Price * item.Quantity);
-            return View();
-        }
-        // ajax call should be done here 
-        // the atrubite should be object  not only Id
-        // the  object should look like itemId and JuiceId and quantity
         [HttpPost]
         public async Task<IActionResult> Buy([FromBody]BuyItemViewModel BuyItemViewModel)
         {
             Product productModel = new Product();
+            BuyItemViewModel.UserId = base.GetCurrentUserId();
+
+            //if (string.IsNullOrEmpty(base.GetCurrentUserId()))
+            //  return Forbid();
+
+
             if (SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart") == null)
             {
                 List<Item> cart = new List<Item>();
@@ -121,8 +119,9 @@ namespace R2H.Controllers
                 }
                 SystemHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
-            return RedirectToAction("Index");
+            return Ok();
         }
+        [HttpPost]
         public IActionResult Remove([FromBody]BuyItemViewModel BuyItemViewModel)
         {
             try
@@ -132,12 +131,12 @@ namespace R2H.Controllers
                 int index = isExist(BuyItemViewModel.ItemId, BuyItemViewModel.JuiceId, BuyItemViewModel.JuiceMangmentId);
                 cart.RemoveAt(index);
                 SystemHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
-                return RedirectToAction("Index");
+                return Ok();
             }
             catch (Exception ex)
             {
                 logger.LogError(ex.Message);
-                return RedirectToAction("Error");
+                return BadRequest();
 
             }
         }
@@ -146,11 +145,11 @@ namespace R2H.Controllers
             List<Item> cart = SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             for (int i = 0; i < cart.Count; i++)
             {
-                if (cart[i].Product.ItemId.Equals(ItemId))
+                if (cart[i].Product.ItemId.Equals(ItemId) && ItemId!=0)
                 {
                     return i;
                 }
-                if (cart[i].Product.JuiceId.Equals(JuiceId) && cart[i].Product.JuiceMangmentId.Equals(JuiceMangmentId))
+                if (cart[i].Product.JuiceId.Equals(JuiceId) && cart[i].Product.JuiceMangmentId.Equals(JuiceMangmentId) && JuiceMangmentId!=0&& JuiceId!=0)
                 {
                     return i;
                 }
@@ -158,10 +157,17 @@ namespace R2H.Controllers
             return -1;
         }
 
-        public IActionResult ViewAllItems()
+        public IActionResult ViewAllSelectedItems()
         {
-            var items = SystemHelper.GetObjectFromJson<List<string>>(HttpContext.Session, "cart");
-           
+            var items = SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            return View(items);
+        }
+
+        public async  Task<IActionResult> ConfirmOrder()
+        {
+            var items = SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            await _orderService.AddOrder(items);
+            // return to home page with details about the the order and so
             return View(items);
         }
     }

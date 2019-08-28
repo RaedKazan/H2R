@@ -10,8 +10,10 @@ namespace ApplicationService.ViewModels.Card
         public int JuiceId { get; set; }
         public int JuiceMangmentId { get; set; }
         public int Quantity { get; set; }
+        public string UserId { get; set; }
+
 
     }
 
-    
+
 }

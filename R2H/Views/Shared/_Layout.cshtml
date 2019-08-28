@@ -76,7 +76,8 @@
         int itemsCount = 0;
         if (serializedItems != null)
         {
-            var itemsList = JsonConvert.DeserializeObject<List<string>>(serializedItems);
+            
+    var itemsList = JsonConvert.DeserializeObject<List<ApplicationService.ViewModels.Card.Item>>(serializedItems);
 
             if (itemsList != null)
             {
@@ -106,7 +107,7 @@
                         </li>
                         @*Shooping Cart*@
                         <li>
-                            <a href='@Url.Action("ViewAllItems","Customer")'>
+                            <a href='@Url.Action("ViewAllSelectedItems","Customer")'>
                                 <i id="shoppingCartIcon" data-count="" class="fa fa-shopping-cart fa-5x  icon-grey badge"> </i>
                             </a>
                         </li>

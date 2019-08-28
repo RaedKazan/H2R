@@ -8,6 +8,6 @@
         public int JuiceMangmentId { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
-        public string Photo { get; set; }
+        public byte[] Photo { get; set; }
     }
 }
