@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationService.Orders
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         private readonly IRepository<Order> OrderRepository;
         public OrderService(IRepository<Order> OrderRepository)

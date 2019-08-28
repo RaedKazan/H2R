@@ -2,6 +2,7 @@
 using ApplicationService.CustomerServices;
 using ApplicationService.Orders;
 using ApplicationService.ViewModels.Card;
+using ApplicationService.ViewModels.Customer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -28,12 +29,14 @@ namespace R2H.Controllers
             IElectricCigaretService electricCigaretService,
             ILoggerFactory LoggerFactory,
             ICustomerService customerService,
+            IOrderService orderService,
             UserManager<ApplicationUser> userManager,
             IJuiceService juiceService) : base(userManager)
         {
             _electricCigaretService = electricCigaretService;
             _CustomerService = customerService;
             _juiceService = juiceService;
+            _orderService = orderService;
             this.logger = LoggerFactory.CreateLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         }
 
@@ -162,8 +165,8 @@ namespace R2H.Controllers
             var items = SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             return View(items);
         }
-
-        public async  Task<IActionResult> ConfirmOrder()
+        [HttpPost]
+        public async  Task<IActionResult> ConfirmOrder([FromBody]Order Order)
         {
             var items = SystemHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             await _orderService.AddOrder(items);
